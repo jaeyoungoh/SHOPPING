@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kitri.SpringLoginMember.board.BoardMapper">
+
+	<resultMap type="com.kitri.SpringLoginMember.board.Article" id="BoardResultMap">
+		<result property="num" column="NUM" />
+		<result property="w_date" column="W_DATE" />
+		<result property="writer" column="WRITER" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="parent" column="PARENT" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="BoardResultMap" >
+		select * from springboard where parent=0 order by num desc
+	</select>
+	
+	<select id="selectByParentNum" resultMap="BoardResultMap"  parameterType="int">
+		select * from springboard where parent=#{parent} order by num desc
+	</select>
+	
+	<select id="select" resultMap="BoardResultMap" parameterType="int">
+		SELECT * FROM SPRINGBOARD where num=#{num}
+	</select>
+	
+	<insert id="insert" parameterType="com.kitri.SpringLoginMember.board.Article" >
+		INSERT INTO SPRINGBOARD values(SEQ_SPRINGBOARD.nextval,sysdate,#{writer},#{title},#{content}, #{parent})
+	</insert>
+	
+	<update id="update" parameterType="com.kitri.SpringLoginMember.board.Article">
+		update SPRINGBOARD set title=#{title}, content=#{content} where num=#{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete SPRINGBOARD where num=#{num}
+	</delete>
+	
+	<select id="search_subject" resultMap="BoardResultMap" parameterType="String">
+		select * from springboard where title like #{query} order by num desc
+	</select>
+	
+	<select id="search_num" resultMap="BoardResultMap" parameterType="int">
+		select * from springboard where num=#{num}
+	</select>
+
+</mapper>

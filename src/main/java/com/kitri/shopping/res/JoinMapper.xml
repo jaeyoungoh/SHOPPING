@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kitri.SpringLoginMember.member.JoinMapper">
+
+<!-- DTO 매칭을 위해서 사용 -->
+	<resultMap type="com.kitri.SpringLoginMember.member.Join" id="JoinResultMap">
+		<result property="id" column="ID" />
+		<result property="pwd" column="PWD" />
+		<result property="name" column="NAME" />
+		<result property="email" column="EMAIL" />
+	</resultMap>
+
+	<select id="selectALL" resultMap="JoinResultMap">
+		SELECT * FROM join order by num desc
+	</select>
+	
+	<select id="select" resultMap="JoinResultMap" parameterType="String">
+		SELECT * FROM join where id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.kitri.SpringLoginMember.member.Join" >
+		INSERT INTO join values(#{id},#{pwd},#{name}, #{email})
+	</insert>
+	
+	<update id="update" parameterType="com.kitri.SpringLoginMember.member.Join">
+		update join set name=#{name}, pwd=#{pwd}, email=#{email} where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete join where id=#{id}
+	</delete>
+
+</mapper>
