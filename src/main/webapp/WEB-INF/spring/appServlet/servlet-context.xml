@@ -35,10 +35,10 @@
 			<beans:value>jdbc:oracle:thin:@localhost:1521:XE</beans:value>
 		</beans:property>
 		<beans:property name="username">
-			<beans:value>kitri04</beans:value>
+			<beans:value>deposco</beans:value>
 		</beans:property>
 		<beans:property name="password">
-			<beans:value>kitri04</beans:value>
+			<beans:value>deposco</beans:value>
 		</beans:property>
 	</beans:bean>
 	
