@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kitri.shopping.product.ProductMapper">
+
+	<resultMap type="com.kitri.shopping.product.Product" id="ProductResultMap">
+		<result property="product_id" column="product_id" />
+		<result property="name" column="name" />
+		<result property="quantity" column="quantity" />
+		<result property="price" column="price" />
+		<result property="sale_pct" column="sale_pct" />
+		<result property="img_url" column="img_url" />
+		<result property="category" column="category" />
+		<result property="intro_content" column="intro_content" />
+		<result property="user_id" column="user_id" />
+		<result property="product_date" column="product_date" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="ProductResultMap" >
+		select * from Product order by product_date desc
+	</select>
+	
+	<select id="selectbyName" resultMap="ProductResultMap"  parameterType="String">
+		select * from Product where name like  '%'||#{name}||'%' order by name 
+	</select>
+	
+	<select id="selectbyCategory" resultMap="ProductResultMap"  parameterType="String">
+		select * from Product where category like #{category} order by name 
+	</select>
+	<select id="select" resultMap="ProductResultMap" parameterType="int">
+		SELECT * FROM Product where product_id=#{product_id}
+	</select>
+	
+	<insert id="insert" parameterType="com.kitri.shopping.product.Product">
+		INSERT INTO SPRINGBOARD values(SEQ_SPRINGBOARD.nextval,sysdate,#{writer},#{title},#{content}, #{parent})
+	</insert>
+	
+	<update id="update" parameterType="com.kitri.shopping.product.Product">
+		update SPRINGBOARD set title=#{title}, content=#{content} where num=#{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete product where product_id=#{product_id}
+	</delete>
+	
+</mapper>
