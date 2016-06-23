@@ -10,6 +10,8 @@
 <h1>
 	Hello world!  
 </h1>
+<a href="${pageContext.request.contextPath}/user/login.do">로그인페이지로 이동</a>
+
 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
