@@ -2,11 +2,15 @@ package com.kitri.shopping.cart;
 
 public class Cart {
 	
+	// 장바구니 번호
+	private int cart_num;		
+	//장바구니 담긴 물건 갯수
+	private int cart_cnt;
 	// 물건 번호
 	private int product_id;
 	// 물건 이름
 	private String product_name;
-	// 장바구니 담긴 물건 갯수
+	// 물건 실제 수량
 	private int product_cnt;
 	//물건 가격
 	private int price;
@@ -18,9 +22,9 @@ public class Cart {
 	private String img_url;
 	
 	public Cart() {	}
-	
-	public Cart(int product_id, String product_name, int product_cnt, int price, int sale_pct, String user_id,
-			String img_url) {
+	public Cart(int cart_num, int product_id, String product_name, int product_cnt, int price, int sale_pct,
+			String user_id, String img_url, int cart_cnt) {
+		this.cart_num = cart_num;
 		this.product_id = product_id;
 		this.product_name = product_name;
 		this.product_cnt = product_cnt;
@@ -28,9 +32,8 @@ public class Cart {
 		this.sale_pct = sale_pct;
 		this.user_id = user_id;
 		this.img_url = img_url;
+		this.cart_cnt = cart_cnt;
 	}
-
-
 
 	public int getProduct_id() {
 		return product_id;
@@ -76,7 +79,22 @@ public class Cart {
 	public void setProduct_cnt(int product_cnt) {
 		this.product_cnt = product_cnt;
 	}
-	
-	
 
+	public int getCart_cnt() {
+		return cart_cnt;
+	}
+	public void setCart_cnt(int cart_cnt) {
+		this.cart_cnt = cart_cnt;
+	}
+
+
+	public int getCart_num() {
+		return cart_num;
+	}
+
+
+	public void setCart_num(int cart_num) {
+		this.cart_num = cart_num;
+	}
+	
 }

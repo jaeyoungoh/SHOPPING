@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kitri.shopping.cart.CartMapper">
+
+	<resultMap type="com.kitri.shopping.cart.Cart" id="CartResultMap">
+		<result property="cart_num" column="cart_num" />
+		<result property="cart_cnt" column="cart_cnt" />
+		<result property="product_id" column="product_id" />
+		<result property="product_name" column="product_name" />
+		<result property="product_cnt" column="product_cnt" />
+		<result property="price" column="price" />
+		<result property="sale_pct" column="sale_pct" />
+		<result property="user_id" column="user_id" />
+		<result property="img_url" column="img_url" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="CartResultMap" parameterType="String">
+		select
+		p.PRODUCT_ID PRODUCT_ID,
+		p.NAME PRODUCT_NAME,
+		c.CART_CNT CART_cnt,
+		p.PRICE PRICE,
+		p.SALE_PCT SALE_PCT,
+		p.USER_ID USER_ID,
+		p.IMG_URL IMG_URL
+		from CART c JOIN PRODUCT p
+		ON c.PRODUCT_ID = p.PRODUCT_ID
+		where c.USER_ID=#{user_id}
+	</select>
+	
+	<insert id="insert" parameterType="com.kitri.shopping.cart.Cart">
+		INSERT INTO cart values(seq_cart.nextval,
+		 #{user_id},
+		 #{product_id},
+		 #{cart_cnt})
+	</insert>
+	
+	<update id="update" parameterType="com.kitri.shopping.cart.Cart">
+		update SPRINGBOARD set cart_cnt=#{cart_cnt} where cart_num=#{cart_num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete product where cart_num=#{cart_num}
+	</delete>
+	
+</mapper>
