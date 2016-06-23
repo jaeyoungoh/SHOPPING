@@ -32,13 +32,13 @@
 			<beans:value>oracle.jdbc.driver.OracleDriver</beans:value>
 		</beans:property>
 		<beans:property name="url">
-			<beans:value>jdbc:oracle:thin:@localhost:1521:XE</beans:value>
+			<beans:value>jdbc:oracle:thin:@192.168.14.31:1521:XE</beans:value>
 		</beans:property>
 		<beans:property name="username">
-			<beans:value>kitri04</beans:value>
+			<beans:value>deposco</beans:value>
 		</beans:property>
 		<beans:property name="password">
-			<beans:value>kitri04</beans:value>
+			<beans:value>deposco</beans:value>
 		</beans:property>
 	</beans:bean>
 	
@@ -51,7 +51,7 @@
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="typeAliasesPackage" value="mybatis" />
-		<!-- <beans:property name="mapperLocations" value="classpath:/com/kitri/shopping/res/*.xml" /> -->
+		<beans:property name="mapperLocations" value="classpath:/com/kitri/shopping/res/*.xml" />
 		
 	</beans:bean>
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
