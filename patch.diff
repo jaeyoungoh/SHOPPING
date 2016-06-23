@@ -1,0 +1,58 @@
+diff --git a/.classpath b/.classpath
+index c3ce2e4..c99cf86 100644
+--- a/.classpath
++++ b/.classpath
+@@ -6,14 +6,22 @@
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry including="**/*.java" kind="src" path="src/main/resources"/>
++	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
+ 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+ 		<attributes>
+ 			<attribute name="optional" value="true"/>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
++	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
+ 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+diff --git a/.settings/org.eclipse.wst.common.component b/.settings/org.eclipse.wst.common.component
+index fffed63..aafa53e 100644
+--- a/.settings/org.eclipse.wst.common.component
++++ b/.settings/org.eclipse.wst.common.component
+@@ -1,10 +1,10 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project-modules id="moduleCoreId" project-version="1.5.0">
++<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+ 	<wb-module deploy-name="SHOPPING">
+         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+ 		<wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+ 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+ 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
++        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+ 		<property name="java-output-path" value="target/classes"/>
+         <property name="context-root" value="shopping"/>
+ 	</wb-module>
+diff --git a/.settings/org.eclipse.wst.validation.prefs b/.settings/org.eclipse.wst.validation.prefs
+index 75abca5..ca90b67 100644
+--- a/.settings/org.eclipse.wst.validation.prefs
++++ b/.settings/org.eclipse.wst.validation.prefs
+@@ -1,6 +1,6 @@
+-#Fri Jun 06 17:00:12 BST 2008
+ DELEGATES_PREFERENCE=delegateValidatorListorg.eclipse.wst.wsdl.validation.internal.eclipse.WSDLDelegatingValidator\=org.eclipse.wst.wsdl.validation.internal.eclipse.Validator;org.eclipse.wst.xsd.core.internal.validation.eclipse.XSDDelegatingValidator\=org.eclipse.wst.xsd.core.internal.validation.eclipse.Validator;
+ USER_BUILD_PREFERENCE=enabledBuildValidatorListorg.eclipse.wst.wsdl.validation.internal.eclipse.WSDLDelegatingValidator;org.eclipse.wst.xsd.core.internal.validation.eclipse.XSDDelegatingValidator;org.eclipse.jst.jsf.validation.internal.JSPSemanticsValidator;org.eclipse.wst.dtd.core.internal.validation.eclipse.Validator;org.eclipse.wst.xml.core.internal.validation.eclipse.Validator;org.eclipse.wst.common.componentcore.internal.ModuleCoreValidator;org.eclipse.jst.jsf.validation.internal.appconfig.AppConfigValidator;org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator;org.eclipse.wst.html.internal.validation.HTMLValidator;org.eclipse.jst.jsp.core.internal.validation.JSPContentValidator;org.eclipse.jst.j2ee.internal.classpathdep.ClasspathDependencyValidator;org.eclipse.wst.wsi.ui.internal.WSIMessageValidator;
+ USER_MANUAL_PREFERENCE=enabledManualValidatorListorg.eclipse.wst.wsdl.validation.internal.eclipse.WSDLDelegatingValidator;org.eclipse.wst.xsd.core.internal.validation.eclipse.XSDDelegatingValidator;org.eclipse.jst.jsf.validation.internal.JSPSemanticsValidator;org.eclipse.wst.dtd.core.internal.validation.eclipse.Validator;org.eclipse.wst.xml.core.internal.validation.eclipse.Validator;org.eclipse.wst.common.componentcore.internal.ModuleCoreValidator;org.eclipse.jst.jsf.validation.internal.appconfig.AppConfigValidator;org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator;org.eclipse.wst.html.internal.validation.HTMLValidator;org.eclipse.jst.jsp.core.internal.validation.JSPContentValidator;org.eclipse.jst.j2ee.internal.classpathdep.ClasspathDependencyValidator;org.eclipse.wst.wsi.ui.internal.WSIMessageValidator;
+ USER_PREFERENCE=overrideGlobalPreferencesfalse
++disabled=06target
+ eclipse.preferences.version=1
