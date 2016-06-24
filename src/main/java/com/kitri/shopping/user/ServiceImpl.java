@@ -1,9 +1,13 @@
 package com.kitri.shopping.user;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
+
+
 
 @Component("userService")
 public class ServiceImpl implements Service {
@@ -16,45 +20,76 @@ public class ServiceImpl implements Service {
 	}	
 	
 	@Override
-	public void addid(users u) {
+	public void adduser(users u) {
 		// TODO Auto-generated method stub
-	
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		
+		usersMapper.insert(u);
+		
 	}
 
 	@Override
 	public users get(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		
+		return usersMapper.select(id);
 	}
 
-	@Override
-	public boolean login(users u) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public void editusers1(users u) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void editusers2(users u) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 	@Override
 	public void delusers(String id) {
 		// TODO Auto-generated method stub
-
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		
+		usersMapper.updateByWithdraw(id);
 	}
 
 	@Override
-	public users findpwd(users u) {
+	public users findpwd(String email) {
 		// TODO Auto-generated method stub
-		return null;
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		
+		return usersMapper.selectByEmail(email);
+	}
+
+	@Override
+	public List<users> getAll() {
+		// TODO Auto-generated method stub
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		
+		return usersMapper.selectAll();
+	}
+
+	@Override
+	public void editusers(users u) {
+		// TODO Auto-generated method stub
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		usersMapper.update(u);
+	}
+
+	@Override
+	public void editusersByApprove(users u) {
+		// TODO Auto-generated method stub
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		usersMapper.updateByApprove(u);
+		
+	}
+
+	@Override
+	public List<users> getAllType(String type) {
+		// TODO Auto-generated method stub
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		return usersMapper.selectByType(type);
+	}
+
+	@Override
+	public users login(String user_id) {
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		return usersMapper.select(user_id);
 	}
 
 }

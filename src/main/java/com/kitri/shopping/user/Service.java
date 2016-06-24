@@ -1,23 +1,27 @@
 package com.kitri.shopping.user;
 
-
+import java.util.List;
 
 public interface Service {
 	
 		
-	void addid(users u); //회원 가입
+	void adduser(users u); //회원 가입
 	
 	users get(String id);//회원 검색
 	
-	boolean login(users u);//회원 로그인, 로그아웃
+	List<users> getAll();//회원 전체 검색
 	
-	void editusers1(users u);//회원 수정, 
+	users login(String user_id);//회원 로그인, 로그아웃
 	
-	void editusers2(users u); //판매자등록승인 
+	void editusers(users u);//회원 정보 수정 
+	
+	void editusersByApprove(users u); //판매자등록승인 
 	
 	void delusers(String id);//회원 탈퇴
 	
-	users findpwd(users u);//비밀번호찾기
+	users findpwd(String email);//비밀번호찾기
+	
+	List<users> getAllType(String type);//회원 전체 검색
 	
 	
 

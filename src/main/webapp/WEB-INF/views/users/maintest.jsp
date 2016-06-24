@@ -4,15 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>Home</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-<a href="${pageContext.request.contextPath}/user/main.do">메인페이지로 이동</a>
 
 
-<P>  The time on the server is ${serverTime}. </P>
+${sessionScope.user_id}
+${sessionScope.name}
+${sessionScope.type}
+
+인얘들 넣읍세~
 </body>
 </html>
+
+

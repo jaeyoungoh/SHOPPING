@@ -9,54 +9,52 @@
 	<resultMap type="com.kitri.shopping.user.users" id="usersResultMap">
 		
 	
-		<result property="USER_ID" column="USER_ID" />
-		<result property="PWD" column="PWD" />
-		<result property="TYPE" column="TYPE" />
-		<result property="EMAIL" column="EMAIL" />
-		<result property="ADDRESS" column="ADDRESS" />
-		<result property="PHONE" column="PHONE" />
-		<result property="POINT" column="POINT" />
-		<result property="NAME" column="NAME" />
+		<result property="user_id" column="USER_ID" />
+		<result property="pwd" column="PWD" />
+		<result property="name" column="NAME" />
+		<result property="type" column="TYPE" />
+		<result property="email" column="EMAIL" />
+		<result property="address" column="ADDRESS" />
+		<result property="phone" column="PHONE" />
+		<result property="point" column="POINT" />
+		<result property="in_date" column="IN_DATE" />
+		<result property="out_date" column="OUT_DATE" />
 		
 		
 	</resultMap>
 
 	<insert id="insert" parameterType="com.kitri.shopping.user.users" >
-		INSERT INTO USERS values(#{USER_ID},#{PWD},'일반', #{EMAIL},#{ADDRESS},#{PHONE},#{POINT},#{NAME})
+		INSERT INTO USERS values(#{user_id},#{pwd},'일반', #{email},#{address},#{phone},0,#{name},SYSDATE,null)
 	</insert>
 
 	<select id="select" resultMap="usersResultMap" parameterType="String">
-		SELECT * FROM USERS where USER_ID=#{USER_ID}
+		SELECT USER_ID,PWD,NAME,TYPE,EMAIL,ADDRESS,PHONE,POINT,IN_DATE,OUT_DATE FROM USERS where USER_ID=#{USER_ID}
 	</select>
 
 	<select id="selectALL" resultMap="usersResultMap">
-		SELECT * FROM USERS order by USER_ID desc
+		SELECT USER_ID,PWD,NAME,TYPE,EMAIL,ADDRESS,PHONE,POINT,IN_DATE,OUT_DATE FROM USERS order by USER_ID desc
 	</select>
 	
-	<select id="login" resultMap="usersResultMap">
-		SELECT * FROM USERS where PWD=#{PWD}
-	</select>
-		
-
+	
 	
 	<update id="update" parameterType="com.kitri.shopping.user.users">
-		update USERS set USER_ID=#{USER_ID}, PWD=#{PWD}, '일반', EMAIL=#{EMAIL},ADDRESS=#{ADDRESS},PHONE=#{PHONE},POINT=#{POINT},NAME=#{NAME}) where USER_ID=#{USER_ID}
+		update USERS set USER_ID=#{user_id}, PWD=#{PWD}, TYPE=#{TYPE}, EMAIL=#{EMAIL},ADDRESS=#{ADDRESS},PHONE=#{PHONE},POINT=#{POINT},NAME=#{NAME},IN_DATE=SYSDATE,OUT_DATE=null) where USER_ID=#{USER_ID}
 	</update>
 	
 	<update id="updateByApprove" parameterType="com.kitri.shopping.user.users">
-		update USERS set USER_ID=#{USER_ID}, PWD=#{PWD}, '판매자', EMAIL=#{EMAIL},ADDRESS=#{ADDRESS},PHONE=#{PHONE},POINT=#{POINT},NAME=#{NAME}) where USER_ID=#{USER_ID}
+		update USERS set USER_ID=#{user_id}, PWD=#{PWD}, TYPE='판매자', EMAIL=#{EMAIL},ADDRESS=#{ADDRESS},PHONE=#{PHONE},POINT=#{POINT},NAME=#{NAME},IN_DATE=SYSDATE,OUT_DATE=null) where USER_ID=#{USER_ID}
 	</update>
 	
 	<update id="updateByWithdraw" parameterType="com.kitri.shopping.user.users">
-		update USERS set USER_ID=#{USER_ID}, PWD=#{PWD}, '탈퇴', EMAIL=#{EMAIL},ADDRESS=#{ADDRESS},PHONE=#{PHONE},POINT=#{POINT},NAME=#{NAME}) where USER_ID=#{USER_ID}
+		update USERS set USER_ID=#{user_id}, PWD=#{pwd}, TYPE='탈퇴', EMAIL=#{email},ADDRESS=#{address},PHONE=#{phone},POINT=#{point},NAME=#{name},IN_DATE=SYSDATE,OUT_DATE=null) where USER_ID=#{USER_ID}
 	</update>
 	
 	<select id="selectByEmail" resultMap="usersResultMap" parameterType="String">
-		SELECT * FROM USERS where EMAIL=#{EMAIL}
+		SELECT USER_ID,PWD,NAME,TYPE,EMAIL,ADDRESS,PHONE,POINT,IN_DATE,OUT_DATE FROM USERS where EMAIL=#{email}
 	</select>
 	
 	<select id="selectByType" resultMap="usersResultMap" parameterType="String">
-		SELECT * FROM USERS where TYPE=#{TYPE}
+		SELECT USER_ID,PWD,NAME,TYPE,EMAIL,ADDRESS,PHONE,POINT,IN_DATE,OUT_DATE FROM USERS where TYPE=#{type}
 	</select>
 
 </mapper>

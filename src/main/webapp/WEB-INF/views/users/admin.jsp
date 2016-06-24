@@ -4,15 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>Home</title>
+<title></title>
+
+
+
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-<a href="${pageContext.request.contextPath}/user/main.do">메인페이지로 이동</a>
 
+여기는 뭘로 쓸까나..
 
-<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

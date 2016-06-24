@@ -11,8 +11,6 @@ public interface usersMapper {
 	
 	List<users> selectAll();//회원 전체 검색
 	
-	boolean login(users u);//회원 로그인, 로그아웃
-	
 	void update(users u);//회원 정보 수정, 
 	
 	void updateByApprove(users u); //판매자등록승인 
