@@ -59,5 +59,11 @@ public class ProductServiceImpl implements ProductService {
 		ProductMapper productmapper=sqlsession.getMapper(ProductMapper.class);
 		return productmapper.delete(product_id);
 	}
+
+	@Override
+	public List<Product> getProductbyUser(String users_id) {
+		ProductMapper productmapper=sqlsession.getMapper(ProductMapper.class);
+		return productmapper.selectbyUser(users_id);
+	}
 	
 }
