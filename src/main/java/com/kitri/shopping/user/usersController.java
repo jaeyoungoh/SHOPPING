@@ -1,5 +1,7 @@
 package com.kitri.shopping.user;
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,8 +41,15 @@ public class usersController {
 		}else{
 			return "users/main";
 		}
-			
 		
+		
+	}
+	
+	@RequestMapping(value="/user/logout.do")
+	public String logOut(HttpServletRequest req){
+		HttpSession session = req.getSession();
+		session.invalidate();
+		return "redirect:/user/main.do";
 	}
 	
 	@RequestMapping(value="user/adduser.do")
@@ -52,37 +61,76 @@ public class usersController {
 		return "/users/main";
 	}	
 	
-	@RequestMapping(value="/user/editform")
-	public ModelAndView edit(HttpServletRequest req){
+	@RequestMapping(value="/user/modify.do")
+	public String modify(users u){
+			
+		System.out.println(u.toString()+"유저수정 입력값");
+		service.editusers(u);			
+		
+		return "/users/maintest";
+	}
+	
+	@RequestMapping(value="user/modifyform.do")
+	public ModelAndView modifyform(HttpServletRequest req){
 		HttpSession session = req.getSession();
 		String user_id = (String) session.getAttribute("user_id");
 		users u = service.get(user_id);
 		
-		ModelAndView mav = new ModelAndView("user/editform");
-		mav.addObject("editinfo", u);
+		ModelAndView mav = new ModelAndView("users/modify");
+		mav.addObject("u", u);
 		
 		return mav;
-	}
-	
-	@RequestMapping(value= "/user/Logout.do")
-	public String logOut(HttpServletRequest req){
-		HttpSession session = req.getSession();
-		session.invalidate();
-		return "user/main";
-	}
+		
+	}	
 	
 	@RequestMapping(value="/user/withdraw.do")
-	public String withdraw(users u){
-		
-		
-		
-		return "user/main";
+	public String withdraw(HttpServletRequest req){
+	HttpSession session = req.getSession();
+	service.delusers((String)session.getAttribute("user_id"));
+	
+	return "redirect:/user/main.do";
 	}
+	
+	@RequestMapping(value="/user/withdrawadmin.do")
+	public String withdrawadmin(@RequestParam(value="user_id")String user_id){
+			
+	service.delusers(user_id);
+		
+	return "redirect:/user/admin.do";
+	}
+	
+	@RequestMapping(value="/user/Approve.do")
+	public String Approve(@RequestParam(value="user_id") String user_id){
+		
+	service.editusersByApprove(user_id);	
+	return "redirect:/user/admin.do";
+	}
+	
+	@RequestMapping(value="/user/Approve1.do")
+	public String Approve1(@RequestParam(value="user_id") String user_id){
+		
+	service.editusersByApprove1(user_id);	
+	return "redirect:/user/admin.do";
+	}
+	
+	@RequestMapping(value="/user/modifyadmin.do")
+	public String modifyadmin(users u){
+			
+		System.out.println(u.toString()+"유저수정 입력값");
+		service.editusers(u);			
+		
+		return "/users/maintest";
+	}
+	
 	
 	
 	@RequestMapping(value="user/admin.do")
-	public String admin(){
-		return "/users/admin";
+	public ModelAndView admin(){
+		ModelAndView mav = new ModelAndView("/users/admin");
+		ArrayList<users> list = (ArrayList<users>) service.getAll();
+		
+		mav.addObject("list", list);		
+		return mav;
 	}	
 	
 	@RequestMapping(value="user/main.do")
@@ -90,10 +138,17 @@ public class usersController {
 		return "/users/main";
 	}
 	
+	@RequestMapping(value="user/maintest.do")
+	public String maintest(){
+		return "/users/maintest";
+	}
+	
 	@RequestMapping(value="user/joinform.do")
 	public String joinform(){
 		return "/users/joinform";
 	}
+	
+	
 	
 
 }

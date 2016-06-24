@@ -72,10 +72,10 @@ public class ServiceImpl implements Service {
 	}
 
 	@Override
-	public void editusersByApprove(users u) {
+	public void editusersByApprove(String user_id) {
 		// TODO Auto-generated method stub
 		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
-		usersMapper.updateByApprove(u);
+		usersMapper.updateByApprove(user_id);
 		
 	}
 
@@ -90,6 +90,14 @@ public class ServiceImpl implements Service {
 	public users login(String user_id) {
 		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
 		return usersMapper.select(user_id);
+	}
+
+	@Override
+	public void editusersByApprove1(String user_id) {
+		// TODO Auto-generated method stub
+		usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
+		usersMapper.updateByApprove1(user_id);
+		
 	}
 
 }

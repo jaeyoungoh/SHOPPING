@@ -7,7 +7,7 @@ public interface Service {
 		
 	void adduser(users u); //회원 가입
 	
-	users get(String id);//회원 검색
+	users get(String user_id);//회원 검색
 	
 	List<users> getAll();//회원 전체 검색
 	
@@ -15,7 +15,9 @@ public interface Service {
 	
 	void editusers(users u);//회원 정보 수정 
 	
-	void editusersByApprove(users u); //판매자등록승인 
+	void editusersByApprove1(String user_id); //일반으로 만들기
+	
+	void editusersByApprove(String user_id); //판매자등록승인 
 	
 	void delusers(String id);//회원 탈퇴
 	
