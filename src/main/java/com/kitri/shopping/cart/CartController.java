@@ -31,20 +31,19 @@ public class CartController {
 	@RequestMapping(value="/cart/add.do")
 	public String addCart(Cart cart){
 		cartService.insertCart(cart);
-		return "/cart/list.do";
+		return "redirect:/cart/list.do?user_id=qwer";
 	}
 	
 	@RequestMapping(value="/cart/update.do")
 	public String updateCart(Cart cart){
 		cartService.updateCart(cart);
-		return "/cart/list.do?update_cnt=";
+		return "redirect:/cart/list.do?update_cnt=";
 		
 	}
 	
 	@RequestMapping(value="/cart/delete.do")
-	public String deleteCart(int cart_num){
+	public void deleteCart(int cart_num){
 			cartService.deleteCart(cart_num);
-		return "/cart/list.do";
 	}
 	
 }
