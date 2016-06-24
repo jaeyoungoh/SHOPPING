@@ -40,7 +40,7 @@
 		}
 	}
 	</script>
-
+	<form action="" method="post">
 <table>
 
 	<tr>
@@ -91,18 +91,18 @@
 		<td>수량</td>
 		<td><input type="button" value="-" onclick="quantityM()"><input
 			type="text" value=1 name="quantity" id="quantity"
-			style="width: 35px;" onchange="chack_q()"><input
+			style="width: 35px;text-align: center;" onchange="chack_q()" ><input
 			type="button" value="+" onclick="quantityAdd()"></td>
 	</tr>
 	<tr>
 		<td>총금액</td>
-		<td><input type="text" value="<fmt:formatNumber value="${(product.price-(product.price*product.sale_pct/100))*1}" type="number"/>"
-			name="sum_price" id="sum_price"></td>
+		<td style="border: none;color: red; font-weight: bold;font-size: 25px;text-align: right;" colspan="2"><input type="text" value="<fmt:formatNumber value="${(product.price-(product.price*product.sale_pct/100))*1}" type="number"/>"
+			name="sum_price" id="sum_price" style="border: none;color: red; font-weight: bold;font-size: 25px;text-align: right;" readonly="readonly">원</td>
 	</tr>
 	<tr>
 		<td><input type="button"
-			onclick="orderAdd(${product.product_id})" value="구매하기"></td>
-		<td><input type="button" onclick="cartAdd(${product.product_id})"
+			onclick="orderAdd(${product.product_id},this.form)" value="구매하기"></td>
+		<td><input type="button" onclick="cartAdd(${product.product_id},this.form)"
 			value="장바구니"></td>
 		<td><input type="button" onclick="product_list()" value="목록"></td>
 	</tr>
@@ -113,3 +113,4 @@
 
 
 </table>
+</form>

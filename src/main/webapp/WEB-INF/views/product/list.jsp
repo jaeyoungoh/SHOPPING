@@ -5,6 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+	function addProduct() {
+		location.href="${pageContext.request.contextPath}/product/addForm.do";
+	}
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -33,6 +38,10 @@
 				<td>${list.user_id}</td>
 			</Tr>
 		</c:forEach>
+		<tfoot>
+		<tr><td><input type="button" value="등록" onclick="addProduct()"></td>
+		</tr>
+		</tfoot>
 	</table>
 </body>
 </html>
