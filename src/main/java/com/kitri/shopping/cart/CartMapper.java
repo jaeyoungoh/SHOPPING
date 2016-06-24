@@ -9,7 +9,7 @@ public interface CartMapper {
 	 * @param user_id
 	 * @return
 	 */
-	List<Cart> selectAll (String user_id);
+	List<Cart> selectAll (String user_id1);
 	
 	/**
 	 * 장바구니 추가

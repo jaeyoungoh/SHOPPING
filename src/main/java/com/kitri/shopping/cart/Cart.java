@@ -96,5 +96,11 @@ public class Cart {
 	public void setCart_num(int cart_num) {
 		this.cart_num = cart_num;
 	}
+	@Override
+	public String toString() {
+		return "Cart [cart_num=" + cart_num + ", cart_cnt=" + cart_cnt + ", product_id=" + product_id
+				+ ", product_name=" + product_name + ", product_cnt=" + product_cnt + ", price=" + price + ", sale_pct="
+				+ sale_pct + ", user_id=" + user_id + ", img_url=" + img_url + "]";
+	}
 	
 }

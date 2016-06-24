@@ -28,7 +28,8 @@
 		p.IMG_URL IMG_URL
 		from CART c JOIN PRODUCT p
 		ON c.PRODUCT_ID = p.PRODUCT_ID
-		where c.USER_ID=#{user_id}
+		where c.USER_ID=#{user_id1}
+		order by c.CART_NUM DESC
 	</select>
 	
 	<insert id="insert" parameterType="com.kitri.shopping.cart.Cart">

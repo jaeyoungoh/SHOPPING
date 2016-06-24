@@ -20,26 +20,31 @@ public class CartController {
 	
 	@RequestMapping(value="/cart/list.do")
 	public ModelAndView cartListGetAll(String user_id){
+		System.out.println("입력된 user_id : "+ user_id);
 		ModelAndView mav = new ModelAndView("/cart/list");
 		ArrayList<Cart> list = (ArrayList<Cart>) cartService.getSelectAllCart(user_id);
-		mav.addObject("list",list);
+		mav.addObject("list", list);
+		System.out.println("list 안에 내용 : "+list);
 		return mav;
 	}
 	
 	@RequestMapping(value="/cart/add.do")
-	public String addCart(){
-		return "";
+	public String addCart(Cart cart){
+		cartService.insertCart(cart);
+		return "/cart/list.do";
 	}
 	
 	@RequestMapping(value="/cart/update.do")
-	public String updateCart(){
-		return "";
+	public String updateCart(Cart cart){
+		cartService.updateCart(cart);
+		return "/cart/list.do?update_cnt=";
 		
 	}
 	
 	@RequestMapping(value="/cart/delete.do")
-	public String deleteCart(){
-		return "";
+	public String deleteCart(int cart_num){
+			cartService.deleteCart(cart_num);
+		return "/cart/list.do";
 	}
 	
 }
