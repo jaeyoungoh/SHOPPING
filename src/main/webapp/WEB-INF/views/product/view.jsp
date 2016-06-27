@@ -53,6 +53,13 @@
 		}
 		
 	}
+	function product_del(product_id){
+		location.href="${pageContext.request.contextPath}/product/del.do?product_id="+product_id;
+		
+	}
+	function product_edit(product_id){
+		location.href="${pageContext.request.contextPath}/product/editForm.do?product_id="+product_id;
+	}
 	</script>
 	<form action="" method="post">
 <table>
@@ -99,7 +106,7 @@
 	</tr>
 	<tr>
 		<td>등록일자</td>
-		<td>${product.product_date}</td>
+		<td><fmt:formatDate value="${product.product_date}" pattern="yyyy-mm-dd"/></td>
 	</tr>
 	<tr>
 		<td>수량</td>
@@ -118,7 +125,7 @@
 		<td><input type="button"
 			onclick="orderAdd(${product.product_id},this.form)" value="구매하기"></td>
 		<td><input type="button" onclick="cartAdd(${product.product_id},this.form)"	value="장바구니"></td>
-		<td><input type="button" onclick="product_list()" value="목록"></td>
+		<td><input type="button" onclick="product_edit(${product.product_id})" value="수정"><input type="button" onclick="product_del(${product.product_id})" value="삭제"><input type="button" onclick="product_list()" value="목록"></td>
 	</tr>
 	<tr>
 		<td colspan="6"><h3>상품정보</h3>${product.intro_content}<br>

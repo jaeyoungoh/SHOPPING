@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,6 +17,7 @@
 	<table>
 		<c:forEach var="list" items="${list}">
 			<Tr>
+			
 				<td><a
 					href="${pageContext.request.contextPath}/product/view.do?product_id=${list.product_id}"><img
 						src="${pageContext.request.contextPath}/img/${list.img_url}"

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,11 +52,52 @@ public class ProductController {
 		return mav;
 	}
 	@RequestMapping(value="/product/addForm.do")
-	public String addForm(){
+	public String addForm(Model m){
+		m.addAttribute("msg", "add");
+		return "/product/addForm";
+	}
+	@RequestMapping(value="/product/del.do")
+	public String del(@RequestParam(value="product_id")int product_id){
+		service.delProduct(product_id);
+		return "redirect:/product/list.do";
+	}
+	///
+	@RequestMapping(value="/product/editForm.do")
+	public String editForm(@RequestParam(value="product_id")int product_id,Model m){
+		Product p=service.getProduct(product_id);
+		m.addAttribute("product",p);
+		m.addAttribute("msg", "edit");
 		return "/product/addForm";
 	}
 	@RequestMapping(value="/product/add.do")
-	public String add_product(Product product,HttpServletRequest request,@RequestParam(value="imgurl") MultipartFile file){
+	public String add_product(Product product,HttpServletRequest request,@RequestParam(value="img_url") MultipartFile file){
+		System.out.println(product);
+		String writer=product.getUser_id();
+		String filename= file.getOriginalFilename();
+		String filename1="";
+		if(!filename.equals("")){
+		String path=request.getSession().getServletContext().getRealPath("/")+"img/"+writer+"_"+filename;
+		filename1=writer+"_"+filename;
+				File f=new File(path);
+				System.out.println(path);
+			try {
+				file.transferTo(f);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			filename1=" ";
+		}
+		product.setImg_url(filename1);
+		service.addProduct(product);
+		return "redirect:/product/list.do";
+	}
+	@RequestMapping(value="/product/edit.do")
+	public String edit_product(Product product,HttpServletRequest request,@RequestParam(value="img_url") MultipartFile file){
 		System.out.println(product);
 		String writer=product.getUser_id();
 		String filename= file.getOriginalFilename();
