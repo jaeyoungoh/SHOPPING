@@ -55,6 +55,11 @@ function bbb(){
  
 
 
+function listof(){
+	location.href="${pageContext.request.contextPath}/user/listof.do?user_id=${a.user_id}";
+}
+
+
 </script>
 
 
@@ -66,7 +71,7 @@ function bbb(){
  --%>
 여기는 관리자 페이지!
 
-사람을 마구 삭제할 수 있어요!
+사람을 수정 할 수 있어요!
 
 
 <table border="0">
@@ -89,7 +94,7 @@ function bbb(){
 	
 	<tr id="tr_${i}">
 	<form action="${pageContext.request.contextPath}/user/withdrawadmin.do?user_id=${a.user_id}">
-		<td><input class="aaa" type="text" name="user_id" value="${a.user_id}" readonly="readonly"><input type="hidden" value="admin" name="msg"></td>
+		<td><input class="aaa" type="text" name="user_id" value="${a.user_id}" readonly="readonly" onclick="listof()"><input type="hidden" value="admin" name="msg"></td>
 		<td><input class="aaa" type="text" name="pwd" value="${a.pwd }"></td>
 		<td><input  type="text" name="name" value="${a.name }"></td>
 		<c:set var="i" value="${i+1}"/>

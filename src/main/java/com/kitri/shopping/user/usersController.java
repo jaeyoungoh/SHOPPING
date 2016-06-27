@@ -135,13 +135,21 @@ public class usersController {
 		return "/users/joinform";
 	}
 	
-	@RequestMapping(value="user/	findpwd.do")
+	@RequestMapping(value="user/findpwd.do")
 	public String joinfor1m(){
 		return "/users/joinform";
 	}
 	
 	
-	
+	@RequestMapping(value="user/user/listof.do")
+	public ModelAndView listof(){
+		
+		ModelAndView mav = new ModelAndView("/users/listof");
+		ArrayList<users> list = (ArrayList<users>) service.getAll();
+		mav.addObject("list", list);		
+		return mav;
+		
+	}
 	
 	
 

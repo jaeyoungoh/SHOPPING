@@ -96,9 +96,9 @@ var stra = document.getElementById('a');
 	    return false;
 	}
 
-	var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+	var special_pattern = /[`~!#$%^&*|\\\'\";:\/?]/gi;
 	if( special_pattern.test(stre.value) == true ){
-	    alert('이메일에 특수문자는 사용할 수 없습니다.');
+	    alert('이메일에 @제외 특수문자는 사용할 수 없습니다.');
 	    return false;
 	}
 	
