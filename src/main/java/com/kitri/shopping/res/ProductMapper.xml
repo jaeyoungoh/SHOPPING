@@ -19,13 +19,13 @@
 	</resultMap>
 
 	<select id="selectAll" resultMap="ProductResultMap" >
-		select * from Product order by product_date desc
+		select * from Product  where order by product_date desc
 	</select>
 	<select id="selectbyUser" resultMap="ProductResultMap" parameterType="String">
-		select * from Product where user_id=#{user_id} order by product_date desc
+		select * from Product where user_id=#{user_id} where order by product_date desc
 	</select>
 	<select id="selectbyName" resultMap="ProductResultMap"  parameterType="String">
-		select * from Product where name like  '%'||#{name}||'%' order by name 
+		select * from Product where name like  '%'||#{name}||'%'  order by name 
 	</select>
 	
 	<select id="selectbyCategory" resultMap="ProductResultMap"  parameterType="String">
@@ -36,11 +36,12 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.kitri.shopping.product.Product">
-		INSERT INTO Product values(SEQ_Product.nextval,#{name},#{quantity},#{price},#{sale_pct}, #{img_url},#{category}, #{intro_content},#{user_id},sysdate)
+		INSERT INTO Product values(SEQ_Product.nextval,#{name},#{quantity},#{price},#{sale_pct}, #{img_url},#{category}, #{intro_content},#{user_id},sysdate,'판매가능')
 	</insert>
 	
 	<update id="update" parameterType="com.kitri.shopping.product.Product">
-		update Product set name=#{name}, quantity=#{quantity},price=#{price},sale_pct=#{sale_pct}, img_url=#{img_url}, category=#{category}, intro_content=#{intro_content}
+		update Product set name=#{name}, quantity=#{quantity},price=#{price},sale_pct=#{sale_pct}, img_url=#{img_url}, category=#{category}, intro_content=#{intro_content},
+		status=#{status}
 			where product_id=#{product_id}
 	</update>
 	

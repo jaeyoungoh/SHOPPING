@@ -5,6 +5,16 @@
 <link href="${pageContext.request.contextPath}/editor/css/smart_editor2.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/httpRequest.js" charset="utf-8"></script>
 <script type="text/javascript">
+	function Cfile(){
+		var rFilter = "\.(bmp|gif|jpg|jpeg|png)$";  
+		
+		if(!(new RegExp(rFilter, "i")).test(document.addform.imgurl.value)){
+			alert("이미지만 넣어주세요.");
+			document.addform.imgurl.value="";
+		}
+		
+		
+	}
 	function add_product(form1){
 			
 			alert(form1.intro_content.value);
@@ -90,7 +100,7 @@
 		<tr>
 			<th colspan="9">메인이미지</th></tr>
 			<tr><td colspan="9"><input type="file" name="imgurl"
-				value="${product.img_url}"></td>
+				value="${product.img_url}" onchange="Cfile()"></td>
 		</tr>
 		<tr>
 			<th colspan="9">상세설명</th>

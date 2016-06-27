@@ -13,7 +13,15 @@ public class Product {
 	private String intro_content;
 	private String user_id;
 	private Date product_date;
+	private String status;
 	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getProduct_id() {
 		return product_id;
 	}
