@@ -24,6 +24,7 @@ function admin(){
 <body>
 
 <h2>어서오세요</h2>
+ 
 
 	<form action="${pageContext.request.contextPath }/user/login.do" method="post">
 		<table>

@@ -19,6 +19,7 @@
 
 	<select id="selectAll" resultMap="CartResultMap" parameterType="String">
 		select
+		c.CART_NUM CART_NUM,
 		p.PRODUCT_ID PRODUCT_ID,
 		p.NAME PRODUCT_NAME,
 		c.CART_CNT CART_cnt,
@@ -44,7 +45,7 @@
 	</update>
 	
 	<delete id="delete" parameterType="int">
-		delete product where cart_num=#{cart_num}
+		delete cart where cart_num=#{cart_num}
 	</delete>
 	
 </mapper>

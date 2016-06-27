@@ -39,6 +39,20 @@
 		document.getElementById("sum_price").value=new Intl.NumberFormat().format(document.getElementById("quantity").value*'${(product.price-(product.price*product.sale_pct/100))}');
 		}
 	}
+	
+	function cartAdd(product_id , fmt){
+		
+		var chkCartMove = window.confirm("장바구니에 담은 것을 확인 하시겠습니까?");
+		if(chkCartMove){
+			
+				fmt.cart_cnt.value = fmt.quantity.value;
+				fmt.action = "${pageContext.request.contextPath}/cart/add.do?user_id=qwer";
+				fmt.submit();
+		}else {
+			
+		}
+		
+	}
 	</script>
 	<form action="" method="post">
 <table>
@@ -91,8 +105,9 @@
 		<td>수량</td>
 		<td><input type="button" value="-" onclick="quantityM()"><input
 			type="text" value=1 name="quantity" id="quantity"
-			style="width: 35px;text-align: center;" onchange="chack_q()" ><input
-			type="button" value="+" onclick="quantityAdd()"></td>
+			style="width: 35px;text-align: center;" onchange="chack_q()" >
+			<input type="hidden" name="cart_cnt" value=""/>
+			<input	type="button" value="+" onclick="quantityAdd()"></td>
 	</tr>
 	<tr>
 		<td>총금액</td>
@@ -102,15 +117,13 @@
 	<tr>
 		<td><input type="button"
 			onclick="orderAdd(${product.product_id},this.form)" value="구매하기"></td>
-		<td><input type="button" onclick="cartAdd(${product.product_id},this.form)"
-			value="장바구니"></td>
+		<td><input type="button" onclick="cartAdd(${product.product_id},this.form)"	value="장바구니"></td>
 		<td><input type="button" onclick="product_list()" value="목록"></td>
 	</tr>
 	<tr>
 		<td colspan="6"><h3>상품정보</h3>${product.intro_content}<br>
 		<br></td>
 	</tr>
-
-
 </table>
+		<input type="hidden" name="product_id" value="${product.product_id}"/>
 </form>
