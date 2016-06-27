@@ -1,5 +1,7 @@
 package com.kitri.shopping.user;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class users {
@@ -12,17 +14,17 @@ public class users {
 	//private int point;  포인트 및 적립, 할인관련 등등 미구현
 	private String phone;
 	private int point;
-	private Date in_date;
-	private Date out_date;
+	private String in_date;
+	private String out_date;
 	
-	public users() {
-		// TODO Auto-generated constructor stub
+	public users(){
+		
 	}
 
 	
+	
 	public users(String user_id, String pwd, String name, String type, String email, String address, String phone,
-			int point, Date in_date, Date out_date) {
-		super();
+			int point, String in_date, String out_date) {
 		this.user_id = user_id;
 		this.pwd = pwd;
 		this.name = name;
@@ -98,22 +100,27 @@ public class users {
 		this.phone = phone;
 	}
 
-	public Date getIn_date() {
+	public String getIn_date() {
 		return in_date;
 	}
 
-	public void setIn_date(Date in_date) {
+
+
+	public void setIn_date(String in_date) {
 		this.in_date = in_date;
 	}
 
-	public Date getOut_date() {
+
+
+	public String getOut_date() {
 		return out_date;
 	}
 
-	public void setOut_date(Date out_date) {
+
+
+	public void setOut_date(String out_date) {
 		this.out_date = out_date;
 	}
-
 
 
 

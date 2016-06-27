@@ -31,8 +31,13 @@ public class usersController {
 		users u= service.login(user_id);
 		System.out.println(u+"u의 값");
 		System.out.println("pwd:"+pwd);
+		if(u!=null){
 		
-		if(u.getPwd().equals(pwd)){
+		if(u.getType().equals("탈퇴")){
+			return "users/main";
+		}
+	
+		if (u.getPwd().equals(pwd)) {
 			session = req.getSession();
 			session.setAttribute("user_id", u.getUser_id());
 			session.setAttribute("name", u.getName());
@@ -42,7 +47,8 @@ public class usersController {
 			return "users/main";
 		}
 		
-		
+		}
+		return "users/main";
 	}
 	
 	@RequestMapping(value="/user/logout.do")
@@ -62,12 +68,18 @@ public class usersController {
 	}	
 	
 	@RequestMapping(value="/user/modify.do")
-	public String modify(users u){
-			
-		System.out.println(u.toString()+"유저수정 입력값");
-		service.editusers(u);			
+	public String modify(users u,@RequestParam(value="msg")String msg){
 		
+		System.out.println(u.toString()+"유저수정 입력값");
+		service.editusers(u);
+		if(u.getType().equals("탈퇴")){
+			service.delusers(u.getUser_id());
+		}
+		if(!msg.equals("admin")){
 		return "/users/maintest";
+		}else{
+			return "redirect:/user/admin.do";
+		}
 	}
 	
 	@RequestMapping(value="user/modifyform.do")
@@ -93,37 +105,12 @@ public class usersController {
 	
 	@RequestMapping(value="/user/withdrawadmin.do")
 	public String withdrawadmin(@RequestParam(value="user_id")String user_id){
-			
+		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+			System.out.println(user_id);
 	service.delusers(user_id);
 		
 	return "redirect:/user/admin.do";
-	}
-	
-	@RequestMapping(value="/user/Approve.do")
-	public String Approve(@RequestParam(value="user_id") String user_id){
-		
-	service.editusersByApprove(user_id);	
-	return "redirect:/user/admin.do";
-	}
-	
-	@RequestMapping(value="/user/Approve1.do")
-	public String Approve1(@RequestParam(value="user_id") String user_id){
-		
-	service.editusersByApprove1(user_id);	
-	return "redirect:/user/admin.do";
-	}
-	
-	@RequestMapping(value="/user/modifyadmin.do")
-	public String modifyadmin(users u){
-			
-		System.out.println(u.toString()+"유저수정 입력값");
-		service.editusers(u);			
-		
-		return "/users/maintest";
-	}
-	
-	
-	
+	}	
 	@RequestMapping(value="user/admin.do")
 	public ModelAndView admin(){
 		ModelAndView mav = new ModelAndView("/users/admin");
@@ -147,6 +134,13 @@ public class usersController {
 	public String joinform(){
 		return "/users/joinform";
 	}
+	
+	@RequestMapping(value="user/	findpwd.do")
+	public String joinfor1m(){
+		return "/users/joinform";
+	}
+	
+	
 	
 	
 	

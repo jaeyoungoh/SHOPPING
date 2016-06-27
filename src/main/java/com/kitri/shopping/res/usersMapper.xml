@@ -41,16 +41,6 @@
 		update USERS set pwd=#{pwd}, type=#{type}, email=#{email}, address=#{address}, phone=#{phone}, point=#{point}, name=#{name} where user_id=#{user_id}
 	</update>
 	
-	<update id="updateByApprove1" parameterType="String">
-		update USERS set type='일반', OUT_DATE=null where user_id=#{user_id}
-
-	</update>
-	
-	<update id="updateByApprove" parameterType="String">
-		update USERS set type='판매자', OUT_DATE=null where user_id=#{user_id}
-		<!-- update USERS set  PWD=#{pwd}, TYPE='판매자', EMAIL=#{email},ADDRESS=#{address},PHONE=#{phone},POINT=#{point},NAME=#{name},IN_DATE=#{in_date},OUT_DATE=null) where USER_ID=#{user_id} -->
-	</update>
-	
 	<update id="updateByWithdraw" parameterType="String">
 		update USERS set type='탈퇴', OUT_DATE=SYSDATE where user_id=#{user_id}
 		<!-- update USERS set PWD=#{pwd}, TYPE='탈퇴', EMAIL=#{email},ADDRESS=#{address},PHONE=#{phone},POINT=#{point},NAME=#{name},IN_DATE=#{in_date},OUT_DATE=null) where USER_ID=#{user_id} -->

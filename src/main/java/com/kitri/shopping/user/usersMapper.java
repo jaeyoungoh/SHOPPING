@@ -3,8 +3,6 @@ package com.kitri.shopping.user;
 import java.util.List;
 
 public interface usersMapper {
-	
-	
 	void insert(users u); //회원 가입
 	
 	users select(String user_id);//회원 검색

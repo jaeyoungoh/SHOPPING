@@ -26,8 +26,14 @@ function modify(){
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath }/user/admin.do">관리자 페이지로 갑시다.</a><br>
-<br>
+	<c:if test="${sessionScope.user_id != null}">
+		<c:if test="${sessionScope.user_id eq 'admin'}">
+			<a href="${pageContext.request.contextPath }/user/admin.do">관리자	페이지로 갑시다.</a>
+			<br>
+		</c:if>
+	</c:if>
+
+	<br>
 <br>
 <br>
 <br>

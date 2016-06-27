@@ -1,21 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
+<style>
+input[type="text"].aaa{
+	width: 70px;
+}
+input[type="text"]{
+	border: none;
+	text-align: center;
+}
+</style>
 <head>
 <meta charset="UTF-8">
 <title></title>
+<script type="text/javascript">
+ function ctype(form3){
+
+	 form3.action="${pageContext.request.contextPath}/user/modify.do";
+	 form3.submit();
+/* 	 document.getElementsByName("aaa")[num].value
+	if(i == 1){
+		location.href="${pageContext.request.contextPath}/user/Approve1.do?user_id=${a.user_id}";	
+		
+	}else if(i == 2){
+		location.href="${pageContext.request.contextPath}/user/Approve.do?user_id=${a.user_id}";
+		
+		
+	}else if(i == 3){
+		location.href="${pageContext.request.contextPath}/user/withdrawadmin.do?user_id=${a.user_id}";
+		
+	} */
+		
+		
+	
+}
+ 
+function bbb(){	
+	var list1=new Array();
+	<c:forEach var="a" items="${list}">
+	list1.push("${a.type}");
+	</c:forEach>
+	var type=document.getElementsByName("type");
+	for(i=0;i<list1.length;i++){
+		var node=type[i].childNodes;
+		for(a=0;a<node.length;a++){
+			if(node[a].value==list1[i]){
+				node[a].setAttribute("selected","selected");
+			}
+		}
+	}
+ }
+ 
+
+
+</script>
 
 
 
 </head>
-<body>
+<body onload="bbb()">
 
+<%-- <jsp:include page="${pageContext.request.contextPath}/resources/header.jsp"></jsp:include>
+ --%>
 여기는 관리자 페이지!
 
 사람을 마구 삭제할 수 있어요!
 
-<table border="0" cellspacing="0">
+
+<table border="0">
 	<tr>
 		<th>사용자id</th>
 		<th>비밀번호</th>
@@ -28,30 +82,58 @@
 		<th>가입일</th>
 		<th>탈퇴일</th>
 		<th colspan="3">등급변경</th>
+
 	</tr>
-	
+	<c:set var="i" value="0"/>
 	<c:forEach var="a" items="${list}">
-	<tr>
-		<th>${a.user_id}</th>
-		<th><input type="text" name="pwd" value="${a.pwd }"></th>
-		<th><input type="text" name="name" value="${a.name }"></th>
-		<th><input type="text" name="type" value="${a.type }"></th>
-		<th><input type="text" name="email" value="${a.email }"></th>
-		<th><input type="text" name="address" value="${a.address }"></th>
-		<th><input type="text" name="phone" value="${a.phone }"></th>
-		<th><input type="text" name="point" value="${a.point }"></th>
-		<th>${a.in_date }</th>
-		<th>${a.out_date }</th>
-		<th><a href="${pageContext.request.contextPath}/user/Approve1.do?user_id=${a.user_id}">일반</a></th>
-		<th><a href="${pageContext.request.contextPath}/user/Approve.do?user_id=${a.user_id}">판매자</a></th>
-		<th><a href="${pageContext.request.contextPath}/user/withdrawadmin.do?user_id=${a.user_id}">탈퇴</a></th>
-	</tr>
+	
+	<tr id="tr_${i}">
+	<form action="${pageContext.request.contextPath}/user/withdrawadmin.do?user_id=${a.user_id}">
+		<td><input class="aaa" type="text" name="user_id" value="${a.user_id}" readonly="readonly"><input type="hidden" value="admin" name="msg"></td>
+		<td><input class="aaa" type="text" name="pwd" value="${a.pwd }"></td>
+		<td><input  type="text" name="name" value="${a.name }"></td>
+		<c:set var="i" value="${i+1}"/>
+		<td>
+				<select name="type">
+				<option value="일반">일반</option>
+				<option value="판매자">판매자</option>
+				<option value="탈퇴" >탈퇴</option>
+				</select>
+		</td>
+		<td><input type="text" name="email" value="${a.email }"></td>
+		<td><input type="text" name="address" value="${a.address }"></td>
+		<td><input type="text" name="phone" value="${a.phone }"></td>
+		<td><input class="aaa" type="text" name="point" value="${a.point }"></td>
+		<td><input class="aaa" type="text" name="in_date" value="${a.in_date}"></td>
+		<td><input class="aaa" type="text" name="out_date" value="${a.out_date }"></td>
+				<%-- <th><a href="${pageContext.request.contextPath}/user/Approve1.do?user_id=${a.user_id}">일반</a></th>
+				<th><a href="${pageContext.request.contextPath}/user/Approve.do?user_id=${a.user_id}">판매자</a></th>
+				<th><a href="${pageContext.request.contextPath}/user/withdrawadmin.do?user_id=${a.user_id}">탈퇴</a></th>
+				 --%>
+				<td>
+			<input type="button"  value="수정" onclick="ctype(this.form)">
+				<input type="submit"  value="탈퇴">
+				</td>
+				
+			<!-- 	<input type="button" onclick="ctype(1)" value="일반">
+				<input type="button" onclick="ctype(2)" value="판매자">
+				<input type="button" onclick="ctype(3)" value="탈퇴"> -->
+				
+				</form>
+			</tr>
+			
 	</c:forEach>
 	
 
 </table>
-</form>
 
 
+
+
+
+		<a href="${pageContext.request.contextPath}/user/maintest.do">메인페이지로 돌아가기</a>
+
+<%-- <jsp:include page="${pageContext.request.contextPath}/resources/bottom.jsp"></jsp:include> --%>
+<%@ include file="header.jsp" %>
 </body>
 </html>
