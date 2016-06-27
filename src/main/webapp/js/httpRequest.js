@@ -30,4 +30,5 @@ function sendRequest(url, params, callback, method) {
 	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
 	httpRequest.onreadystatechange = callback;
 	httpRequest.send(httpMethod == 'POST' ? httpParams : null);
+	/*	contentType: false  processData: false */
 }

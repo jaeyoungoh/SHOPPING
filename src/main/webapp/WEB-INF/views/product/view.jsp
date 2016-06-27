@@ -107,7 +107,7 @@
 		<td><input type="button" onclick="product_list()" value="목록"></td>
 	</tr>
 	<tr>
-		<td colspan="2"><h3>상품정보</h3>${product.intro_content}<br>
+		<td colspan="6"><h3>상품정보</h3>${product.intro_content}<br>
 		<br></td>
 	</tr>
 

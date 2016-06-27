@@ -36,11 +36,11 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.kitri.shopping.product.Product">
-		INSERT INTO Product values(SEQ_Product.nextval,#{name},#{quantity},#{price},#{sal_pct}, #{img_url},#{category}, #{intro_content},#{user_id},sysdate)
+		INSERT INTO Product values(SEQ_Product.nextval,#{name},#{quantity},#{price},#{sale_pct}, #{img_url},#{category}, #{intro_content},#{user_id},sysdate)
 	</insert>
 	
 	<update id="update" parameterType="com.kitri.shopping.product.Product">
-		update Product set name=#{name}, quantity=#{quantity},price=#{price},sal_pct=#{sal_pct}, img_url=#{img_url}, category=#{category}, intro_content=#{intro_content}
+		update Product set name=#{name}, quantity=#{quantity},price=#{price},sale_pct=#{sale_pct}, img_url=#{img_url}, category=#{category}, intro_content=#{intro_content}
 			where product_id=#{product_id}
 	</update>
 	
