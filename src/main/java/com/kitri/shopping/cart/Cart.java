@@ -20,11 +20,17 @@ public class Cart {
 	private String user_id;
 	//물건 이미지 파일
 	private String img_url;
+	private int quantity;
+	
+	
 	
 	public Cart() {	}
-	public Cart(int cart_num, int product_id, String product_name, int product_cnt, int price, int sale_pct,
-			String user_id, String img_url, int cart_cnt) {
+	
+
+	public Cart(int cart_num, int cart_cnt, int product_id, String product_name, int product_cnt, int price,
+			int sale_pct, String user_id, String img_url, int quantity) {
 		this.cart_num = cart_num;
+		this.cart_cnt = cart_cnt;
 		this.product_id = product_id;
 		this.product_name = product_name;
 		this.product_cnt = product_cnt;
@@ -32,8 +38,9 @@ public class Cart {
 		this.sale_pct = sale_pct;
 		this.user_id = user_id;
 		this.img_url = img_url;
-		this.cart_cnt = cart_cnt;
+		this.quantity = quantity;
 	}
+
 
 	public int getProduct_id() {
 		return product_id;
@@ -96,11 +103,24 @@ public class Cart {
 	public void setCart_num(int cart_num) {
 		this.cart_num = cart_num;
 	}
+	
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Cart [cart_num=" + cart_num + ", cart_cnt=" + cart_cnt + ", product_id=" + product_id
 				+ ", product_name=" + product_name + ", product_cnt=" + product_cnt + ", price=" + price + ", sale_pct="
-				+ sale_pct + ", user_id=" + user_id + ", img_url=" + img_url + "]";
+				+ sale_pct + ", user_id=" + user_id + ", img_url=" + img_url + ", quantity=" + quantity + "]";
 	}
+
 	
 }

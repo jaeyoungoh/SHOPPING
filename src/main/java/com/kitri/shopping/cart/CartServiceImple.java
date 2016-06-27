@@ -18,9 +18,9 @@ public class CartServiceImple implements CartService {
 	}
 
 	@Override
-	public List<Cart> getSelectAllCart(String user_id) {
+	public List<Cart> getSelectAllCart(Cart cart) {
 		CartMapper cartMapper = sqlsession.getMapper(CartMapper.class);
-		return cartMapper.selectAll(user_id);
+		return cartMapper.selectAll(cart);
 	}
 
 	@Override
@@ -40,5 +40,14 @@ public class CartServiceImple implements CartService {
 		CartMapper cartMapper = sqlsession.getMapper(CartMapper.class);
 		cartMapper.delete(cart_num);
 	}
+
+	@Override
+	public int searchCnt(int product_id) {
+		CartMapper cartMapper = sqlsession.getMapper(CartMapper.class);
+		System.out.println(product_id);
+		return cartMapper.selectCnt(product_id);
+	}
+	
+	
 
 }

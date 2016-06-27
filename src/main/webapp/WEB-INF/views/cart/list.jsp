@@ -7,9 +7,6 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/httpRequest.js"></script>
 <script type="text/javascript">
-window.onload = function(){
-	
-}
 function allCheckAction(obj){
 	var formObj = document.frmTmall;
 	if(formObj.sellerCkeckKey || formObj.martSellerCkeckKey) {
@@ -41,9 +38,9 @@ function deleteCart(cart_num){
 	var url = "delete.do";
 	var delElement = document.getElementById("cart_i_"+cart_num);
 	delElement.remove();
-	
 	sendRequest(url, params, receiveDel, "POST");
 }
+
 function receiveDel(){
 	if (httpRequest.readyState == 4) {
 		if (httpRequest.status == 200) {
@@ -52,18 +49,38 @@ function receiveDel(){
 	}
 }
 
+function msgUpdateCNTcheck(){
+	var msg = "${param.update_msg}";
+	if(msg =="success"){
+		alert("수량이 변경되었습니다.");
+	}else if(msg =="fail"){
+		alert("최대수량은 "+"${param.max_cnt}"+" 입니다. 수량을 다시 확인해주세요.");
+	}
+}
+
+function reqUpdate(form1){
+	form1.submit();
+}
+
+function checkList(){
+	
+}
+
+function allCheckAction(){
+	document.cartList.r
+}
 
 </script>
 <meta charset="UTF-8">
 <title>:: 장바구니 - 쇼핑몰 ::</title>
 </head>
-<body>
-<form name="frmOrderTmall" action="" method="POST">
+<body onload="msgUpdateCNTcheck()">
+<form name="frmOrderMall" action="" method="POST">
 
 <table>
 <thead>
 	<tr>	
-		<th scope="col" class="chk"><label for="bcktSeq_All"><input name="bcktSeq_All" type="checkbox" value="" id="bcktSeq_All" onclick="allCheckAction(this);" title="전체상품선택"></label></th>
+		<th scope="col" class="chk"><label for="bcktSeq_All"><input name="bcktSeq_All" type="checkbox" value="" id="bcktSeq_All" onclick="allCheckAction();" title="전체상품선택"></label></th>
 		<th scope="col">상품정보</th>
 		<th scope="col">수량</th>
 		<th scope="col">상품금액</th>
@@ -73,27 +90,30 @@ function receiveDel(){
 	</tr>
 </thead>
 <tbody>
-<c:forEach var="list" items="${list}">
-	
-	<tr id="cart_i_${list.cart_num}">
+<c:forEach var="list"  items="${list}">
+	<tr>
 		<td class="chk"><!-- 체크박스(묶음상품) -->
 			<label for="1295844927">
-				<input type="checkbox" name="bcktSeq_B_0" value="1010930558" id="1295844927" onclick="allCheckAction(this)">
+				<input type="checkbox" name="cartList" value="${list.cart_num}">
 			</label>
 						
 		</td>
 		<td class="td_prdwrap">
-		
 			<div class="OrderPrdW_Goods">
 			 	<div class="dp_photo">
 			 		<img src="${pageContext.request.contextPath}/img/${list.img_url}" style="width: 90px; height:90px;"/>
 				</div>
 			</div>
-			${list.product_name}
 		</td>
-		<td><input type="text" name="cart_cnt" value="${list.cart_cnt }" style="width: 47px; height: 19px;"><br/>
-			<a href="#"><span id=cartCnt>변경</span></a>
+			<form name="frm" action="${pageContext.request.contextPath}/cart/update.do" method="post">
+		<td>
+			<input type="text" id="cart_cnt_${list.cart_num}" name="cart_cnt" value="${list.cart_cnt}" style="width: 47px; height: 19px;"><br/>
+				<a href="#" onclick="javascript:reqUpdate(this.form)"><span id=cartCnt>변경</span></a><br/>
+				<input type="button" onclick="reqUpdate(this.form)" value="변경" />
+				<input type="hidden"  name="cart_num" value="${list.cart_num}"/>
+				<input type="hidden"  name="product_id" value="${list.product_id}"/>
 		</td>
+			</form>
 		<td><fmt:formatNumber value="${list.price*list.cart_cnt}" type="number"/>원</td>
 		<td>
 		
@@ -109,6 +129,7 @@ function receiveDel(){
 		</td>
 	</tr>
 </c:forEach>
+	
 </tbody>
 
 </table>

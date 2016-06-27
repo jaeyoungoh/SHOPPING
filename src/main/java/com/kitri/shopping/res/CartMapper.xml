@@ -17,9 +17,14 @@
 		<result property="img_url" column="img_url" />
 	</resultMap>
 
-	<select id="selectAll" resultMap="CartResultMap" parameterType="String">
+	<select id="selectCnt" resultType="int" parameterType="int">
+		SELECT NVL(max(quantity), 0) FROM product WHERE PRODUCT_ID=#{product_id}
+	</select>
+
+	<select id="selectAll" resultMap="CartResultMap" parameterType="com.kitri.shopping.cart.Cart">
 		select
 		c.CART_NUM CART_NUM,
+		p.QUANTITY QUANTITY,
 		p.PRODUCT_ID PRODUCT_ID,
 		p.NAME PRODUCT_NAME,
 		c.CART_CNT CART_cnt,
@@ -29,7 +34,7 @@
 		p.IMG_URL IMG_URL
 		from CART c JOIN PRODUCT p
 		ON c.PRODUCT_ID = p.PRODUCT_ID
-		where c.USER_ID=#{user_id1}
+		where c.USER_ID=#{user_id}
 		order by c.CART_NUM DESC
 	</select>
 	
@@ -41,7 +46,7 @@
 	</insert>
 	
 	<update id="update" parameterType="com.kitri.shopping.cart.Cart">
-		update SPRINGBOARD set cart_cnt=#{cart_cnt} where cart_num=#{cart_num}
+		update cart set cart_cnt=#{cart_cnt} where cart_num=#{cart_num} and user_id=#{user_id}
 	</update>
 	
 	<delete id="delete" parameterType="int">

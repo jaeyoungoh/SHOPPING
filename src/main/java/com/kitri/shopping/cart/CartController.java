@@ -3,6 +3,8 @@ package com.kitri.shopping.cart;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +21,12 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="/cart/list.do")
-	public ModelAndView cartListGetAll(String user_id){
-		System.out.println("입력된 user_id : "+ user_id);
+	public ModelAndView cartListGetAll(Cart cart,HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("/cart/list");
-		ArrayList<Cart> list = (ArrayList<Cart>) cartService.getSelectAllCart(user_id);
+		HttpSession loginSession = request.getSession();
+		cart.setUser_id((String)loginSession.getAttribute("user_id"));
+		ArrayList<Cart> list = (ArrayList<Cart>) cartService.getSelectAllCart(cart);
 		mav.addObject("list", list);
-		System.out.println("list 안에 내용 : "+list);
 		return mav;
 	}
 	
@@ -35,9 +37,23 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="/cart/update.do")
-	public String updateCart(Cart cart){
+	public ModelAndView updateCart(Cart cart, HttpServletRequest request){
+		ModelAndView mav = new ModelAndView("redirect:/cart/list.do");
+		HttpSession loginSession = request.getSession();
+		cart.setUser_id((String)loginSession.getAttribute("user_id"));
+			System.out.println("cart.getCart_cnt() : "+cart.getCart_cnt());
+			System.out.println("cart.getProduct_id() : " + cart.getProduct_id());
+		int chk = cartService.searchCnt(cart.getProduct_id());
+		System.out.println(chk);
+		if(chk < cart.getCart_cnt()){
+			mav.addObject("update_msg", "fail");
+			mav.addObject("max_cnt", chk);
+			return mav;
+			
+		}
 		cartService.updateCart(cart);
-		return "redirect:/cart/list.do?update_cnt=";
+		mav.addObject("update_msg", "success");
+		return mav;
 		
 	}
 	
