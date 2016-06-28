@@ -113,7 +113,7 @@ public class ProductController {
 		return "redirect:/product/slist.do";
 	}
 	@RequestMapping(value="/product/edit.do")
-	public String edit_product(Product product,HttpServletRequest request,@RequestParam(value="img_url") MultipartFile file){
+	public String edit_product(Product product,HttpServletRequest request,@RequestParam(value="img_url1") MultipartFile file){
 		System.out.println(product);
 		String writer=product.getUser_id();
 		String filename= file.getOriginalFilename();

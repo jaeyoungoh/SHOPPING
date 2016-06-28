@@ -1,4 +1,11 @@
 /* General menu styling */
+
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+*{
+	font-family: 'Hanna', serif;
+}
+
 .nav {
 position: relative;
 margin: 0;
@@ -19,7 +26,7 @@ display: block;
 position: relative;
 padding: 10px 20px;
 /* Text */
-font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif;
+/*font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif;*/
 color: #fff;
 font-size: 22px;
 text-decoration: none;
@@ -95,7 +102,7 @@ width: 120px;
 display: block;
 position: relative;
 /* Text */
-font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif;
+/* font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif; */
 color: #bbb;
 text-decoration: none;
 font-size: 16px;
