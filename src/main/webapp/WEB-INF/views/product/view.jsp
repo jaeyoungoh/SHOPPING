@@ -11,7 +11,7 @@
 		var max=${product.quantity};
 		if(Number(document.getElementById("quantity").value)+1<=max){
 		document.getElementById("quantity").value=Number(document.getElementById("quantity").value)+1;
-		document.getElementById("sum_price").value=new Intl.NumberFormat().format(document.getElementById("quantity").value*'${(product.price-(product.price*product.sale_pct/100))}');
+		document.getElementById("sum_price").value=new Intl.NumberFormat().format(document.getElementById("quantity").value*'${product.sale_price}');
 		//
 		
 		}
@@ -22,7 +22,7 @@
 	function quantityM() {
 		if(Number(document.getElementById("quantity").value)-1>=1){
 		document.getElementById("quantity").value=Number(document.getElementById("quantity").value)-1;
-		var sum=new Intl.NumberFormat().format(document.getElementById("quantity").value*'${(product.price-(product.price*product.sale_pct/100))}');
+		var sum=new Intl.NumberFormat().format(document.getElementById("quantity").value*'${product.sale_price}');
 		document.getElementById("sum_price").value=sum;
 		}
 		else if(Number(document.getElementById("quantity").value)-1<1){
@@ -34,9 +34,9 @@
 		if(document.getElementById("quantity").value<1 || document.getElementById("quantity").value>max){
 			alert("잘못된 숫자가 들어갔습니다. 1~"+max+"값을 넣어주세요.");
 			document.getElementById("quantity").value=1;
-			document.getElementById("sum_price").value=new Intl.NumberFormat().format(document.getElementById("quantity").value*'${(product.price-(product.price*product.sale_pct/100))}');
+			document.getElementById("sum_price").value=new Intl.NumberFormat().format(document.getElementById("quantity").value*'${product.sale_price}');
 		}else{
-		document.getElementById("sum_price").value=new Intl.NumberFormat().format(document.getElementById("quantity").value*'${(product.price-(product.price*product.sale_pct/100))}');
+		document.getElementById("sum_price").value=new Intl.NumberFormat().format(document.getElementById("quantity").value*'${product.sale_price}');
 		}
 	}
 	
@@ -91,11 +91,11 @@
 			<c:when test="${product.sale_pct>0}">
 			<fmt:formatNumber value="${product.price}" type="number"/>원<br>
 				<font style="color: red; font-weight: bold;font-size: 25px;">
-				<fmt:formatNumber value="${product.price-(product.price*product.sale_pct/100)}" type="number"/>원</font>
+				<fmt:formatNumber value="${product.sale_price}" pattern="#,##0"/>원</font>
 			</c:when>
 			<c:otherwise>
 			<font style="color: red; font-weight: bold;font-size: 25px;">
-					<fmt:formatNumber value="${product.price}" type="number"/>원</font>
+					<fmt:formatNumber value="${product.sale_price}" pattern="#,##0"/>원</font>
 			</c:otherwise>
 			</c:choose>
 			</td>
@@ -118,7 +118,7 @@
 	</tr>
 	<tr>
 		<td>총금액</td>
-		<td style="border: none;color: red; font-weight: bold;font-size: 25px;text-align: right;" colspan="2"><input type="text" value="<fmt:formatNumber value="${(product.price-(product.price*product.sale_pct/100))*1}" type="number"/>"
+		<td style="border: none;color: red; font-weight: bold;font-size: 25px;text-align: right;" colspan="2"><input type="text" value="<fmt:formatNumber value="${product.sale_price}" pattern="#,##0"/>"
 			name="sum_price" id="sum_price" style="border: none;color: red; font-weight: bold;font-size: 25px;text-align: right;" readonly="readonly">원</td>
 	</tr>
 	<tr>

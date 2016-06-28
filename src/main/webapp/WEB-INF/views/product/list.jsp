@@ -30,11 +30,11 @@
 			<font style="text-decoration: line-through;font-size: 14px;">
 			<fmt:formatNumber value="${list.price}" type="number"/>원</font><br>
 				<font style=" font-weight: bold;">
-				<fmt:formatNumber value="${list.price-(list.price*list.sale_pct/100)}" type="number"/>원</font>
+				<fmt:formatNumber value="${list.sale_price}" pattern="#,##0"/>원</font>
 			</c:when>
 			<c:otherwise>
 			<font style="font-weight: bold;">
-					<fmt:formatNumber value="${list.price}" type="number"/>원</font>
+					<fmt:formatNumber value="${list.sale_price}" type="number"/>원</font>
 			</c:otherwise>
 			</c:choose></td>
 				<td>${list.user_id}</td>

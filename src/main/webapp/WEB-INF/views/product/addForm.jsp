@@ -123,6 +123,7 @@
 		category_c2();
 	}
 		function category_c2(){
+			console.log(document.addform.category2.value);
 			var msg="<select name='category3'>";
 			
 			switch (document.addform.category2.value) {
@@ -244,10 +245,46 @@
 			document.getElementById("div_category3").innerHTML=msg;
 		}
 	function load_form() {
-		<%Product product=(Product)request.getAttribute("product");
-		String category[]=product.getCategory().split(">");
-		%>
-		<%=category%>
+		var category="${product.category}";
+		var arr=category.split(">");
+		for(i=0;i<arr.length;i++){
+			$("[value='"+arr[i]+"']").attr("selected","selected");
+			if(i==0){
+			category_c1();
+			}else{
+			category_c2();
+			}
+		}
+/* 			var category=document.getElementsByName("category"+(i+1));
+			
+			var node=category[0].childNodes;
+			for(a=0;a<node.length;a++){
+				
+				console.log("자식"+node[a].value+"불러온"+arr[i]);
+				if(node[a].value==arr[i]){
+					console.log("if");
+					b=b+1;
+					node[a].setAttribute("selected","selected");
+					if(b=1){
+					category_c1();
+					}else{
+					category_c2();	
+					} 
+				}
+				
+				}
+			}*/
+			/*
+			var type=document.getElementsByName("type");
+			for(i=0;i<list1.length;i++){
+				var node=type[i].childNodes;
+				for(a=0;a<node.length;a++){
+					if(node[a].value==list1[i]){
+						node[a].setAttribute("selected","selected");
+					}
+				}
+			}
+			*/
 		
 	}
 

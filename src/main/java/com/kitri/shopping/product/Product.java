@@ -14,8 +14,16 @@ public class Product {
 	private String user_id;
 	private Date product_date;
 	private String status;
+	private int sale_price;
+
 	
 	
+	public int getSale_price() {
+		return sale_price;
+	}
+	public void setSale_price(int sale_price) {
+		this.sale_price = sale_price;
+	}
 	public String getStatus() {
 		return status;
 	}
@@ -71,8 +79,15 @@ public class Product {
 		this.intro_content = intro_content;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [product_id=" + product_id + ", name=" + name + ", quantity=" + quantity + ", price=" + price
+				+ ", sale_pct=" + sale_pct + ", img_url=" + img_url + ", category=" + category + ", intro_content="
+				+ intro_content + ", user_id=" + user_id + ", product_date=" + product_date + ", status=" + status
+				+ ", sale_price=" + sale_price + "]";
+	}
 	public Product(int product_id, String name, int quantity, int price, int sale_pct, String img_url, String category,
-			String intro_content, String user_id, Date product_date) {
+			String intro_content, String user_id, Date product_date, String status, int sale_price) {
 		super();
 		this.product_id = product_id;
 		this.name = name;
@@ -84,12 +99,8 @@ public class Product {
 		this.intro_content = intro_content;
 		this.user_id = user_id;
 		this.product_date = product_date;
-	}
-	@Override
-	public String toString() {
-		return "Product [product_id=" + product_id + ", name=" + name + ", quantity=" + quantity + ", price=" + price
-				+ ", sale_pct=" + sale_pct + ", img_url=" + img_url + ", category=" + category + ", intro_content="
-				+ intro_content + ", user_id=" + user_id + ", product_date=" + product_date + "]";
+		this.status = status;
+		this.sale_price = sale_price;
 	}
 	public String getUser_id() {
 		return user_id;
