@@ -1,6 +1,7 @@
 package com.kitri.shopping.product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductService {
 	List<Product> getAllProduct();
@@ -12,4 +13,5 @@ public interface ProductService {
 	boolean addProduct(Product product);
 	int editProduct(Product product);
 	int delProduct(int product_id);
+	void editStatus(Map<String, Object> map);
 }

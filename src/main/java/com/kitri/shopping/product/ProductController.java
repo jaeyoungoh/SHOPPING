@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -34,8 +36,19 @@ public class ProductController {
 		ModelAndView mav=new ModelAndView("/product/list");
 		List<Product> list=service.getAllProduct();
 		mav.addObject("list", list);
+		mav.addObject("msg", "user");
 		return mav;
 	}
+	@RequestMapping(value="/product/slist.do")
+	public ModelAndView product_slist(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView("/product/list");
+		String users_id=(String) request.getSession().getAttribute("user_id");
+		List<Product> list=service.getProductbyUser(users_id);
+		mav.addObject("list", list);
+		mav.addObject("msg", "s");
+		return mav;
+	}
+	
 	@RequestMapping(value="/product/view.do")
 	public ModelAndView product_view(@RequestParam(value="product_id")int product_id){
 		ModelAndView mav=new ModelAndView("/product/view");
@@ -56,9 +69,12 @@ public class ProductController {
 		m.addAttribute("msg", "add");
 		return "/product/addForm";
 	}
-	@RequestMapping(value="/product/del.do")
-	public String del(@RequestParam(value="product_id")int product_id){
-		service.delProduct(product_id);
+	@RequestMapping(value="/product/editStatus.do")
+	public String del(@RequestParam(value="product_id")int product_id,@RequestParam(value="status")String status){
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("product_id", product_id);
+		map.put("status", status);
+		service.editStatus(map);
 		return "redirect:/product/list.do";
 	}
 	///
@@ -70,7 +86,7 @@ public class ProductController {
 		return "/product/addForm";
 	}
 	@RequestMapping(value="/product/add.do")
-	public String add_product(Product product,HttpServletRequest request,@RequestParam(value="img_url") MultipartFile file){
+	public String add_product(Product product,HttpServletRequest request,@RequestParam(value="img_url1") MultipartFile file){
 		System.out.println(product);
 		String writer=product.getUser_id();
 		String filename= file.getOriginalFilename();
@@ -94,7 +110,7 @@ public class ProductController {
 		}
 		product.setImg_url(filename1);
 		service.addProduct(product);
-		return "redirect:/product/list.do";
+		return "redirect:/product/slist.do";
 	}
 	@RequestMapping(value="/product/edit.do")
 	public String edit_product(Product product,HttpServletRequest request,@RequestParam(value="img_url") MultipartFile file){
@@ -121,7 +137,7 @@ public class ProductController {
 		}
 		product.setImg_url(filename1);
 		service.addProduct(product);
-		return "redirect:/product/list.do";
+		return "redirect:/product/slist.do";
 	}
 	
 	
@@ -129,10 +145,9 @@ public class ProductController {
 		public String dels(@RequestParam(value="product_id")String product_ids){
 			String arr[]=product_ids.split(",");
 			for(int i=0;i<arr.length;i++){
-				System.out.println(arr[i]);
 				service.delProduct(Integer.parseInt(arr[i]));
 			}
-			return "redirect:/product/list.do";
+			return "redirect:/product/slist.do";
 		}
 	//단일파일업로드
 	@RequestMapping(value="/photoUpload", method = {RequestMethod.GET, RequestMethod.POST})

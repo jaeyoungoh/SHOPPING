@@ -1,6 +1,7 @@
 package com.kitri.shopping.product;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -54,16 +55,25 @@ public class ProductServiceImpl implements ProductService {
 		return productmapper.update(product);
 	}
 
-	@Override
-	public int delProduct(int product_id) {
-		ProductMapper productmapper=sqlsession.getMapper(ProductMapper.class);
-		return productmapper.delete(product_id);
-	}
 
 	@Override
 	public List<Product> getProductbyUser(String users_id) {
 		ProductMapper productmapper=sqlsession.getMapper(ProductMapper.class);
 		return productmapper.selectbyUser(users_id);
 	}
+
+	@Override
+	public void editStatus(Map<String, Object> map) {
+		ProductMapper productmapper=sqlsession.getMapper(ProductMapper.class);
+		productmapper.updateStatus(map);
+		
+	}
+
+	@Override
+	public int delProduct(int product_id) {
+		ProductMapper productmapper=sqlsession.getMapper(ProductMapper.class);
+		return productmapper.delete(product_id);
+	}
+
 	
 }

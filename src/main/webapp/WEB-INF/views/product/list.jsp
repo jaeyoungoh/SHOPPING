@@ -19,7 +19,6 @@
 	   		 $("#chk:checked").each(function(){
 	    	test+=$(this).val()+",";
 	    	});
-	   		 alert(test);
 	 	location.href="${pageContext.request.contextPath}/product/dels.do?product_id="+test;
 	    });
 		
@@ -66,7 +65,7 @@
 			</Tr>
 		</c:forEach>
 		<tfoot>
-		<tr><td><input type="button" value="등록" onclick="addProduct()"><input type="button" value="삭제" onclick="delProduct()"></td>
+		<tr><td></td><td><c:if test="${msg=='s'}"><input type="button" value="등록" onclick="addProduct()"><input type="button" value="삭제" onclick="delProduct()"></c:if></td>
 		</tr>
 		</tfoot>
 	</table>

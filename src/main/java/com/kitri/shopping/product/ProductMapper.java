@@ -1,6 +1,7 @@
 package com.kitri.shopping.product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductMapper {
 	//상품 목록보기
@@ -17,4 +18,5 @@ public interface ProductMapper {
 	boolean insert(Product product);
 	int update(Product product);
 	int delete(int product_id);
+	int updateStatus(Map<String, Object> map);
 }

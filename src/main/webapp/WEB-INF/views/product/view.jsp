@@ -7,6 +7,9 @@
 	function product_list(){
 		location.href="${pageContext.request.contextPath}/product/list.do";
 	}
+	function product_slist(){
+		location.href="${pageContext.request.contextPath}/product/slist.do";
+	}
 	function quantityAdd() {
 		var max=${product.quantity};
 		if(Number(document.getElementById("quantity").value)+1<=max){
@@ -53,84 +56,114 @@
 		}
 		
 	}
-	function product_del(product_id){
-		location.href="${pageContext.request.contextPath}/product/del.do?product_id="+product_id;
+	function product_st(product_id,status){
+		location.href="${pageContext.request.contextPath}/product/editStatus.do?product_id="+product_id+"&status="+status;
 		
 	}
 	function product_edit(product_id){
 		location.href="${pageContext.request.contextPath}/product/editForm.do?product_id="+product_id;
 	}
 	</script>
-	<form action="" method="post">
-<table>
+<form action="" method="post">
+	<table>
 
-	<tr>
-		<td><%Product product=(Product)request.getAttribute("product");
-				String category[]=product.getCategory().split(">");
-				out.print("홈 &gt");
-				for(int i=0;i<category.length;i++){
-					if(i!=0){
-					out.print("<a href='"+request.getContextPath()+"/product/category.do?category="+category[i-1]+"&gt"+category[i]+"'>"+category[i]+"</a> ");
-					}else{
-						out.print("<a href='"+request.getContextPath()+"/product/category.do?category="+category[i]+"'>"+category[i]+"</a>");
+		<tr>
+			<td>
+				<%
+					Product product = (Product) request.getAttribute("product");
+					String category[] = product.getCategory().split(">");
+					out.print("홈 &gt");
+					for (int i = 0; i < category.length; i++) {
+						if (i != 0) {
+							out.print("<a href='" + request.getContextPath() + "/product/category.do?category="
+									+ category[i - 1] + "&gt" + category[i] + "'>" + category[i] + "</a> ");
+						} else {
+							out.print("<a href='" + request.getContextPath() + "/product/category.do?category=" + category[i]
+									+ "'>" + category[i] + "</a>");
+						}
+						out.print("&gt");
 					}
-					out.print("&gt");
-				}
-			%>
-	</td>
-	</tr>
-	<tr>
-		<Td><h2>${product.name}</h2></Td>
-	</tr>
-	<Tr>
-		<td rowspan="6"><img
-			src="${pageContext.request.contextPath}/img/${product.img_url}"
-			style="width: 300px; height: 300px;"></td>
-		<td colspan="2"> <BR>
-		<c:choose>
-			<c:when test="${product.sale_pct>0}">
-			<fmt:formatNumber value="${product.price}" type="number"/>원<br>
-				<font style="color: red; font-weight: bold;font-size: 25px;">
-				<fmt:formatNumber value="${product.sale_price}" pattern="#,##0"/>원</font>
-			</c:when>
-			<c:otherwise>
-			<font style="color: red; font-weight: bold;font-size: 25px;">
-					<fmt:formatNumber value="${product.sale_price}" pattern="#,##0"/>원</font>
-			</c:otherwise>
-			</c:choose>
+				%>
 			</td>
-	</Tr>
-	<tr>
-		<td>판매자</td>
-		<td>${product.user_id}</td>
-	</tr>
-	<tr>
-		<td>등록일자</td>
-		<td><fmt:formatDate value="${product.product_date}" pattern="yyyy-mm-dd"/></td>
-	</tr>
-	<tr>
-		<td>수량</td>
-		<td><input type="button" value="-" onclick="quantityM()"><input
-			type="text" value=1 name="quantity" id="quantity"
-			style="width: 35px;text-align: center;" onchange="chack_q()" >
-			<input type="hidden" name="cart_cnt" value=""/>
-			<input	type="button" value="+" onclick="quantityAdd()"></td>
-	</tr>
-	<tr>
-		<td>총금액</td>
-		<td style="border: none;color: red; font-weight: bold;font-size: 25px;text-align: right;" colspan="2"><input type="text" value="<fmt:formatNumber value="${product.sale_price}" pattern="#,##0"/>"
-			name="sum_price" id="sum_price" style="border: none;color: red; font-weight: bold;font-size: 25px;text-align: right;" readonly="readonly">원</td>
-	</tr>
-	<tr>
-		<td><input type="button"
-			onclick="orderAdd(${product.product_id},this.form)" value="구매하기"></td>
-		<td><input type="button" onclick="cartAdd(${product.product_id},this.form)"	value="장바구니"></td>
-		<td><input type="button" onclick="product_edit(${product.product_id})" value="수정"><input type="button" onclick="product_del(${product.product_id})" value="삭제"><input type="button" onclick="product_list()" value="목록"></td>
-	</tr>
-	<tr>
-		<td colspan="6"><h3>상품정보</h3>${product.intro_content}<br>
-		<br></td>
-	</tr>
-</table>
-		<input type="hidden" name="product_id" value="${product.product_id}"/>
+		</tr>
+		<tr>
+			<Td><h2>${product.name}</h2></Td>
+		</tr>
+		<Tr>
+			<td rowspan="6"><img
+				src="${pageContext.request.contextPath}/img/${product.img_url}"
+				style="width: 300px; height: 300px;"></td>
+			<td colspan="2"><BR> <c:choose>
+					<c:when test="${product.sale_pct>0}">
+						<fmt:formatNumber value="${product.price}" type="number" />원<br>
+						<font style="color: red; font-weight: bold; font-size: 25px;">
+							<fmt:formatNumber value="${product.sale_price}" pattern="#,##0" />원
+						</font>
+					</c:when>
+					<c:otherwise>
+						<font style="color: red; font-weight: bold; font-size: 25px;">
+							<fmt:formatNumber value="${product.sale_price}" pattern="#,##0" />원
+						</font>
+					</c:otherwise>
+				</c:choose></td>
+		</Tr>
+		<tr>
+			<td>판매상태</td>
+			<td>${product.status}</td>
+		</tr>
+		<tr>
+			<td>판매자</td>
+			<td>${product.user_id}</td>
+		</tr>
+		<tr>
+			<td>등록일자</td>
+			<td><fmt:formatDate value="${product.product_date}"
+					pattern="yyyy-mm-dd" /></td>
+		</tr>
+		<tr>
+			<td>수량</td>
+			<td><input type="button" value="-" onclick="quantityM()"><input
+				type="text" value=1 name="quantity" id="quantity"
+				style="width: 35px; text-align: center;" onchange="chack_q()">
+				<input type="hidden" name="cart_cnt" value="" /> <input
+				type="button" value="+" onclick="quantityAdd()"></td>
+		</tr>
+		<tr>
+			<td>총금액</td>
+			<td
+				style="border: none; color: red; font-weight: bold; font-size: 25px; text-align: right;"
+				colspan="2"><input type="text"
+				value="<fmt:formatNumber value="${product.sale_price}" pattern="#,##0"/>"
+				name="sum_price" id="sum_price"
+				style="border: none; color: red; font-weight: bold; font-size: 25px; text-align: right;"
+				readonly="readonly">원</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="button"
+				onclick="orderAdd(${product.product_id},this.form)" value="구매하기"></td>
+			<td><input type="button"
+				onclick="cartAdd(${product.product_id},this.form)" value="장바구니"></td>
+			<td><c:if
+					test="${sessionScope.type=='판매자' and sessionScope.user_id==product.user_id}">
+					<input type="button" onclick="product_edit(${product.product_id})"
+						value="수정">
+						<c:choose>
+					<c:when test="${product.status=='판매중'}">
+					<input type="button" onclick="product_st(${product.product_id},'판매중지')"
+						value="판매중지">
+					</c:when>
+					<c:when test="${product.status=='판매중지'}">
+					<input type="button" onclick="product_st(${product.product_id},'판매중')"
+						value="판매시작">
+					</c:when>
+					</c:choose>
+					<input type="button" onclick="product_slist()" value="판매목록">
+				</c:if><input type="button" onclick="product_list()" value="목록"></td>
+		</tr>
+		<tr>
+			<td colspan="6"><h3>상품정보</h3>${product.intro_content}<br> <br></td>
+		</tr>
+	</table>
+	<input type="hidden" name="product_id" value="${product.product_id}" />
 </form>
