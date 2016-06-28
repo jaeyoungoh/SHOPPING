@@ -1,6 +1,7 @@
 package com.kitri.shopping.user;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -136,12 +137,23 @@ public class usersController {
 	}
 	
 	@RequestMapping(value="user/findpwd.do")
-	public String joinfor1m(){
+	public String findpwd(){
 		return "/users/joinform";
 	}
 	
 	
-	@RequestMapping(value="user/user/listof.do")
+	
+	@RequestMapping(value="user/search.do")
+	public ModelAndView search_submit(@RequestParam(value="keyword")String keyword){
+		
+		ModelAndView mav = new ModelAndView("/users/admin");
+		
+		ArrayList<users> list = (ArrayList<users>) service.getAllType(keyword);
+		mav.addObject("list", list);		
+		return mav;
+		}
+	
+	@RequestMapping(value="user/user/search.do")
 	public ModelAndView listof(){
 		
 		ModelAndView mav = new ModelAndView("/users/listof");
@@ -151,6 +163,10 @@ public class usersController {
 		
 	}
 	
+	
+
+	
+
 	
 
 }

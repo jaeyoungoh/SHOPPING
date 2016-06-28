@@ -60,6 +60,16 @@ function listof(){
 }
 
 
+function check() {
+    if (document.search.keyword.value == "전체") {
+    	location.href="${pageContext.request.contextPath}/user/admin.do";
+    }else{
+    	document.search.submit();	
+    }
+    
+}
+
+
 </script>
 
 
@@ -72,6 +82,20 @@ function listof(){
 여기는 관리자 페이지!
 
 사람을 수정 할 수 있어요!
+
+<form action="${pageContext.request.contextPath}/user/search.do" name="search" method="post">
+            
+            <select name="keyword">
+            	<option value="전체">전체보기</option>
+				<option value="일반">일반</option>
+				<option value="판매자">판매자</option>
+				<option value="탈퇴" >탈퇴</option>
+			</select>
+
+                 <input type="button" value="검색" onClick="check()">
+                 <input type="hidden" name="page" value="0">
+    
+    </form>  
 
 
 <table border="0">
@@ -131,6 +155,8 @@ function listof(){
 	
 
 </table>
+
+
 
 
 
