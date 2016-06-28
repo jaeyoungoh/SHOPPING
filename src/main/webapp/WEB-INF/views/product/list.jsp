@@ -5,20 +5,45 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 	function addProduct() {
+		
 		location.href="${pageContext.request.contextPath}/product/addForm.do";
 	}
+	$(document).ready(function(){
+		
+		 var test="";
+	     $("input[value=삭제]").click(function(){
+	   		 $("#chk:checked").each(function(){
+	    	test+=$(this).val()+",";
+	    	});
+	   		 alert(test);
+	 	location.href="${pageContext.request.contextPath}/product/dels.do?product_id="+test;
+	    });
+		
+		
+		
+	    $("#chk_All").click(function(){
+	        if($("#chk_All").prop("checked")){
+	            $("input[name=chk]").prop("checked",true);
+	        }else{
+	            $("input[name=chk]").prop("checked",false);
+	        }
+	    });
+	   
+	    
+	})
 </script>
 <title>Insert title here</title>
 </head>
 <body>
 	<table>
+		<tr><td><input type="checkbox" id="chk_All" value="ALL" ></td></tr>
 		<c:forEach var="list" items="${list}">
 			<Tr>
-			
-				<td><a
+				<td><input type="checkbox" name="chk" id="chk" value="${list.product_id}"></td><td><a
 					href="${pageContext.request.contextPath}/product/view.do?product_id=${list.product_id}"><img
 						src="${pageContext.request.contextPath}/img/${list.img_url}"
 						style="width: 100px; height: 100px;"></a></td>
@@ -41,7 +66,7 @@
 			</Tr>
 		</c:forEach>
 		<tfoot>
-		<tr><td><input type="button" value="등록" onclick="addProduct()"></td>
+		<tr><td><input type="button" value="등록" onclick="addProduct()"><input type="button" value="삭제" onclick="delProduct()"></td>
 		</tr>
 		</tfoot>
 	</table>

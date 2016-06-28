@@ -123,6 +123,17 @@ public class ProductController {
 		service.addProduct(product);
 		return "redirect:/product/list.do";
 	}
+	
+	
+		@RequestMapping(value="/product/dels.do")
+		public String dels(@RequestParam(value="product_id")String product_ids){
+			String arr[]=product_ids.split(",");
+			for(int i=0;i<arr.length;i++){
+				System.out.println(arr[i]);
+				service.delProduct(Integer.parseInt(arr[i]));
+			}
+			return "redirect:/product/list.do";
+		}
 	//단일파일업로드
 	@RequestMapping(value="/photoUpload", method = {RequestMethod.GET, RequestMethod.POST})
 	public String photoUpload(HttpServletRequest request, PhotoVo vo){
