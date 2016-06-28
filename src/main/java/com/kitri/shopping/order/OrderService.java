@@ -4,25 +4,46 @@ import java.util.List;
 
 public interface OrderService {
 
-	void add_order(); //주문내역 입력
+	/**
+	 * 주문내역 추가
+	 */
+	void addOrder(Order order);
+	/**
+	 * 주문 건수 번호 얻어오기
+	 * @param order
+	 */
+	void getOrderNum(int order_num);
 	
-	void add_order_info(); //주문내역 상세 입력
+	/**
+	 * 주문 건수 건당 상세 주문내역 검색
+	 * @param user_id
+	 * @return
+	 */
+	List<Order> getOrder(int order_num);
 
-	String get_order(String user_id);//userid로 주문내역 검색 
+	/**
+	 * 주문내역 리스트
+	 * @param user_id
+	 * @return
+	 */
+	List<Order> getOrderList(String user_id);
 	
-	String get_order_info(String user_id);//상세 주문내역 
-	
-	List<Order> getAll_order(String user_id);//주문내역 리스트
-	
-	List<Order> getAll_order_info (String user_id);//주문내역 리스트
+	/**
+	 * 주문내역 전체 리스트 관리자
+	 * @param order
+	 */
+	List<Order> getAllOrderInfo();
 
-	void edit_order(Order order);//주문내역 변경
-
-	void edit_order_info(Order order);//주문내역 변경
+	/**
+	 * 주문내역 상태 변경
+	 * @param order
+	 */
+	void editOrder(Order order);
 	
-	void del_order(int order_num);//주문내역 삭제
-	
-	void del_order_info(int order_info_num);//주문내역 삭제
-	
+	/**
+	 * 주문내역 취소
+	 * @param order_num
+	 */
+	void cancelOrder(int order_num);
 	
 }

@@ -14,80 +14,42 @@ public class OrderServiceImpl implements OrderService {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
-	
+
 	@Override
-	public void add_order() {
-		// TODO Auto-generated method stub
+	public void addOrder(Order order) {
 		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		
-		orderMapper.insert_order();
+		orderMapper.insertOrder(order);
 	}
 
 	@Override
-	public void add_order_info() {
-		// TODO Auto-generated method stub
+	public List<Order> getOrder(int order_num) {
 		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		
-		orderMapper.inser_order_info();
-		
-
+		return orderMapper.selectOrder(order_num);
 	}
 
 	@Override
-	public String get_order(String user_id) {
-		// TODO Auto-generated method stub
+	public List<Order> getOrderList(String user_id) {
 		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		return orderMapper.select_order(user_id);
+		return orderMapper.selectOrderList(user_id);
 	}
 
 	@Override
-	public String get_order_info(String user_id) {
-		// TODO Auto-generated method stub
+	public List<Order> getAllOrderInfo() {
 		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		return orderMapper.select_order_info(user_id);
+		return orderMapper.selectAllOrderInfo();
 	}
 
 	@Override
-	public List<Order> getAll_order(String user_id) {
-		// TODO Auto-generated method stub
+	public void editOrder(Order order) {
 		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		return orderMapper.selectAll_order(user_id);
+		orderMapper.editOrder(order);
 	}
 
 	@Override
-	public List<Order> getAll_order_info(String user_id) {
-		// TODO Auto-generated method stub
+	public void cancelOrder(int order_num) {
 		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		return orderMapper.selectAll_order_info(user_id);
+		orderMapper.cancelOrder(order_num);
 	}
 
-	@Override
-	public void edit_order(Order order) {
-		// TODO Auto-generated method stub
-		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		orderMapper.update_order(order);
-	}
-
-	@Override
-	public void edit_order_info(Order order) {
-		// TODO Auto-generated method stub
-		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		orderMapper.update_order_info(order);
-	}
-
-	@Override
-	public void del_order(int order_num) {
-		// TODO Auto-generated method stub
-		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		orderMapper.delete_order(order_num);
-	}
-
-	@Override
-	public void del_order_info(int order_info_num) {
-		// TODO Auto-generated method stub
-		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		orderMapper.delete_order_info(order_info_num);
-	}
 
 }

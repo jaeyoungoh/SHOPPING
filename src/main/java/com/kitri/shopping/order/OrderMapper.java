@@ -4,25 +4,42 @@ import java.util.List;
 
 public interface OrderMapper {
 	
-	void insert_order();
+	/**
+	 * 주문내역 추가
+	 */
+	void insertOrder(Order order);
 	
-	void inser_order_info();
+	/**
+	 * userid 상세 주문내역 검색
+	 * @param user_id
+	 * @return
+	 */
+	List<Order> selectOrder(int order_num);
+	
+	/**
+	 * 상세 주문내역
+	 * @param user_id
+	 * @return
+	 */
+	
+	List<Order> selectOrderList(String user_id);
+	
+	/**
+	 * 주문내역 리스트
+	 * @param order
+	 */
+	List<Order> selectAllOrderInfo ();
 
-	String select_order(String user_id);
+	/**
+	 * 주문내역 상태 변경
+	 * @param order
+	 */
+	void editOrder(Order order);
 	
-	String select_order_info(String user_id);
-	
-	List<Order> selectAll_order(String user_id);
-	
-	List<Order> selectAll_order_info (String user_id);
-
-	void update_order(Order order);
-
-	void update_order_info(Order order);
-	
-	void delete_order(int order_num);
-	
-	void delete_order_info(int order_info_num);
-	
+	/**
+	 * 주문내역 취소
+	 * @param order_num
+	 */
+	void cancelOrder(int order_num);
 	
 }

@@ -11,7 +11,6 @@
 		<result property="order_num" column="order_num" />
 		<result property="order_date" column="order_date" />
 		<result property="user_id" column="user_id" />
-		
 		<result property="order_info_num" column="order_info_num" />
 		<result property="product_id" column="product_id" />
 		<result property="product_cnt" column="product_cnt" />
@@ -19,50 +18,48 @@
 		<result property="cancel_comment" column="cancel_comment" />
 		<result property="comment" column="comment" />
 		<result property="recommend" column="recommend" />
+		<result property="img_url" column="img_url" />
 	
-		
-		
-		
 	</resultMap>
 
-	<insert id="insert_order" parameterType="com.kitri.shopping.order.Order" >
-		INSERT INTO order values(#{order_num},#{order_date},#{user_id})
+	<insert id="insertOrder" parameterType="com.kitri.shopping.order.Order" >
+	
 	</insert>
-	
-	<insert id="insert_order_info" parameterType="com.kitri.shopping.order.Order" >
-		INSERT INTO order_info values(#{order_info_num},#{order_num}, #{product_id},#{product_cnt},#{product_status},#{cancel_comment},#{comment},#{recommend})
-	</insert>
-	
-	
 
-	<select id="select_order" resultMap="OrderResultMap" parameterType="String">
-		SELECT order_num,order_date, user_id FROM order where USER_ID=#{USER_ID}
+	<select id="selectOrder" resultMap="OrderResultMap" parameterType="String">
+	select o.ORDER_NUM ORDER_NUM,
+	 o.ORDER_DATE ORDER_DATE,
+	  o.USER_ID USER_ID ,
+	  oi.ORDER_INFO_NUM,
+	  oi.CANCEL_COMMENT,
+	  oi.COMMENTS,
+	  oi.PRODUCT_CNT,
+	  oi.PRODUCT_ID,
+	  oi.PRODUCT_STATUS,
+	  oi.RECOMMEND
+	  from order_info oi JOIN ORDERS o
+	  ON o.ORDER_NUM=oi.ORDER_NUM
+	  where o.ORDER_NUM = #{order_num}
 	</select>
 	
-	<select id="select_order_info" resultMap="OrderResultMap" parameterType="String">
-		SELECT order_info_num,order_num,product_id,product_cnt,product_status,cancel_comment,comment,recommend FROM order_info where USER_ID=#{USER_ID}
+	<select id="selectOrderList" resultMap="OrderResultMap" parameterType="String">
+		
 	</select>
 
-
-
-
-	<select id="selectAll_order" resultMap="OrderResultMap">
-		SELECT order_num,order_date, user_id FROM order order by USER_ID desc
+	<select id="selectAllOrderInfo" resultMap="OrderResultMap">
+	
 	</select>
 	
-	<select id="selectAll_order_info" resultMap="OrderResultMap">
-		SELECT order_info_num,order_num,product_id,product_cnt,product_status,cancel_comment,comment,recommend FROM order_info order by USER_ID desc
-	</select>
+	<update id="editOrder" parameterType="com.kitri.shopping.order.Order">
 	
-	
-	
-	<update id="update_order" parameterType="com.kitri.shopping.order.Order">
-		update order set order_num=#{order_num}, order_date=#{order_date} where user_id=#{user_id}
 	</update>
 	
-	<update id="update_order_info" parameterType="com.kitri.shopping.order.Order">
-		update order_info set order_info_num=#{order_info_num}, order_num=#{order_num}, product_id=#{product_id}, product_cnt=#{product_cnt}, product_status=#{product_status}, cancel_comment=#{cancel_comment}, comment=#{comment}, recommend=#{recommend} where user_id=#{user_id}
+	<update id="cancelOrder" parameterType="com.kitri.shopping.order.Order">
+	
 	</update>
+	
+	
+	
 	
 	
 </mapper>
