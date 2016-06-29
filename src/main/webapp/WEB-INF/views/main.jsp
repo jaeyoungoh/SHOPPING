@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<LINK rel="stylesheet" type="text/css"
+	<link rel="stylesheet" type="text/css"
 		href="${pageContext.request.contextPath}/css/menu.css">
 	<ul class="nav">
 		<li><a href="#">Home</a></li>

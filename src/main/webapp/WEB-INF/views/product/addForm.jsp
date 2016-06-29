@@ -6,6 +6,7 @@
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <link href="${pageContext.request.contextPath}/editor/css/smart_editor2.css" rel="stylesheet" type="text/css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/httpRequest.js" charset="utf-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/category.js" charset="utf-8"></script>
 <script type="text/javascript">
@@ -80,6 +81,8 @@
 	
 	function load_form() {
 		var category="${product.category}";
+		if('${product.quantity}'=="" || '${product.quantity}'==0){
+		document.addform.quantity.value=0;}
 		var arr=category.split(">");
 		for(i=0;i<arr.length;i++){
 			$("[value='"+arr[i]+"']").attr("selected","selected");
@@ -166,13 +169,12 @@
 			<th>가격</th>
 			<td style="width: 70px;"><input type="text" name="price" value="${product.price}" style="width: 70px;" ></td>
 			<th>할인률</th>
-			<td><input type="button" value="-" onclick="p_del()"><input
+			<td style="text-align: center;"> <i class="fa fa-minus fa-1" onclick="p_del()" style="font-size: 10px" ></i><input
 			type="text" value='${product.sale_pct}' name="sale_pct" id="sale_pct"
-			style="width: 25px;text-align: center; border: none;" onchange="chack_p()" >%<input
-			type="button" value="+" onclick="p_add()"></td>
+			style="width: 25px;text-align: right; border: none;" onchange="chack_p()" >% <i class="fa fa-plus fa-1" style="font-size: 10px" onclick="p_add()" ></i></div></td>
 			<th >재고수량</th>
 			<td style="width: 70px;"><input type="text" name="quantity"
-				value="${product.quantity}" style="width: 70px;"></td>
+				value="${product.quantity}+0" style="width: 70px;"></td>
 			
 		</tr>
 		<tr><th colspan="9">메인이미지</th></tr>
