@@ -59,6 +59,7 @@ function msgUpdateCNTcheck(){
 }
 
 function reqUpdate(form1){
+	form1.action="${pageContext.request.contextPath}/cart/update.do";
 	form1.submit();
 }
 
@@ -86,6 +87,7 @@ function allCheckAction(){
 </thead>
 <tbody>
 <c:forEach var="list"  items="${list}">
+<form name="frm" action="${pageContext.request.contextPath}/cart/update.do" method="post">
 	<tr id="cart_i_${list.cart_num}">
 		<td class="chk"><!-- 체크박스(묶음상품) -->
 			<label for="1295844927">
@@ -101,14 +103,12 @@ function allCheckAction(){
 				</div>
 			
 		</td>
-			<form name="frm" action="${pageContext.request.contextPath}/cart/update.do" method="post">
 		<td>
-			<input type="text" id="cart_cnt_${list.cart_num}" name="cart_cnt" value="${list.cart_cnt}" style="width: 47px; height: 19px;"><br/>
+			<input type="text" name="cart_cnt" value="${list.cart_cnt}" style="width: 47px; height: 19px;"><br/>
 				<input type="button" onclick="reqUpdate(this.form)" value="변경" />
 				<input type="hidden"  name="cart_num" value="${list.cart_num}"/>
 				<input type="hidden"  name="product_id" value="${list.product_id}"/>
 		</td>
-			</form>
 		<td><fmt:formatNumber value="${list.price}" type="number"/>원</td>
 		<td>
 		
@@ -123,6 +123,7 @@ function allCheckAction(){
 			<a href="#" onclick="deleteCart(${list.cart_num});"><span>삭제하기</span></a>
 		</td>
 	</tr>
+			</form>
 </c:forEach>
 	
 </tbody>

@@ -32,7 +32,7 @@
 	</resultMap>
 
 	<select id="selectCnt" parameterType="int" resultType="int">
-		SELECT NVL(max(quantity), 0) FROM product WHERE PRODUCT_ID=#{product_id}
+		SELECT quantity FROM product WHERE PRODUCT_ID=#{product_id}
 	</select>
 
 	<select id="selectAll" parameterType="com.kitri.shopping.cart.Cart"

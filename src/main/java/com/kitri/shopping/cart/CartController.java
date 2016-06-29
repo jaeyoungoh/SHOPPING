@@ -41,19 +41,20 @@ public class CartController {
 		ModelAndView mav = new ModelAndView("redirect:/cart/list.do");
 		HttpSession loginSession = request.getSession();
 		cart.setUser_id((String)loginSession.getAttribute("user_id"));
-			System.out.println("cart.getCart_cnt() : "+cart.getCart_cnt());
-			System.out.println("cart.getProduct_id() : " + cart.getProduct_id());
+			System.out.println("cart 번호 :"+cart.getCart_num());
+			System.out.println("cart.수량() : "+cart.getCart_cnt());
+			System.out.println("cart.상품번호() : " + cart.getProduct_id());
 		int chk = cartService.searchCnt(cart.getProduct_id());
 		System.out.println(chk);
 		if(chk < cart.getCart_cnt()){
 			mav.addObject("update_msg", "fail");
 			mav.addObject("max_cnt", chk);
 			return mav;
-			
+		}else{
+			cartService.updateCart(cart);
+			mav.addObject("update_msg", "success");
+			return mav;
 		}
-		cartService.updateCart(cart);
-		mav.addObject("update_msg", "success");
-		return mav;
 		
 	}
 	
