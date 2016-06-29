@@ -62,12 +62,7 @@ function reqUpdate(form1){
 	form1.submit();
 }
 
-function checkList(){
-	
-}
-
 function allCheckAction(){
-	document.cartList.r
 }
 
 </script>
@@ -91,7 +86,7 @@ function allCheckAction(){
 </thead>
 <tbody>
 <c:forEach var="list"  items="${list}">
-	<tr>
+	<tr id="cart_i_${list.cart_num}">
 		<td class="chk"><!-- 체크박스(묶음상품) -->
 			<label for="1295844927">
 				<input type="checkbox" name="cartList" value="${list.cart_num}">
@@ -99,28 +94,28 @@ function allCheckAction(){
 						
 		</td>
 		<td class="td_prdwrap">
-			<div class="OrderPrdW_Goods">
+			${list.product_name}
+			<br/>
 			 	<div class="dp_photo">
 			 		<img src="${pageContext.request.contextPath}/img/${list.img_url}" style="width: 90px; height:90px;"/>
 				</div>
-			</div>
+			
 		</td>
 			<form name="frm" action="${pageContext.request.contextPath}/cart/update.do" method="post">
 		<td>
 			<input type="text" id="cart_cnt_${list.cart_num}" name="cart_cnt" value="${list.cart_cnt}" style="width: 47px; height: 19px;"><br/>
-				<a href="#" onclick="javascript:reqUpdate(this.form)"><span id=cartCnt>변경</span></a><br/>
 				<input type="button" onclick="reqUpdate(this.form)" value="변경" />
 				<input type="hidden"  name="cart_num" value="${list.cart_num}"/>
 				<input type="hidden"  name="product_id" value="${list.product_id}"/>
 		</td>
 			</form>
-		<td><fmt:formatNumber value="${list.price*list.cart_cnt}" type="number"/>원</td>
+		<td><fmt:formatNumber value="${list.price}" type="number"/>원</td>
 		<td>
 		
-			<span id="salePCT"><fmt:formatNumber value="${list.price*list.cart_cnt*list.sale_pct/100}" type="number"/>원</span>
+			<span id="salePCT"><fmt:formatNumber value="${list.sale_pct}" type="number"/>원</span>
 		</td>
 		<td>
-			<span id="DiscountPrices"><fmt:formatNumber value="${list.price*list.cart_cnt-(list.price*list.cart_cnt*list.sale_pct/100)}" type="number"/>원</span>
+			<span id="DiscountPrices"><fmt:formatNumber value="${list.sale_price}" type="number"/>원</span>
 		</td>
 		
 		<td>

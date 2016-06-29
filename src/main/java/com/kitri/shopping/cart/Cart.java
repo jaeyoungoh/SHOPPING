@@ -21,14 +21,13 @@ public class Cart {
 	//물건 이미지 파일
 	private String img_url;
 	private int quantity;
-	
-	
+	private int sale_price;
 	
 	public Cart() {	}
 	
 
 	public Cart(int cart_num, int cart_cnt, int product_id, String product_name, int product_cnt, int price,
-			int sale_pct, String user_id, String img_url, int quantity) {
+			int sale_pct, String user_id, String img_url, int quantity, int sale_price) {
 		this.cart_num = cart_num;
 		this.cart_cnt = cart_cnt;
 		this.product_id = product_id;
@@ -39,6 +38,17 @@ public class Cart {
 		this.user_id = user_id;
 		this.img_url = img_url;
 		this.quantity = quantity;
+		this.sale_price = sale_price;
+	}
+	
+
+	public int getSale_price() {
+		return sale_price;
+	}
+
+
+	public void setSale_price(int sale_price) {
+		this.sale_price = sale_price;
 	}
 
 

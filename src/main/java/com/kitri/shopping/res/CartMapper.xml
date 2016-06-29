@@ -1,56 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kitri.shopping.cart.CartMapper">
 
-	<resultMap type="com.kitri.shopping.cart.Cart" id="CartResultMap">
-		<result property="cart_num" column="cart_num" />
-		<result property="cart_cnt" column="cart_cnt" />
-		<result property="product_id" column="product_id" />
-		<result property="product_name" column="product_name" />
-		<result property="product_cnt" column="product_cnt" />
-		<result property="price" column="price" />
-		<result property="sale_pct" column="sale_pct" />
-		<result property="user_id" column="user_id" />
-		<result property="img_url" column="img_url" />
+
+	<resultMap id="CartResultMap" type="com.kitri.shopping.cart.Cart">
+
+		<result column="cart_num" property="cart_num" />
+
+		<result column="cart_cnt" property="cart_cnt" />
+
+		<result column="product_id" property="product_id" />
+
+		<result column="product_name" property="product_name" />
+
+		<result column="product_cnt" property="product_cnt" />
+
+		<result column="price" property="price" />
+
+		<result column="sale_pct" property="sale_pct" />
+
+		<result column="user_id" property="user_id" />
+
+		<result column="img_url" property="img_url" />
+		
+		<result property="sale_price" column="sale_price"/>
+
 	</resultMap>
 
-	<select id="selectCnt" resultType="int" parameterType="int">
+	<select id="selectCnt" parameterType="int" resultType="int">
 		SELECT NVL(max(quantity), 0) FROM product WHERE PRODUCT_ID=#{product_id}
 	</select>
 
-	<select id="selectAll" resultMap="CartResultMap" parameterType="com.kitri.shopping.cart.Cart">
-		select
+	<select id="selectAll" parameterType="com.kitri.shopping.cart.Cart"
+		resultMap="CartResultMap">
+		select 
 		c.CART_NUM CART_NUM,
 		p.QUANTITY QUANTITY,
 		p.PRODUCT_ID PRODUCT_ID,
-		p.NAME PRODUCT_NAME,
-		c.CART_CNT CART_cnt,
-		p.PRICE PRICE,
-		p.SALE_PCT SALE_PCT,
+		p.NAME PRODUCT_NAME, 
+		c.CART_CNT CART_CNT,
+		CEIL(p.PRICE*c.CART_CNT/10)*10 PRICE,
+		CEIL((p.PRICE*p.SALE_PCT/100)/10)*10*c.CART_CNT SALE_PCT,
 		p.USER_ID USER_ID,
-		p.IMG_URL IMG_URL
+		p.IMG_URL IMG_URL,
+		CEIL((p.PRICE-(p.PRICE*p.SALE_PCT/100))/10)*10*c.CART_CNT SALE_PRICE
 		from CART c JOIN PRODUCT p
 		ON c.PRODUCT_ID = p.PRODUCT_ID
-		where c.USER_ID=#{user_id}
-		order by c.CART_NUM DESC
+		where c.USER_ID=#{user_id} order by c.CART_NUM DESC
 	</select>
-	
+
 	<insert id="insert" parameterType="com.kitri.shopping.cart.Cart">
-		INSERT INTO cart values(seq_cart.nextval,
-		 #{user_id},
-		 #{product_id},
-		 #{cart_cnt})
+		INSERT INTO cart
+		values(seq_cart.nextval, #{user_id}, #{product_id}, #{cart_cnt})
 	</insert>
-	
+
 	<update id="update" parameterType="com.kitri.shopping.cart.Cart">
-		update cart set cart_cnt=#{cart_cnt} where cart_num=#{cart_num} and user_id=#{user_id}
+		update cart set cart_cnt=#{cart_cnt} where cart_num=#{cart_num} and
+		user_id=#{user_id}
 	</update>
-	
+
 	<delete id="delete" parameterType="int">
-		delete cart where cart_num=#{cart_num}
-	</delete>
-	
+	 delete cart 
+	 where cart_num=#{cart_num} 
+		</delete>
+
 </mapper>
