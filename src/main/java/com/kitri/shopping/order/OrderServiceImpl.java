@@ -51,11 +51,5 @@ public class OrderServiceImpl implements OrderService {
 		orderMapper.cancelOrder(order_num);
 	}
 
-	@Override
-	public void getOrderNum(int order_num) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }
