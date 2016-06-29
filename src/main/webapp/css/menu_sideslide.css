@@ -139,6 +139,17 @@
 	-webkit-transform: translate3d(0,100%,0);
 	transform: translate3d(0,100%,0);
 }
+div#icon{
+	margin: 10px;
+	color: #fffce1;
+	font-size: 20px;
+}
+div#icon>input[type="button"]{
+	margin: 10px;
+	color: #fffce1;
+	background: none;
+	border: 0px;
+}
 
 .icon-list a {
 	display: block;

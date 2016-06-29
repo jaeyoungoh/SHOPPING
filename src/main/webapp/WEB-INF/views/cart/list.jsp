@@ -77,7 +77,10 @@ function addOrder(form1){
 <div id="cf">
 <form name="frmOrderMall" action="" method="POST">
 
-<table>
+<table id="list" style="
+    width: 950px;
+    margin: 30px;
+">
 <thead>
 	<tr>	
 		<th scope="col" class=""><label for="bcktSeq_All"><input id="chk_All" name="chk" type="checkbox" value="ALL" title="전체상품선택"></label></th>
@@ -101,17 +104,16 @@ function addOrder(form1){
 			</label>
 	
 		</td>
-		<td class="td_prdwrap">
-			<a href="${pageContext.request.contextPath}/product/view.do?product_id=${list.product_id}">${list.product_name}
+		<td class="td_prdwrap" style="text-align: center;">
+			<a href="${pageContext.request.contextPath}/product/view.do?product_id=${list.product_id}">
+			<img src="${pageContext.request.contextPath}/img/${list.img_url}" style="width: 90px; height:90px;"/>
 			<br/>
-			 	<div class="dp_photo">
-			 		<img src="${pageContext.request.contextPath}/img/${list.img_url}" style="width: 90px; height:90px;"/>
-				</div>
+			${list.product_name}
 			</a>
 		</td>
 		<td>
-			<input type="text" name="cart_cnt" value="${list.cart_cnt}" style="width: 47px; height: 19px;"><br/>
-				<input type="button" onclick="reqUpdate(this.form)" value="변경" />
+			<input type="text" name="cart_cnt" value="${list.cart_cnt}" style="width: 47px; height: 19px; text-align: right;">
+				<input type="button" onclick="reqUpdate(this.form)" value="변경" id="a"/>
 				<input type="hidden"  name="cart_num" value="${list.cart_num}"/>
 				<input type="hidden"  name="product_id" value="${list.product_id}"/>
 		</td>
@@ -124,9 +126,9 @@ function addOrder(form1){
 		</td>
 		
 		<td>
-			<input type="button" value="주문하기" onclick="addOrder(this.form);" /><br/>
+			<input type="button" value="주문하기" onclick="addOrder(this.form);" id="a"/>
 			<input type="hidden" name = "product_cnt" value="${list.cart_cnt}" /> 
-			<input type="button" value="삭제하기" onclick="deleteCart(${list.cart_num});"/>
+			<input type="button" value="삭제하기" onclick="deleteCart(${list.cart_num});" id="a"/>
 		</td>
 	</tr>
 			</form>

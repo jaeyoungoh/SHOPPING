@@ -8,7 +8,7 @@
 	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/httpRequest.js"></script>
-	
+
 <title>Insert title here</title>
 <script type="text/javascript">
 	function canceljoin() {
@@ -159,9 +159,9 @@
 			document.j.email.value = document.j.email1.value
 					+ document.j.email_addr.value;
 			var uri = jQuery(location).attr('pathname')
-			+ jQuery(location).attr('search');
-			document.j.uri.value=uri;
-			
+					+ jQuery(location).attr('search');
+			document.j.uri.value = uri;
+
 			document.j.submit();
 		}
 
@@ -178,8 +178,16 @@
 	}
 
 	function modify() {
-		location.href = "${pageContext.request.contextPath }/user/modifyform.do";
-
+		location.href ="${pageContext.request.contextPath }/user/modifyform.do";
+	}
+	function cartlist(){
+		location.href ="${pageContext.request.contextPath }/cart/list.do";
+	}
+	function orderlist(){
+		location.href ="${pageContext.request.contextPath }/order/list.do";
+	}
+	function slist(){
+		location.href ="${pageContext.request.contextPath }/product/slist.do";
 	}
 	function category_move(a) {
 		console.log($(this.a));
@@ -195,8 +203,6 @@
 													+ $(this).html();
 										});
 					});
-
-
 
 	function login() {
 		var str = document.lg.user_id;
@@ -234,11 +240,19 @@
 				var res1 = httpRequest.responseText;
 				if (res1 == "로그인실패했습니다.") {
 					alert(res1);
-				} else {
+				}	else {
 					$("html").html(res1);
+					
+					
 				}
 			}
 		}
+	}
+	function login1(){
+		$("[data-modal=modal-1]").trigger("click");
+	}
+	function signup(){
+		$("[data-modal=modal-2]").trigger("click");
 	}
 	function findpwd() {
 		location.href = "${pageContext.request.contextPath }/user/findpwd.do"
@@ -246,34 +260,86 @@
 	}
 </script>
 <link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/demo1.css" />
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/menu_sideslide.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/normalize.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/demo1.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/menu_sideslide.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/css/component.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/menu.css">
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+	rel="stylesheet">
 </head>
 <body>
 
-			<div class="menu-wrap">
-				<nav class="menu">
-					<div class="icon-list">
-						<a href="${pageContext.request.contextPath }/cart/list.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>장바구니</span></a>
-						<a href="#"><i class="fa fa-list" aria-hidden="true"></i><span>구매목록</span></a>
-						<a href="#"><i class="fa fa-user" aria-hidden="true"></i><span>정보수정</span></a>
-						<a href="${pageContext.request.contextPath }/user/admin.do""><i class="fa fa-wrench" aria-hidden="true"></i><span>관리자페이지</span></a>
-						<a href="#"><i class="fa fa-list" aria-hidden="true"></i><span>등록상품목록</span></a>
-						<a href="#"><i class="fa fa-fw fa-bar-chart-o"></i><span>고객구매내역</span></a>
+	<div class="menu-wrap">
+		<nav class="menu">
+			<div class="icon-list">
+				<div style="height: 30px;"></div>
+				<div id="icon">
+					<i class="fa fa-user" aria-hidden="true"></i><input type="button"
+						value="내정보보기"
+						onclick='<c:choose><c:when test="${!sessionScope.type!=null}">modify()</c:when><c:otherwise>login1()</c:otherwise></c:choose>'>
+				</div>
+				<div id="icon">
+					<i class="fa fa-shopping-cart" aria-hidden="true"></i><input
+						type="button" value="장바구니보기"
+						onclick='<c:choose><c:when test="${sessionScope.type!=null}">cartlist()</c:when><c:otherwise>login1()</c:otherwise></c:choose>'>
+				</div>
+				<div id="icon">
+					<i class="fa fa-list" aria-hidden="true"></i><input type="button"
+						onclick='<c:choose><c:when test="${sessionScope.type!=null}">orderlist()</c:when><c:otherwise>login1()</c:otherwise></c:choose>'
+						value="구매목록">
+				</div>
+				<c:if test="${sessionScope.type=='관리자'}">
+					<div id="icon">
+						<i class="fa fa-wrench" aria-hidden="true"></i><input
+							type="button" value="관리자페이지" onclick="admin()">
 					</div>
-				</nav>
-				<button class="close-button" id="close-button">Close Menu</button>
-			</div>
-			<button class="menu-button" id="open-button">Open Menu</button>
+				</c:if>
+				<c:if test="${sessionScope.type=='판매자'}">
+					<div id="icon">
+						<i class="fa fa-list" aria-hidden="true"></i><input type="button"
+							value="등록상품목록" onclick="slist()">
+					</div>
+					<div id="icon">
+						<i class="fa fa-fw fa-bar-chart-o"></i><input type="button"
+							onclick="" value="고객구매내역">
+					</div>
+				</c:if>
+				<div style="height: 30px;"></div>
+				<c:choose>
+					<c:when test="${sessionScope.type=='' || sessionScope.type==null}">
+						<div id="icon" style="display: inline-block; font-size: 15px;">
+							<i class="fa fa-sign-in" aria-hidden="true"></i><input
+								type="button" onclick="login1()" value="로그인">
+						</div>
+						<div id="icon" style="display: inline-block; font-size: 15px;">
+							<i class="fa fa-user" aria-hidden="true"></i> <input
+								type="button" onclick="signup()" value="회원가입">
+						</div>
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath }/user/logout.do"
+							style="display: inline-block; font-size: 15px;"><i
+							class="fa fa-sign-out" aria-hidden="true"></i> <span>로그아웃</span></a>
+					</c:otherwise>
 
-		
+				</c:choose>
+			</div>
+
+		</nav>
+		<button class="close-button" id="close-button">Close Menu</button>
+	</div>
+	<button class="menu-button" id="open-button">Open Menu</button>
+
+
 	<div
 		style="position: relative; top: 80px; margin: 0 auto; width: 100px; margin: 0 auto;">
 		<h1>DEPOSCO</h1>
@@ -439,19 +505,20 @@
 
 	<div class="layer_fixed">
 		<table cellspacing="0" cellpadding="0"
-			style="width: 100%; height: 100%; ">
+			style="width: 100%; height: 100%;">
 			<tr>
 				<td
-					style="vertical-align: middle; padding-left: 20px; padding-right: 20px; text-align: center;color: white;">
+					style="vertical-align: middle; padding-left: 20px; padding-right: 20px; text-align: center; color: white;">
 					<c:choose>
 						<c:when test="${sessionScope.type=='' || sessionScope.type==null}">로그인을 해주세요. 
 						<input type="button" class="md-trigger" data-modal="modal-1"
 								value="로그인">
-								<button class="md-trigger" data-modal="modal-2">회원가입</button>
+							<button class="md-trigger" data-modal="modal-2">회원가입</button>
 						</c:when>
 						<c:otherwise>
-		 ${sessionScope.type}<font color="#c94e50"> ${sessionScope.name}</font> 님 어서오세요 <input
-								type="button" value="정보수정" onclick="modify()">
+		 ${sessionScope.type}<font color="#c94e50">
+								${sessionScope.name}</font> 님 어서오세요 <input type="button" value="정보수정"
+								onclick="modify()">
 							<input type="button" value="로그아웃" onclick="logout()">
 							<i class="fa fa-bars" aria-hidden="true" onclick="menu()"></i>
 							<c:if test="${sessionScope.type=='판매자'}">
@@ -460,6 +527,7 @@
 								</select>
 							</c:if>
 						</c:otherwise>
+
 					</c:choose>
 				</td>
 			</tr>
@@ -482,21 +550,20 @@
 						<tr style="padding: 10px">
 							<td>아 이 디</td>
 							<td><input type="text" name="user_id"
-								style="background: rgb(96, 134, 144); border: none;color: white;" /></td>
+								style="background: rgb(96, 134, 144); border: none; color: white;" /></td>
 						</tr>
 						<tr style="padding: 10px">
 							<td>비밀번호</td>
 							<Td><input type="password" name="pwd"
-								style="background: rgb(96, 134, 144); border: none;color: white;" /> <input
-								type="hidden" name="uri"></Td>
+								style="background: rgb(96, 134, 144); border: none; color: white;" />
+								<input type="hidden" name="uri"></Td>
 						</tr>
 						<tr>
 							<td></td>
-							<td><br>
-							<input type="button" value="로그인" onclick="login()" />
-								<input type="hidden" class="md-close" value="X"/>
-								</td>
-								
+							<td><br> <input type="button" value="로그인"
+								onclick="login()" /> <input type="hidden" class="md-close"
+								value="X" /></td>
+
 						</tr>
 					</table>
 				</form>
@@ -512,54 +579,65 @@
 			<div>
 				<p>정보를 입력해주세요.</p>
 				<form action="${pageContext.request.contextPath }/user/adduser.do"
-		name="j">
-		<table style="color: white;" id="list">
-			<tr>
-				<td colspan="3">환영합니다. 어서오세요</td>
-			</tr>
-			<tr>
-				<td>아이디 </td>
-				<td colspan="2"><input type="text" name="user_id" id="i" style="background: rgb(96, 134, 144); border: none;color: white;"/></td>
-			</tr>
-			<tr>
-				<td>패스워드 </td>
-				<td colspan="2"><input type="password" name="pwd" id="pw"style="background: rgb(96, 134, 144); border: none;color: white;" /></td>
-			</tr>
-			<tr>
-				<td>이름 </td>
-				<td colspan="2"><input type="text" name="name" id="n" style="background: rgb(96, 134, 144); border: none;color: white;"/></td>
-			</tr>
-			<tr>
-				<td>이메일 </td>
-				<td><input type="hidden" name="email" style="background: rgb(96, 134, 144); border: none;color: white;"/><input type="text"
-					name="email1" id="e" style="background: rgb(96, 134, 144); border: none;color: white;"/> @ <input type="text" name="email_addr"style="background: rgb(96, 134, 144); border: none;color: white;width: 100px;">
+					name="j">
+					<table style="color: white;" id="list">
+						<tr>
+							<td colspan="3">환영합니다. 어서오세요</td>
+						</tr>
+						<tr>
+							<td>아이디</td>
+							<td colspan="2"><input type="text" name="user_id" id="i"
+								style="background: rgb(96, 134, 144); border: none; color: white;" /></td>
+						</tr>
+						<tr>
+							<td>패스워드</td>
+							<td colspan="2"><input type="password" name="pwd" id="pw"
+								style="background: rgb(96, 134, 144); border: none; color: white;" /></td>
+						</tr>
+						<tr>
+							<td>이름</td>
+							<td colspan="2"><input type="text" name="name" id="n"
+								style="background: rgb(96, 134, 144); border: none; color: white;" /></td>
+						</tr>
+						<tr>
+							<td>이메일</td>
+							<td><input type="hidden" name="email"
+								style="background: rgb(96, 134, 144); border: none; color: white;" /><input
+								type="text" name="email1" id="e"
+								style="background: rgb(96, 134, 144); border: none; color: white;" />
+								@ <input type="text" name="email_addr"
+								style="background: rgb(96, 134, 144); border: none; color: white; width: 100px;">
 
-					<select name="mail" onchange="email_change()" style="background: rgb(96, 134, 144); border: none;color: white; ">
-						<option value="직접입력">직접입력</option>
-						<option value="gmail.com">gmail.com</option>
-						<option value="naver.com">naver.com</option>
-						<option value="empass.com">empass.com</option>
-						<option value="daum.net">daum.net</option>
-						<option value="kitri.re.kr">kitri.re.kr</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>주소 </td>
-				<td colspan="2"><input type="text" name="address" id="a" style="background: rgb(96, 134, 144); border: none;color: white;"/></td>
-			</tr>
-			<tr>
-				<td>전화번호</td>
-				<td colspan="2"><input type="text" name="phone" id="p" style="background: rgb(96, 134, 144); border: none;color: white;"/></td>
-			</tr>
+								<select name="mail" onchange="email_change()"
+								style="background: rgb(96, 134, 144); border: none; color: white;">
+									<option value="직접입력">직접입력</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="naver.com">naver.com</option>
+									<option value="empass.com">empass.com</option>
+									<option value="daum.net">daum.net</option>
+									<option value="kitri.re.kr">kitri.re.kr</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>주소</td>
+							<td colspan="2"><input type="text" name="address" id="a"
+								style="background: rgb(96, 134, 144); border: none; color: white;" /></td>
+						</tr>
+						<tr>
+							<td>전화번호</td>
+							<td colspan="2"><input type="text" name="phone" id="p"
+								style="background: rgb(96, 134, 144); border: none; color: white;" /></td>
+						</tr>
 
 
-			<tr>
-				<td><input type="button" value="가입요청" onclick="join()"><input type="hidden" name="uri"></td>
-				<td><input type="reset" value="입력취소"></td>
-			</tr>
-		</table>
+						<tr>
+							<td><input type="button" value="가입요청" onclick="join()"><input
+								type="hidden" name="uri"></td>
+							<td><input type="reset" value="입력취소"></td>
+						</tr>
+					</table>
 
-	</form>
+				</form>
 
 
 			</div>
@@ -570,8 +648,8 @@
 	<div class="md-overlay"></div>
 	<!-- the overlay element -->
 
-		<script src="${pageContext.request.contextPath}/js/classie.js"></script>
-		<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/classie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 	<!-- classie.js by @desandro: https://github.com/desandro/classie -->
 	<script src="${pageContext.request.contextPath}/js/classie.js"></script>
 	<script src="${pageContext.request.contextPath}/js/modalEffects.js"></script>
@@ -585,5 +663,6 @@
 	<script src="${pageContext.request.contextPath}/js/cssParser.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/js/css-filters-polyfill.js"></script>
+
 </body>
 </html>

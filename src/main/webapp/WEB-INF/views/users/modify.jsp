@@ -170,7 +170,7 @@ var stra = document.getElementById('a');
 
 </head>
 <body>
-
+<%@include file="../main.jsp" %>
 <form action="${pageContext.request.contextPath }/user/modify.do" name="u">
 <table>
 <tr><td colspan="2">deposco 회원수정양식. </tr>
