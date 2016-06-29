@@ -146,20 +146,20 @@
 				<option value="컴퓨터">컴퓨터</option>
 			</select>
 			<div id="div_category2" style="display: inline-block;">
-			<select name='category2' onchange='category_c2()'>
+			<!-- <select name='category2' onchange='category_c2()'>
 				<option value='냉장고'>냉장고</option>
 				<option value='밥솥'>밥솥</option>
 				<option value='전자레인지'>전자레인지</option>
-				<option value='커피메이커'>커피메이커</option></select>
+				<option value='커피메이커'>커피메이커</option></select> -->
 			</div>
 			<div id="div_category3" style="display: inline-block;">
-			<select name="category3">
+			<!-- <select name="category3">
 				<option value="일반형">일반형</option>
 				<option value="업소용">업소용</option>
 				<option value="와인용">와인용</option>
 				<option value="김치냉장고">김치냉장고</option>
 				
-			</select>
+			</select> -->
 			</div>
 			
 			</td>

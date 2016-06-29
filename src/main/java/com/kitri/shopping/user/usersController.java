@@ -82,12 +82,12 @@ public class usersController {
 	}
 	
 	@RequestMapping(value="user/adduser.do")
-	public String adduser(users u){
+	public String adduser(users u,@RequestParam(value="uri") String uri){
 		System.out.println(u.toString()+"가입입력값");
 		
 		service.adduser(u);				
-		
-		return "/users/main";
+		uri=uri.replace("/shopping", "");
+		return "redirect:"+uri;
 	}	
 	
 	@RequestMapping(value="/user/modify.do")

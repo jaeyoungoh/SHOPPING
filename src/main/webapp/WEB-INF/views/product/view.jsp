@@ -50,7 +50,6 @@
 		if(chkCartMove){
 			
 				fmt.cart_cnt.value = fmt.quantity.value;
-				fmt.action = "${pageContext.request.contextPath}/cart/add.do";
 				fmt.submit();
 		}else {
 			
@@ -66,7 +65,7 @@
 	}
 	</script>
 	<%@include file="../main.jsp" %>
-<div id="cf">
+<div id="cf" style="left: 0">
 <form action="" method="post">
 	<table>
 
@@ -169,6 +168,5 @@
 		</tr>
 	</table>
 	<input type="hidden" name="product_id" value="${product.product_id}" />
-	<input type="hidden" name="user_id" value="${sessionScope.user_id}"/>
 </form>
 </div>

@@ -43,8 +43,7 @@
 			</div>
 		</div>
 		
-		<div class="container">
-			<!-- Top Navigation -->
+	
 
 			
 			<div class="main clearfix">
@@ -54,7 +53,7 @@
 
 				</div>
 			</div>
-		</div><!-- /container -->
+
 		<div class="md-overlay"></div><!-- the overlay element -->
 
 		<!-- classie.js by @desandro: https://github.com/desandro/classie -->

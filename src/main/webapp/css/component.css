@@ -19,7 +19,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 .container {
-	background: #de96a0;
+	background: white;
 	min-height: 100%;
 }
 
@@ -55,7 +55,7 @@ perspective effects (not including the modals and the overlay).
 	left: 0;
 	z-index: 1000;
 	opacity: 0;
-	background: rgba(39, 160, 88, 0.26);
+	background: rgba(34, 34, 34, 0.36); /*배경*/
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
@@ -69,7 +69,7 @@ perspective effects (not including the modals and the overlay).
 /* Content styles */
 .md-content {
 	color: #fff;
-	background: rgba(15, 208, 249, 0.15);
+	background: rgba(94, 152, 165, 0.52);  /*폼*/
 	position: relative;
 	border-radius: 3px;
 	margin: 0 auto;
@@ -530,7 +530,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 16:  Blur */
 .md-show.md-effect-16 ~ .md-overlay {
-	background: rgba(180,46,32,0.5);
+	background: rgba(0, 0, 0, .6);
 }
 
 .md-show.md-effect-16 ~ .container {
@@ -611,7 +611,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 .md-show.md-effect-18 ~ .md-overlay {
-	background: rgba(143,27,15,0.8);
+	background: rgba(201, 78, 80, 0.48);
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
@@ -730,5 +730,5 @@ perspective effects (not including the modals and the overlay).
 }
 
 @media screen and (max-width: 32em) {
-	body { font-size: 75%; }
+	body { font-size: 95%; }
 }
