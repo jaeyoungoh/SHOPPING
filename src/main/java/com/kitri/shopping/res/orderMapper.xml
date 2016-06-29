@@ -43,7 +43,20 @@
 	</select>
 	
 	<select id="selectOrderList" resultMap="OrderResultMap" parameterType="String">
-		
+		SELECT 
+		o.ORDER_NUM order_num, 
+		o.PRODUCT_ID product_id, 
+		o.CANCEL_COMMENT cancel_comment,
+		o.COMMENTS comments,
+		o.ORDER_DATE order_date,
+		o.ORDER_NUM order_num,
+		o.RECOMMEND recommend,
+		o.USER_ID user_id,
+		p.IMG_URL img_url,
+		p.NAME name
+		FROM 
+		ORDERS o JOIN PRODUCT p ON
+		p.PRODUCT_ID = O.PRODUCT_ID;
 	</select>
 
 	<select id="selectAllOrderInfo" resultMap="OrderResultMap">

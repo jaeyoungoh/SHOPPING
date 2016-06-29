@@ -9,12 +9,6 @@ public interface OrderService {
 	 */
 	void addOrder(Order order);
 	/**
-	 * 주문 건수 번호 얻어오기
-	 * @param order
-	 */
-	void getOrderNum(int order_num);
-	
-	/**
 	 * 주문 건수 건당 상세 주문내역 검색
 	 * @param user_id
 	 * @return

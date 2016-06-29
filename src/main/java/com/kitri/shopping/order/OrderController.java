@@ -1,9 +1,14 @@
 package com.kitri.shopping.order;
 
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class OrderController {
@@ -19,8 +24,12 @@ public class OrderController {
 	 * 주문 리스트
 	 */
 	@RequestMapping(value="/order/list.do")
-	public void showListOrder(){
-		
+	public ModelAndView showListOrder(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView("/order/list");
+		List<Order> list = orderService.getOrderList((String)session.getAttribute("user_id"));
+		mav.addObject("list",list);
+		return mav;
 	}
 	
 	/**

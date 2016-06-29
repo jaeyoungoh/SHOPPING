@@ -10,16 +10,22 @@
 
 <table>
 <thead>
-				<tr>
-					<th class="first" scope="col">주문일자</th>
-					<th scope="col">주문 상품 정보</th>
-					<th scope="col">상품금액(수량)</th>
-					<th scope="col">배송비(판매자)</th>
-					<th scope="col">주문상태
-					
-					</th>
-					<th scope="col">확인/취소/리뷰</th>
-				</tr>
+	<tr>
+		<th class="first" scope="col">주문번호</th>
+		<th scope="col">주문 상품 정보</th>
+		<th class="first" scope="col">주문일자</th>
+		<th scope="col">상품금액(수량)</th>
+		<th scope="col">배송비(판매자)</th>
+		<th scope="col">주문상태</th>
+		<th scope="col">확인/취소/리뷰</th>
+	</tr>
+	
+	<tr>
+		<td>${list.order_num}</td>
+		<td>${list.order_num}</td>
+		<td></td>
+		<td></td>
+	</tr>
 </thead>
 
 </table>
