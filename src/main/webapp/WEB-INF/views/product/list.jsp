@@ -39,7 +39,7 @@
 <body>
 <%@include file="../main.jsp" %>
 <div id="cf">
-	<table style="left: -20px;">
+	<table style="left: -20px;" id="list">
 		<tr><td><c:if test="${list.size()!=0 and  sessionScope.type=='판매자'}"><input type="checkbox" id="chk_All" value="ALL" ></c:if></td></tr>
 		
 	

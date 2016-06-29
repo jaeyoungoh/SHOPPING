@@ -65,7 +65,8 @@
 	}
 	</script>
 	<%@include file="../main.jsp" %>
-<div id="cf" style="left: 0">
+<div id="cf" style="left: 
+-30px;">
 <form action="" method="post">
 	<table>
 

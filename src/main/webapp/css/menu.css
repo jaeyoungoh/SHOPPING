@@ -4,17 +4,30 @@
 #container{
 margin-top: 140px;
 }
+div.md-content>div>form>table>tbody>tr>td>input[type="button"],input[type="reset"]{
+
+    border: 0px;
+    background-color: #608690;
+    padding: 10px;
+    color: #eee;
+	
+	
+}
+
 *{
 	font-family: 'Hanna', serif;
+}
+table#list td{
+	padding: 10px;
 }
 #cf{
 	position: relative;
 	top:50px;
-	left:-70px;
+	left:-120px;
 }
     .layer_fixed
         {
-            height:35px;
+            height:45px;
             width:100%;
             color: #c94e50;
             font-color:#c94e50;
@@ -27,8 +40,15 @@ margin-top: 140px;
             box-shadow: 0 1px 2px 0 #777;
             background-color:hsla(191, 76%, 30%, 0.3);
         }
+        .layer_fixed input,button{
+        border: 0px;
+   	 background-color: rgba(0,0,0,0.1);
+   	 padding: 5px;
+   	 margin: 0 3px;
+   	 color: white;
+        }
 .nav {
-	width:900px;
+	width:800px;
 	top:150px;
  margin:0 auto;
 position:relative;
@@ -143,7 +163,7 @@ background: rgba(0, 0, 0, .6);*/
 /* Changing the link's color and background on hover */
 .nav ul li:hover>a, .nav ul li a:hover {
 color: #0fd0f9;
-background: rgba(0, 0, 0, .6); /*배경색*/
+background: rgba(0, 0, 0, .6); /*諛곌꼍�깋*/
 }
 /* Making the level 2 (or higher) submenus to appear at the right of their parent */
 .nav ul .dropdown:hover ul {
