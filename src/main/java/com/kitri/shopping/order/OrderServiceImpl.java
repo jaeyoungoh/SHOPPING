@@ -5,7 +5,9 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Component;
 
+@Component(value="orderService")
 public class OrderServiceImpl implements OrderService {
 
 	@Resource(name = "sqlSession")
