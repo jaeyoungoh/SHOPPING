@@ -48,8 +48,8 @@
 		
 		var chkCartMove = window.confirm("장바구니에 담은 것을 확인 하시겠습니까?");
 		if(chkCartMove){
-			
 				fmt.cart_cnt.value = fmt.quantity.value;
+				fmt.action = "${pageContext.request.contextPath}/cart/add.do";
 				fmt.submit();
 		}else {
 			
