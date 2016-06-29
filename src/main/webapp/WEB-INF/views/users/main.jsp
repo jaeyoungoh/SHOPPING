@@ -8,87 +8,71 @@
 <script type="text/javascript">
 
 
-function join(){
-
-	location.href="${pageContext.request.contextPath }/user/joinform.do"
-}
-
-function login(){
-	var str = document.getElementById('i');
-	
-	if( str.value == '' || str.value == null ){
-	    alert( '아이디 값을 입력해주세요' );
-	    return false;
-	}
-
-	var blank_pattern = /^\s+|\s+$/g;
-	if( str.value.replace( blank_pattern, '' ) == "" ){
-	    alert('아이디란에 공백만 입력되었습니다 ');
-	    return false;
-	}
-	 
-	//공백 금지
-	//var blank_pattern = /^\s+|\s+$/g;(/\s/g
-	var blank_pattern = /[\s]/g;
-	if( blank_pattern.test( str.value) == true){
-	    alert('아이디에 공백은 사용할 수 없습니다. ');
-	    return false;
-	}
-
-	var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-	if( special_pattern.test(str.value) == true ){
-	    alert('아이디에 특수문자는 사용할 수 없습니다.');
-	    return false;
-	}
-	
-	
-	
-	var strp = document.getElementById('p');
-	
-	if( strp.value == '' || str.value == null ){
-	    alert( '비밀번호 값을 입력해주세요' );
-	    return false;
-	}
-	
-
-	document.lg.submit();
-}
-
-function findpwd(){
-	location.href="${pageContext.request.contextPath }/user/findpwd.do"
-	
-}
-
-
 
 
 </script>
-</head>
-<body>
-<h2>어서오세요</h2>
- 
+	<link rel="shortcut icon" href="../favicon.ico"> 
 
-	<form action="${pageContext.request.contextPath }/user/login.do" name="lg" method="post">
-		<table>
-			<tr>
-				<c:if test="${sessionScope.user_id == null}">
-					<td>아 이 디 </td><td> <input type="text" name="user_id" id="i" /></td>
-				</c:if>				
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/component.css" />
+
+
+		<script src="${pageContext.request.contextPath}/js/modernizr.custom.js"></script>
+	<body>
+		<!-- All modals added here for the demo. You would of course just have one, dynamically created -->
+		<div class="md-modal md-effect-1" id="modal-1">
+			<div class="md-content">
+				<h3>로그인폼</h3>
+				<div>
+					<p>아이디와 비밀번호를 입력하여 주세요.</p>
+					 <form action="${pageContext.request.contextPath}/user/login.do" method="post">
+          <table>
+              <tr>
+                      <td>아 이 디 </td><td> <input type="text" name="user_id" /></td>
+              </tr>
+              <tr>
+                      <td>비밀번호 </td><Td><input type="text" name="pwd" /> <input type="hidden" name="uri"></Td>
+              </tr>
+              <tr>
+              <td><input type="button" value="로그인" onclick="login()" /></td><td><input type="button" value="회원가입" onclick="join()" /></td>
+              </tr>
+         </table>
+    </form>
 				
-			</tr>
-			<tr>
-				<c:if test="${sessionScope.user_id == null}">
-					<td>비밀번호 </td><Td><input type="password" name="pwd" id="p"/></Td>
-				</c:if>
-				
-			</tr>
-			<tr>
-			<td><input type="button" value="로그인" onclick="login()"/></td><td><input type="button" value="회원가입" onclick="join()" /></td>
+					<button class="md-close">Close me!</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container">
+			<!-- Top Navigation -->
+
 			
-			<td><input type="button" value="비밀번호 찾기" onclick="findpwd()" /></td>
-			</tr>
-		</table>
-	</form>
+			<div class="main clearfix">
+				
+				<div class="column">
+					<button class="md-trigger" data-modal="modal-1">Fade in &amp; Scale</button>
+
+				</div>
+			</div>
+		</div><!-- /container -->
+		<div class="md-overlay"></div><!-- the overlay element -->
+
+		<!-- classie.js by @desandro: https://github.com/desandro/classie -->
+		<script src="${pageContext.request.contextPath}/js/classie.js"></script>
+		<script src="${pageContext.request.contextPath}/js/modalEffects.js"></script>
+
+		<!-- for the blur effect -->
+		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
+		<script>
+			// this is important for IEs
+			var polyfilter_scriptpath = '${pageContext.request.contextPath}/js/';
+		</script>
+		<script src="${pageContext.request.contextPath}/js/cssParser.js"></script>
+		<script src="${pageContext.request.contextPath}/js/css-filters-polyfill.js"></script>
+
+     
+
+	
 
 </body>
 </html>

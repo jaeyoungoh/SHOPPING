@@ -27,18 +27,18 @@
 		select product_id,name,quantity,price,sale_pct,img_url,category,intro_content,user_id,product_date,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,status from Product where user_id=#{user_id} order by product_date desc
 	</select>
 	<select id="selectbyName" resultMap="ProductResultMap"  parameterType="String">
-		select product_id,name,quantity,price,sale_pct,img_url,category,intro_content,user_id,product_date,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,status from Product where name like  '%'||#{name}||'%'  order by name 
+		select product_id,name,quantity,price,sale_pct,img_url,category,intro_content,user_id,product_date,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,status from Product where name like  '%'||#{name}||'%' and (status='판매중' or status='품절') order by name 
 	</select>
 	
 	<select id="selectbyCategory" resultMap="ProductResultMap"  parameterType="String">
-		select product_id,name,quantity,price,sale_pct,img_url,category,intro_content,user_id,product_date,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,status from Product where category like '%'||#{category}||'%' order by name 
+		select product_id,name,quantity,price,sale_pct,img_url,category,intro_content,user_id,product_date,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,status from Product where category like '%'||#{category}||'%' and (status='판매중' or status='품절') order by name 
 	</select>
 	<select id="select" resultMap="ProductResultMap" parameterType="int">
 		SELECT product_id,name,quantity,price,sale_pct,img_url,category,intro_content,user_id,product_date,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,status FROM Product where product_id=#{product_id}
 	</select>
 	
 	<insert id="insert" parameterType="com.kitri.shopping.product.Product">
-		INSERT INTO Product values(SEQ_Product.nextval,#{name},#{quantity},#{price},#{sale_pct}, #{img_url},#{category}, #{intro_content},#{user_id} ,sysdate,'판매가능')
+		INSERT INTO Product values(SEQ_Product.nextval,#{name},#{quantity},#{price},#{sale_pct}, #{img_url},#{category}, #{intro_content},#{user_id} ,sysdate,'판매중')
 	</insert>
 	
 	<update id="update" parameterType="com.kitri.shopping.product.Product">

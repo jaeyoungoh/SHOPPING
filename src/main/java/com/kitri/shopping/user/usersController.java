@@ -1,13 +1,18 @@
 package com.kitri.shopping.user;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,18 +29,22 @@ public class usersController {
 	}
 	
 	@RequestMapping(value= "/user/login.do")
-	public String login(@RequestParam(value="user_id") String user_id,@RequestParam(value="pwd")String pwd, HttpServletRequest req){
+	public String login(@RequestParam(value="user_id") String user_id,@RequestParam(value="pwd")String pwd, HttpServletRequest req,@RequestParam(value="uri") String uri,HttpServletResponse response){
 		HttpSession session = null;
 		//던져주는 값은 id,pwd
 		//
-		
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		response.setCharacterEncoding("UTF-8");
+		uri=uri.replace("/shopping", "");
 		users u= service.login(user_id);
-		System.out.println(u+"u의 값");
-		System.out.println("pwd:"+pwd);
 		if(u!=null){
 		
 		if(u.getType().equals("탈퇴")){
-			return "users/main";
 		}
 	
 		if (u.getPwd().equals(pwd)) {
@@ -43,20 +52,33 @@ public class usersController {
 			session.setAttribute("user_id", u.getUser_id());
 			session.setAttribute("name", u.getName());
 			session.setAttribute("type", u.getType());
-			return "users/maintest";
+			return "redirect:"+uri;
 		}else{
-			return "users/main";
+			PrintWriter out=null;
+			try {
+				out = response.getWriter();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				out.write("로그인실패했습니다.");
+				return null;
+			}			
+			//{flag:${flag}}
+			
+					
+			//mav.addObject("msg", "로그인실패했습니;다.");
 		}
 		
-		}
-		return "users/main";
 	}
+		return null;}
 	
 	@RequestMapping(value="/user/logout.do")
 	public String logOut(HttpServletRequest req){
 		HttpSession session = req.getSession();
 		session.invalidate();
-		return "redirect:/user/main.do";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="user/adduser.do")

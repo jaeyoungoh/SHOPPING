@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
+
 	function product_list(){
 		location.href="${pageContext.request.contextPath}/product/list.do";
 	}
@@ -64,6 +65,8 @@
 		location.href="${pageContext.request.contextPath}/product/editForm.do?product_id="+product_id;
 	}
 	</script>
+	<%@include file="../main.jsp" %>
+<div id="cf">
 <form action="" method="post">
 	<table>
 
@@ -167,3 +170,4 @@
 	</table>
 	<input type="hidden" name="product_id" value="${product.product_id}" />
 </form>
+</div>

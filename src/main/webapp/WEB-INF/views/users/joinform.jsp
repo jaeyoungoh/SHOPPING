@@ -20,28 +20,30 @@ function join() {
 	var stre = document.getElementById('e');
 	var strp = document.getElementById('p');
 	var stra = document.getElementById('a');
-	
+	var blank_pattern1 = /[\s]/g;
+	var blank_pattern = /^\s+|\s+$/g;
+
+	var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
 	if( str.value == '' || stri.value == null ){
 	    alert( '전화번호를 입력해주세요' );
 	    return false;
 	}
 
-	var blank_pattern = /^\s+|\s+$/g;
-	if( stri.value.replace( blank_pattern, '' ) == "" ){
+	
+	else if( stri.value.replace( blank_pattern, '' ) == "" ){
 	    alert('전화번호에 공백만 입력되었습니다 ');
 	    return false;
 	}
 	 
 	//공백 금지
 	//var blank_pattern = /^\s+|\s+$/g;(/\s/g
-	var blank_pattern = /[\s]/g;
-	if( blank_pattern.test( stri.value) == true){
+	
+	else if( blank_pattern1.test( stri.value) == true){
 	    alert('전화번호에 공백은 사용할 수 없습니다. ');
 	    return false;
 	}
 
-	var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-	if( special_pattern.test(stri.value) == true ){
+	else if( special_pattern.test(stri.value) == true ){
 	    alert('전화번호에 특수문자는 사용할 수 없습니다.');
 	    return false;
 	}
@@ -56,25 +58,22 @@ function join() {
 	
 	
 		
-		if( str.value == '' || str.value == null ){
+	else if( str.value == '' || str.value == null ){
 		    alert( '비밀번호 값을 입력해주세요' );
 		    return false;
 		}
 
-		var blank_pattern = /^\s+|\s+$/g;
-		if( str.value.replace( blank_pattern, '' ) == "" ){
+	else if( str.value.replace( blank_pattern, '' ) == "" ){
 		    alert('비밀번호에 공백만 입력되었습니다 ');
 		    return false;
 		}
 
-		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-		if( special_pattern.test(str.value) != true ){
+	else if( special_pattern.test(str.value) != true ){
 		    alert('비밀번호에 특수문자가 들어있지 않습니다.');
 		    return false;
 		}
 		
-		var blank_pattern = /[\s]/g;
-		if( blank_pattern.test( str.value) == true){
+		else if( blank_pattern.test( str.value) == true){
 		    alert('비밀번호에 공백은 사용할 수 없습니다. ');
 		    return false;
 		}
@@ -83,27 +82,24 @@ function join() {
 		
 		
 		
-		if( str.value == '' || strn.value == null ){
+		else if( str.value == '' || strn.value == null ){
 		    alert( '이름을 입력해주세요' );
 		    return false;
 		}
 
-		var blank_pattern = /^\s+|\s+$/g;
-		if( strn.value.replace( blank_pattern, '' ) == "" ){
+		else if( strn.value.replace( blank_pattern, '' ) == "" ){
 		    alert('이름에 공백만 입력되었습니다 ');
 		    return false;
 		}
 		 
 		//공백 금지
 		//var blank_pattern = /^\s+|\s+$/g;(/\s/g
-		var blank_pattern = /[\s]/g;
-		if( blank_pattern.test( strn.value) == true){
+		else if( blank_pattern1.test( strn.value) == true){
 		    alert('이름에 공백은 사용할 수 없습니다. ');
 		    return false;
 		}
 
-		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-		if( special_pattern.test(strn.value) == true ){
+		else if( special_pattern.test(strn.value) == true ){
 		    alert('이름에 특수문자는 사용할 수 없습니다.');
 		    return false;
 		}
@@ -112,27 +108,24 @@ function join() {
 		
 		
 		
-		if( str.value == '' || stre.value == null ){
+		else if( str.value == '' || stre.value == null ){
 		    alert( '이메일을 입력해주세요' );
 		    return false;
 		}
 
-		var blank_pattern = /^\s+|\s+$/g;
-		if( stre.value.replace( blank_pattern, '' ) == "" ){
+		else if( stre.value.replace( blank_pattern, '' ) == "" ){
 		    alert('이메일에 공백만 입력되었습니다 ');
 		    return false;
 		}
 		 
 		//공백 금지
 		//var blank_pattern = /^\s+|\s+$/g;(/\s/g
-		var blank_pattern = /[\s]/g;
-		if( blank_pattern.test( stre.value) == true){
+		else if( blank_pattern1.test( stre.value) == true){
 		    alert('이메일에 공백은 사용할 수 없습니다. ');
 		    return false;
 		}
 
-		var special_pattern = /[`~!#$%^&*|\\\'\";:\/?]/gi;
-		if( special_pattern.test(stre.value) == true ){
+		else if( special_pattern.test(stre.value) == true ){
 		    alert('이메일에 @제외 특수문자는 사용할 수 없습니다.');
 		    return false;
 		}
@@ -141,27 +134,24 @@ function join() {
 		
 		
 		
-		if( str.value == '' || stra.value == null ){
+		else if( str.value == '' || stra.value == null ){
 		    alert( '주소를 입력해주세요' );
 		    return false;
 		}
 
-		var blank_pattern = /^\s+|\s+$/g;
-		if( stra.value.replace( blank_pattern, '' ) == "" ){
+		else if( stra.value.replace( blank_pattern, '' ) == "" ){
 		    alert('주소에 공백만 입력되었습니다 ');
 		    return false;
 		}
 		 
 		//공백 금지
 		//var blank_pattern = /^\s+|\s+$/g;(/\s/g
-		var blank_pattern = /[\s]/g;
-		if( blank_pattern.test( stra.value) == true){
+		else if( blank_pattern1.test( stra.value) == true){
 		    alert('주소에 공백은 사용할 수 없습니다. ');
 		    return false;
 		}
 
-		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-		if( special_pattern.test(stra.value) == true ){
+		else if( special_pattern.test(stra.value) == true ){
 		    alert('주소에 특수문자는 사용할 수 없습니다.');
 		    return false;
 		}
@@ -171,38 +161,37 @@ function join() {
 		
 		
 		
-		if( str.value == '' || strp.value == null ){
+		else if( str.value == '' || strp.value == null ){
 		    alert( '전화번호를 입력해주세요' );
 		    return false;
 		}
 
-		var blank_pattern = /^\s+|\s+$/g;
-		if( strp.value.replace( blank_pattern, '' ) == "" ){
+		else if( strp.value.replace( blank_pattern, '' ) == "" ){
 		    alert('전화번호에 공백만 입력되었습니다 ');
 		    return false;
 		}
 		 
 		//공백 금지
 		//var blank_pattern = /^\s+|\s+$/g;(/\s/g
-		var blank_pattern = /[\s]/g;
-		if( blank_pattern.test( strp.value) == true){
+		else if( blank_pattern1.test( strp.value) == true){
 		    alert('전화번호에 공백은 사용할 수 없습니다. ');
 		    return false;
 		}
 
-		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-		if( special_pattern.test(strp.value) == true ){
+		else if( special_pattern.test(strp.value) == true ){
 		    alert('전화번호에 특수문자는 사용할 수 없습니다.');
 		    return false;
 		}
-	
+		else {
+			var mail=document.getElementsByName("mail");
+			
+			document.j.submit();
+		}
 	
 		
 		
 		
-	var mail=document.getElementsByName("mail");
 	
-	document.j.submit();
 	
 }
 

@@ -10,6 +10,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/httpRequest.js" charset="utf-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/category.js" charset="utf-8"></script>
 <script type="text/javascript">
+
 	function Cfile(){
 		var rFilter = "\.(bmp|gif|jpg|jpeg|png)$";  
 		
@@ -26,7 +27,6 @@
 		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 		form1.action="${pageContext.request.contextPath}/product/edit.do";
 		form1.category.value=form1.category1.value+">"+form1.category2.value+">"+form1.category3.value;
-		alert(form1.category.value);
 		form1.submit();
 	}
 	function add_product(form1){
@@ -127,19 +127,16 @@
 
 </script>
 <body onload="load_form()">
+<%@include file="../main.jsp" %>
+<div id="cf">
 <form action="${pageContext.request.contextPath}/product/add.do" name="addform" method="post" enctype="multipart/form-data">
-	<table style="text-padding: 10px; width: 800px;" border="1">
+	<table style="text-padding: 10px; width: 950px;">
 		<tr>
 			<th>상품명</th>
-			<td colspan="4"><input type="text" name="name"
-				value="${product.name}" style="width: 240px;"></td>
-			<th>판매자명</th>
-			<td colspan="4" ><c:choose><c:when test="${msg=='edit'}"><input type="text" name="user_id"
-				value="${product.user_id}" ></c:when><c:otherwise><input type="text" name="user_id"
-				value="${sessionScope.user_id}" ></c:otherwise></c:choose></td>
-		</tr>
-		<tr><th>카테고리</th>
-			<td><input type="hidden" value="${product.category}" name="category">
+			<td colspan="3"><input type="text" name="name"
+				value="${product.name}" style="width: 240px;" ></td>
+				<th>카테고리</th>
+			<td colspan="3"><input type="hidden" value="${product.category}" name="category">
 			<select name="category1" onchange="category_c1()">
 				<option value="주방가전">주방가전</option>
 				<option value="생활가전">생활가전</option>
@@ -148,14 +145,14 @@
 				<option value="디지털카메라">디지털카메라</option>
 				<option value="컴퓨터">컴퓨터</option>
 			</select>
-			<div id="div_category2">
+			<div id="div_category2" style="display: inline-block;">
 			<select name='category2' onchange='category_c2()'>
 				<option value='냉장고'>냉장고</option>
 				<option value='밥솥'>밥솥</option>
 				<option value='전자레인지'>전자레인지</option>
 				<option value='커피메이커'>커피메이커</option></select>
 			</div>
-			<div id="div_category3">
+			<div id="div_category3" style="display: inline-block;">
 			<select name="category3">
 				<option value="일반형">일반형</option>
 				<option value="업소용">업소용</option>
@@ -166,34 +163,42 @@
 			</div>
 			
 			</td>
+			
+		</tr>
+		<tr>
+		<th>판매자명</th>
+			<td><c:choose><c:when test="${msg=='edit'}"><input type="text" name="user_id"
+				value="${product.user_id}" readonly="readonly"></c:when><c:otherwise><input type="text" name="user_id"
+				value="${sessionScope.user_id}" readonly="readonly"></c:otherwise></c:choose></td>
 			<th>가격</th>
 			<td style="width: 70px;"><input type="text" name="price" value="${product.price}" style="width: 70px;" ></td>
 			<th>할인률</th>
-			<td style="text-align: center;"> <i class="fa fa-minus fa-1" onclick="p_del()" style="font-size: 10px" ></i><input
-			type="text" value='${product.sale_pct}' name="sale_pct" id="sale_pct"
-			style="width: 25px;text-align: right; border: none;" onchange="chack_p()" >% <i class="fa fa-plus fa-1" style="font-size: 10px" onclick="p_add()" ></i></div></td>
-			<th >재고수량</th>
+			<td style="text-align: center; width: 70px;"> <i class="fa fa-minus fa-1" onclick="p_del()" style="font-size: 10px" ></i><input
+			type="text" value='${product.sale_pct+0}' name="sale_pct" id="sale_pct"
+			style="width: 20px;text-align: right; border: none;" onchange="chack_p()" >% <i class="fa fa-plus fa-1" style="font-size: 10px" onclick="p_add()" ></i></div></td>
+			<th>재고수량</th>
 			<td style="width: 70px;"><input type="text" name="quantity"
-				value="${product.quantity}+0" style="width: 70px;"></td>
+				value='${product.quantity+0}' style="width: 50px;"></td>
 			
 		</tr>
-		<tr><th colspan="9">메인이미지</th></tr>
-			<tr><td colspan="9"><input type="file" name="img_url1"
+		<tr><th>메인이미지</th><th colspan="8" style="text-align: left;"></th></tr>
+			<tr><td colspan="9" style="padding-left: 30px;"><input type="file" name="img_url1"
 				value="${product.img_url}" onchange="Cfile()"> 
 				<input type="hidden" name="img_url" value="${product.img_url}">
 				<div id="imgdiv"></div>
-			<c:choose><c:when test="${msg=='edit'}">	<img src="${pageContext.request.contextPath}/img/${product.img_url}"></c:when></c:choose></td>
+			<c:choose><c:when test="${msg=='edit'}">	<img src="${pageContext.request.contextPath}/img/${product.img_url}" style="width: 100px;height: 100px;"></c:when></c:choose></td>
 		</tr>
 		<tr>
-			<th colspan="9">상세설명</th>
+			<th>상세설명</th><th colspan="8" ></th>
 		</tr>
 		<tr>
-			<td colspan="9"> 	<textarea name="intro_content" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea>
+			<td colspan="9"> 	<textarea name="intro_content" id="ir1" rows="10" cols="100" style="width:916px; height:412px; display:none;"></textarea>
 			</td>
 		</tr>
-		<tr><td colspan="8"><c:choose><c:when test="${msg=='add'}"><input type="button" onclick="add_product(this.form)"  value="저장"></c:when><c:otherwise><input type="button" onclick="edit_product(this.form)"  value="수정"></c:otherwise></c:choose><input type="reset" value="취소"></td></tr>
+		<tr><td colspan="9"><c:choose><c:when test="${msg=='add'}"><input type="button" onclick="add_product(this.form)"  value="저장"></c:when><c:otherwise><input type="button" onclick="edit_product(this.form)"  value="수정"></c:otherwise></c:choose><input type="reset" value="취소"></td></tr>
 	</table>
 </form>
+</div>
 </body>
 <script type="text/javascript">
 var oEditors = [];

@@ -1,19 +1,46 @@
 /* General menu styling */
 
 @import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
-
+#container{
+margin-top: 140px;
+}
 *{
 	font-family: 'Hanna', serif;
 }
-
+td{
+	padding: 10px;
+}
+#cf{
+	position: absolute;
+	top: 190px;
+	left:-50;
+	margin: 0 auto;
+}
+    .layer_fixed
+        {
+            height:35px;
+            width:100%;
+            color: rgba(102, 102, 102, 0.39);
+            font-size:12px;
+            position:fixed;
+            z-index:999;
+            bottom:0px;
+            left:0px;
+            -webkit-box-shadow: 0 1px 2px 0 #777;
+            box-shadow: 0 1px 2px 0 #777;
+            background-color:rgba(102, 102, 102, 0.39);
+        }
 .nav {
-position: relative;
-margin: 0;
-padding: 0;
+	width:780px;
+	top:150px;
+ margin:0 auto;
+position:relative;
+
 line-height: 22px;
 }
 /* The main navigation link containers */
 .nav>li {
+
 display: block;
 float: left; /* Displaying them on the same line */
 margin: 0;
@@ -27,12 +54,12 @@ position: relative;
 padding: 10px 20px;
 /* Text */
 /*font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif;*/
-color: #fff;
+color: rgba(0, 0, 0, .75);
 font-size: 22px;
 text-decoration: none;
 /* Background */
-background: black; /* For older browsers */
-background: rgba(0, 0, 0, .6); /* Transparent background for modern browsers */
+/*background: black; /* For older browsers */
+/*background: rgba(0, 0, 0, .6);  Transparent background for modern browsers */
 /* Making the color to change on hover with a transition */
 -webkit-transition: color .3s ease-in;
 -moz-transition: color .3s ease-in;
@@ -103,12 +130,12 @@ display: block;
 position: relative;
 /* Text */
 /* font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif; */
-color: #bbb;
+color: rgba(0, 0, 0, .6);
 text-decoration: none;
 font-size: 16px;
-/* Background & effects */
+/* Background & effects 
 background: black;
-background: rgba(0, 0, 0, .6);
+background: rgba(0, 0, 0, .6);*/
 -webkit-transition: color .3s ease-in, background .3s ease-in;
 -moz-transition: color .3s ease-in, background .3s ease-in;
 -o-transition: color .3s ease-in, background .3s ease-in;
