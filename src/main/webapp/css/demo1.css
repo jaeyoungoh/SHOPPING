@@ -10,15 +10,10 @@
 		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
 }
 
-*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
 .clearfix:before, .clearfix:after { content: ''; display: table; }
 .clearfix:after { clear: both; }
 
-body {
-	font-weight: 400;
-	font-size: 1em;
-	font-family: 'Raleway', Arial, sans-serif;
-}
+
 
 a {
 	color: #4e4a46;
@@ -63,7 +58,7 @@ section {
 
 .codrops-links {
 	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: 1000;
 	font-size: 0.69em;
 	line-height: 2.2;
 	padding: 1.61em 5em;
@@ -99,7 +94,7 @@ section {
 /* Demo Buttons Style */
 .codrops-demos {
 	font-size: 1em;
-	max-width: 1200px;
+	max-width: 8000px;
 	margin: 3em auto 5em;
 	padding: 2em 10em 0;
 }
@@ -114,7 +109,6 @@ section {
 	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	font-weight: 800;
 	border-radius: 20px/50px;
 }
 
@@ -184,7 +178,7 @@ body #cdawrap {
 		font-size: 2.5em;
 	}
 	.codrops-demos {
-		max-width: 900px;
+		max-width: 1000px;
 		padding: 2em 2em 0;
 	}
 	.related > a {

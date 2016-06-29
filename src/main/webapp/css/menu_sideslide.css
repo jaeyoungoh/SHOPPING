@@ -2,7 +2,7 @@ html,
 body, 
 .container, 
 .content-wrap {
-	overflow: hidden;
+/* 	overflow: hidden; */
 	width: 100%;
 	height: 100%;
 }
@@ -36,7 +36,6 @@ body,
 	left: 0;
 	z-index: 10;
 	width: 100%;
-	height: 100%;
 	background: rgba(0,0,0,0.3);
 	content: '';
 	opacity: 0;
@@ -84,7 +83,7 @@ body,
 	position: absolute;
 	right: 1em;
 	top: 1em;
-	overflow: hidden;
+	overflow: hidden; 
 	text-indent: 1em;
 	font-size: 0.75em;
 	border: none;

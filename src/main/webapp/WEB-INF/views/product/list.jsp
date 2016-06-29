@@ -38,6 +38,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="container" >
 <%@include file="../main.jsp" %>
 <div id="cf">
 	<table style="left: -20px;">
@@ -82,6 +83,6 @@
 		</tr>
 		</tfoot>
 	</table>
-</div>
+</div></div>
 </body>
 </html>
