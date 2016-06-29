@@ -1,4 +1,3 @@
-<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -38,7 +37,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container" >
 <%@include file="../main.jsp" %>
 <div id="cf">
 	<table style="left: -20px;">
@@ -83,6 +81,7 @@
 		</tr>
 		</tfoot>
 	</table>
-</div></div>
+	<br><BR><BR>
+</div>
 </body>
 </html>

@@ -261,10 +261,10 @@
 			<div class="menu-wrap">
 				<nav class="menu">
 					<div class="icon-list">
-						<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>장바구니</span></a>
+						<a href="${pageContext.request.contextPath }/cart/list.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>장바구니</span></a>
 						<a href="#"><i class="fa fa-list" aria-hidden="true"></i><span>구매목록</span></a>
 						<a href="#"><i class="fa fa-user" aria-hidden="true"></i><span>정보수정</span></a>
-						<a href="#"><i class="fa fa-wrench" aria-hidden="true"></i><span>관리자페이지</span></a>
+						<a href="${pageContext.request.contextPath }/user/admin.do""><i class="fa fa-wrench" aria-hidden="true"></i><span>관리자페이지</span></a>
 						<a href="#"><i class="fa fa-list" aria-hidden="true"></i><span>등록상품목록</span></a>
 						<a href="#"><i class="fa fa-fw fa-bar-chart-o"></i><span>고객구매내역</span></a>
 					</div>
@@ -275,7 +275,7 @@
 
 		
 	<div
-		style="position: relative; top: 80px; margin: 0 auto; width: 100; margin: 0 auto;">
+		style="position: relative; top: 80px; margin: 0 auto; width: 100px; margin: 0 auto;">
 		<h1>DEPOSCO</h1>
 	</div>
 	<ul class="nav">

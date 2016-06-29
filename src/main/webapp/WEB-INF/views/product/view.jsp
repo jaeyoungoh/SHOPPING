@@ -120,7 +120,7 @@
 		<tr>
 			<td>등록일자</td>
 			<td><fmt:formatDate value="${product.product_date}"
-					pattern="yyyy-mm-dd" /></td>
+					pattern="YYYY-MM-dd" /></td>
 		</tr>
 		<tr>
 			<td>수량</td>

@@ -72,17 +72,22 @@ function check() {
 
 </script>
 
+<style type="text/css">
+td{
+padding: 0px;
+margin: 0;}
 
+</style>
 
 </head>
 <body onload="bbb()">
-
+<%@include file="../main.jsp" %>
 <%-- <jsp:include page="${pageContext.request.contextPath}/resources/header.jsp"></jsp:include>
  --%>
 여기는 관리자 페이지!
 
 사람을 수정 할 수 있어요!
-
+<div id="cf" style="left: -140px;">
 <form action="${pageContext.request.contextPath}/user/search.do" name="search" method="post">
             
             <select name="keyword">
@@ -98,7 +103,7 @@ function check() {
     </form>  
 
 
-<table border="0">
+<table >
 	<tr>
 		<th>사용자id</th>
 		<th>비밀번호</th>
@@ -165,6 +170,6 @@ function check() {
 		<a href="${pageContext.request.contextPath}/user/maintest.do">메인페이지로 돌아가기</a>
 
 <%-- <jsp:include page="${pageContext.request.contextPath}/resources/bottom.jsp"></jsp:include> --%>
-<%@ include file="header.jsp" %>
+</div>
 </body>
 </html>
