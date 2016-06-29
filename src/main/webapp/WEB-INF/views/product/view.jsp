@@ -125,11 +125,13 @@
 		</tr>
 		<tr>
 			<td>수량</td>
-			<td><input type="button" value="-" onclick="quantityM()"><input
+			<td><i class="fa fa-minus fa-1" onclick="quantityM()" style="font-size: 10px;    color: #b8d4db;
+			" ></i> <input
 				type="text" value=1 name="quantity" id="quantity"
-				style="width: 35px; text-align: center;" onchange="chack_q()">
-				<input type="hidden" name="cart_cnt" value="" /> <input
-				type="button" value="+" onclick="quantityAdd()"></td>
+				style="width: 35px;     border:0px;
+				 text-align: center;" onchange="chack_q()">
+				<input type="hidden" name="cart_cnt" value="" /> 
+				<i class="fa fa-plus fa-1" style="font-size: 10px;color: #b8d4db;" onclick="quantityAdd()" ></i> </td>
 		</tr>
 		<tr>
 			<td>총금액</td>
@@ -144,25 +146,25 @@
 		<tr>
 			<td></td>
 			<td><input type="button"
-				onclick="orderAdd(${product.product_id},this.form)" value="구매하기"></td>
+				onclick="orderAdd(${product.product_id},this.form)" value="구매하기" id="a"></td>
 			<td><input type="button"
-				onclick="cartAdd(${product.product_id},this.form)" value="장바구니"></td>
+				onclick="cartAdd(${product.product_id},this.form)" value="장바구니" id="a"></td>
 			<td><c:if
 					test="${sessionScope.type=='판매자' and sessionScope.user_id==product.user_id}">
 					<input type="button" onclick="product_edit(${product.product_id})"
-						value="수정">
+						value="수정" id="a">
 						<c:choose>
 					<c:when test="${product.status=='판매중'}">
 					<input type="button" onclick="product_st(${product.product_id},'판매중지')"
-						value="판매중지">
+						value="판매중지" id="a">
 					</c:when>
 					<c:when test="${product.status=='판매중지'}">
 					<input type="button" onclick="product_st(${product.product_id},'판매중')"
-						value="판매시작">
+						value="판매시작" id="a">
 					</c:when>
 					</c:choose>
-					<input type="button" onclick="product_slist()" value="판매목록">
-				</c:if><input type="button" onclick="product_list()" value="목록"></td>
+					<input type="button" onclick="product_slist()" value="판매목록" id="a">
+				</c:if><input type="button" onclick="product_list()" value="목록" id="a"></td>
 		</tr>
 		<tr>
 			<td colspan="6"><h3>상품정보</h3>${product.intro_content}<br> <br></td>

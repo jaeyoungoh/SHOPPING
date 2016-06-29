@@ -139,7 +139,11 @@ public class ProductController {
 		service.addProduct(product);
 		return "redirect:/product/slist.do";
 	}
-	
+	@RequestMapping(value="/product/main.do")
+	public String main(){
+		
+		return "redirect:/main2.do";
+	}
 	
 		@RequestMapping(value="/product/dels.do")
 		public String dels(@RequestParam(value="product_id")String product_ids){

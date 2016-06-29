@@ -19,6 +19,11 @@
 	color: hsl(192, 33%, 79%);
 }
 
+div#icon:hover,
+div#icon:focus {
+	text-color: hsl(192, 33%, 79%);
+}
+
 .content-wrap {
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;

@@ -21,7 +21,7 @@
 		var strn = document.getElementById('n');
 		var stre = document.getElementById('e');
 		var strp = document.getElementById('p');
-		var stra = document.getElementById('a');
+		var stra = document.getElementById('au');
 		var blank_pattern1 = /[\s]/g;
 		var blank_pattern = /^\s+|\s+$/g;
 
@@ -173,7 +173,9 @@
 	}
 	//로그인폼 +회원가입폼
 	function logout() {
-		location.href = "${pageContext.request.contextPath }/user/logout.do";
+		var uri = jQuery(location).attr('pathname')
+		+ jQuery(location).attr('search');
+		location.href = "${pageContext.request.contextPath }/user/logout.do?uri="+uri;
 
 	}
 
@@ -252,9 +254,11 @@
 		location.href = "${pageContext.request.contextPath }/user/admin.do"
 	}
 	function login1(){
+		$("#close-button").trigger("click");
 		$("[data-modal=modal-1]").trigger("click");
 	}
 	function signup(){
+		$("#close-button").trigger("click");
 		$("[data-modal=modal-2]").trigger("click");
 	}
 	function findpwd() {
@@ -288,7 +292,7 @@
 				<div id="icon">
 					<i class="fa fa-user" aria-hidden="true"></i><input type="button"
 						value="내정보보기"
-						onclick='<c:choose><c:when test="${!sessionScope.type!=null}">modify()</c:when><c:otherwise>login1()</c:otherwise></c:choose>'>
+						onclick='<c:choose><c:when test="${sessionScope.type!=null}">modify()</c:when><c:otherwise>login1()</c:otherwise></c:choose>'>
 				</div>
 				<div id="icon">
 					<i class="fa fa-shopping-cart" aria-hidden="true"></i><input
@@ -523,12 +527,7 @@
 								${sessionScope.name}</font> 님 어서오세요 <input type="button" value="정보수정"
 								onclick="modify()">
 							<input type="button" value="로그아웃" onclick="logout()">
-							<i class="fa fa-bars" aria-hidden="true" onclick="menu()"></i>
-							<c:if test="${sessionScope.type=='판매자'}">
-								<select>
-									<option value="관리지 품목목록">
-								</select>
-							</c:if>
+						
 						</c:otherwise>
 
 					</c:choose>
@@ -623,7 +622,7 @@
 						</tr>
 						<tr>
 							<td>주소</td>
-							<td colspan="2"><input type="text" name="address" id="a"
+							<td colspan="2"><input type="text" name="address" id="au"
 								style="background: rgb(96, 134, 144); border: none; color: white;" /></td>
 						</tr>
 						<tr>
