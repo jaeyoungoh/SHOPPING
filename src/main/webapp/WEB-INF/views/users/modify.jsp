@@ -19,7 +19,7 @@ var str = document.getElementById('pw');
 var strn = document.getElementById('n');
 var stre = document.getElementById('e');
 var strp = document.getElementById('p');
-var stra = document.getElementById('a');
+var stra = document.getElementById('ad');
 	
 	if( str.value == '' || str.value == null ){
 	    alert( '비밀번호 값을 입력해주세요' );
@@ -172,13 +172,13 @@ var stra = document.getElementById('a');
 <body>
 <%@include file="../main.jsp" %>
 <form action="${pageContext.request.contextPath }/user/modify.do" name="u">
-<table>
-<tr><td colspan="2">deposco 회원수정양식. </tr>
+<table id="list">
+<tr><td colspan="2">회원 정보수정</td> </tr>
 <tr><td>아이디 :</td><td><input type="text" name="user_id" value="${u.user_id }" readonly="readonly"/></td></tr>
 <tr><td>패스워드 :</td><td><input type="password" name="pwd" id="pw" value="${u.pwd }"/></td></tr>
 <tr><td>이름 :</td><td><input type="text" name="name" id="n" value="${u.name }"/></td></tr>
 <tr><td>이메일 :</td><td><input type="text" name="email" id="e" value="${u.email }"/></td></tr>
-<tr><td>주소 :</td><td><input type="text" name="address" id="a" value="${u.address }"/></td></tr>
+<tr><td>주소 :</td><td><input type="text" name="address" id="ad" value="${u.address }"/></td></tr>
 <tr><td>전화번호:</td><td><input type="text" name="phone" id="p" value="${u.phone }"/></td></tr>
 <tr><td>회원등급:</td><td><input type="text" name="type" value="${u.type }" readonly="readonly"/></td></tr>
 <tr><td>포 인 트:</td><td><input type="text" name="point" value="${u.point }" readonly="readonly"/><input type="hidden" value="user" name="msg"></td></tr>
@@ -186,7 +186,7 @@ var stra = document.getElementById('a');
 
 
 
-<tr><td><input type="button" value="변경요청" onclick="modify()"></td><td><input type="reset" value="변경취소" /><input type="button" value="뒤로가기" onclick="cancelmodify()" /></td></tr>
+<tr><td><input type="button" value="변경요청" onclick="modify()" id="a"></td><td><input type="reset" value="변경취소" /></td></tr>
 </table>
 
 </form>

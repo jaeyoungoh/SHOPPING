@@ -248,6 +248,9 @@
 			}
 		}
 	}
+	function admin(){
+		location.href = "${pageContext.request.contextPath }/user/admin.do"
+	}
 	function login1(){
 		$("[data-modal=modal-1]").trigger("click");
 	}

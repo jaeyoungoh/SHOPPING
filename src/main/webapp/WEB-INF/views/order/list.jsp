@@ -45,8 +45,8 @@ function addReview(form1){
 <title>:: 최근 주문 정보 - 쇼핑몰 ::</title>
 </head>
 <body>
-
-<table>
+<%@include file="../main.jsp" %>
+<table id="list" style="width: 800px;">
 <thead>
 	<tr>
 		<th class="first" scope="col">주문번호</th>
@@ -61,8 +61,9 @@ function addReview(form1){
 <form name="orderFRM" method="post" >
 	<tr>
 		<td style="text-align: center;">${list.order_num}</td>
-		<td>${list.name} <br>
-		<img src="${list.img_url}" style="width:90px;height: 90px;">
+		<td style="text-align: center;">
+		<img src="${list.img_url}" style="width:90px;height: 90px;"><br>
+		${list.name} 
 		</td>
 		<td>${list.order_date}</td>
 		<td style="text-align: center;">${list.product_cnt}</td>
@@ -75,20 +76,20 @@ function addReview(form1){
 		<input type="hidden" name="order_num" value="${list.order_num}" />
 			<c:choose>
 				<c:when test="${list.product_status eq '결제완료'}">
-					<input type="button" onclick="decideOrder(this.form)" value="구매결정"> <br/><br/>
-					<input type="button" onclick="cancelOrder(this.form)" value="구매취소"> <br/>
+					<input type="button" onclick="decideOrder(this.form)" value="구매결정" id="a"> <br/><br/>
+					<input type="button" onclick="cancelOrder(this.form)" value="구매취소" id="a"> <br/>
 				</c:when>
 				<c:when test="${list.product_status eq '결제 대기중'}">
-					<input type="button" onclick="payOrder(this.form)" value="결제하기"> <br/>
+					<input type="button" onclick="payOrder(this.form)" value="결제하기" id="a"> <br/>
 				</c:when>
 				<c:when test="${list.product_status ne '구매취소' && list.product_status ne '리뷰보기' && list.product_status ne '구매확정' && list.product_status ne '리뷰작성완료'}">
-					<input type="button" onclick="cancelOrder(this.form)" value="구매취소"> <br/>
+					<input type="button" onclick="cancelOrder(this.form)" value="구매취소" id="a"> <br/>
 				</c:when>
 				<c:when test="${list.product_status eq '구매확정'}">
-						<input type="button" onclick="addReview(this.form)" value="리뷰작성"><br/> 
+						<input type="button" onclick="addReview(this.form)" value="리뷰작성" id="a"><br/> 
 				</c:when>
 				<c:when test="${list.product_status eq '리뷰작성완료'}">
-						<input type="button" onclick="addReview(this.form)" value="리뷰보기"> <br/>
+						<input type="button" onclick="addReview(this.form)" value="리뷰보기" id="a"> <br/>
 				</c:when>
 			</c:choose>
 		</td>

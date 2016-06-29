@@ -130,13 +130,13 @@
 <%@include file="../main.jsp" %>
 <div id="cf">
 <form action="${pageContext.request.contextPath}/product/add.do" name="addform" method="post" enctype="multipart/form-data">
-	<table style="text-padding: 10px; width: 950px;">
+	<table style="text-padding: 10px; width: 950px;" id="list">
 		<tr>
 			<th>상품명</th>
-			<td colspan="3"><input type="text" name="name"
+			<td colspan="2"><input type="text" name="name"
 				value="${product.name}" style="width: 240px;" ></td>
 				<th>카테고리</th>
-			<td colspan="3"><input type="hidden" value="${product.category}" name="category">
+			<td colspan="4"><input type="hidden" value="${product.category}" name="category">
 			<select name="category1" onchange="category_c1()">
 				<option value="주방가전">주방가전</option>
 				<option value="생활가전">생활가전</option>
@@ -183,7 +183,7 @@
 		</tr>
 		<tr><th>메인이미지</th><th colspan="8" style="text-align: left;"></th></tr>
 			<tr><td colspan="9" style="padding-left: 30px;"><input type="file" name="img_url1"
-				value="${product.img_url}" onchange="Cfile()"> 
+				value="${product.img_url}" onchange="Cfile()" > 
 				<input type="hidden" name="img_url" value="${product.img_url}">
 				<div id="imgdiv"></div>
 			<c:choose><c:when test="${msg=='edit'}">	<img src="${pageContext.request.contextPath}/img/${product.img_url}" style="width: 100px;height: 100px;"></c:when></c:choose></td>
@@ -195,7 +195,7 @@
 			<td colspan="9"> 	<textarea name="intro_content" id="ir1" rows="10" cols="100" style="width:916px; height:412px; display:none;"></textarea>
 			</td>
 		</tr>
-		<tr><td colspan="9"><c:choose><c:when test="${msg=='add'}"><input type="button" onclick="add_product(this.form)"  value="저장"></c:when><c:otherwise><input type="button" onclick="edit_product(this.form)"  value="수정"></c:otherwise></c:choose><input type="reset" value="취소"></td></tr>
+		<tr><td colspan="9"><c:choose><c:when test="${msg=='add'}"><input type="button" onclick="add_product(this.form)"  value="저장" id=a></c:when><c:otherwise><input type="button" onclick="edit_product(this.form)"  value="수정" id=a></c:otherwise></c:choose> <input type="reset" value="취소"></td></tr>
 	</table>
 </form>
 </div>
