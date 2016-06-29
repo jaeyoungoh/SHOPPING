@@ -33,7 +33,7 @@ public class CartController {
 	@RequestMapping(value="/cart/add.do")
 	public String addCart(Cart cart){
 		cartService.insertCart(cart);
-		return "redirect:/cart/list.do?user_id=qwer";
+		return "redirect:/cart/list.do";
 	}
 	
 	@RequestMapping(value="/cart/update.do")

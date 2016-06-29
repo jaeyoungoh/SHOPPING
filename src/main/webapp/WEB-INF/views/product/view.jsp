@@ -50,7 +50,7 @@
 		if(chkCartMove){
 			
 				fmt.cart_cnt.value = fmt.quantity.value;
-				fmt.action = "${pageContext.request.contextPath}/cart/add.do?user_id=qwer";
+				fmt.action = "${pageContext.request.contextPath}/cart/add.do";
 				fmt.submit();
 		}else {
 			
@@ -169,5 +169,6 @@
 		</tr>
 	</table>
 	<input type="hidden" name="product_id" value="${product.product_id}" />
+	<input type="hidden" name="user_id" value="${sessionScope.user_id}"/>
 </form>
 </div>
