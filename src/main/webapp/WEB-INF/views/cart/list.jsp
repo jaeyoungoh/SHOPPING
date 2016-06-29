@@ -91,6 +91,7 @@ function addOrder(form1){
 </thead>
 <tbody>
 
+<c:if test="${list.size()==0}"><td colspan="7">장바구니가 비어있습니다.</td></c:if>
 <c:forEach var="list"  items="${list}">
 <form name="frm" action="${pageContext.request.contextPath}/cart/update.do" method="post">
 	<tr id="cart_i_${list.cart_num}">

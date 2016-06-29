@@ -31,7 +31,10 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="/cart/add.do")
-	public String addCart(Cart cart){
+	public String addCart(Cart cart, HttpServletRequest request){
+		HttpSession loginSession = request.getSession();
+		cart.setUser_id((String)loginSession.getAttribute("user_id"));
+		System.out.println(cart);
 		cartService.insertCart(cart);
 		return "redirect:/cart/list.do";
 	}
