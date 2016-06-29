@@ -10,14 +10,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kitri.shopping.cart.CartService;
+
 @Controller
 public class OrderController {
 
 	@Resource(name="orderService")
 	private OrderService orderService;
 	
+	@Resource(name="cartService")
+	private CartService cartService;
+	
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
+	}
+	
+	public void setCartService(CartService cartService) {
+		this.cartService = cartService;
 	}
 
 	/**
@@ -36,16 +45,25 @@ public class OrderController {
 	 * 주문 정보 추가 
 	 */
 	@RequestMapping(value="/order/add.do")
-	public void addOrder(){
-		
+	public ModelAndView addOrder(int cart_num,Order order, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		order.setUser_id((String)session.getAttribute("user_id"));
+		System.out.println(order);
+		ModelAndView mav = new ModelAndView("redirect:/order/list.do");
+		orderService.addOrder(order);
+		cartService.deleteCart(cart_num);
+		return mav;
 	}
 	
 	/**
 	 * 주문 상태 수정
 	 */
 	@RequestMapping(value="/order/update.do")
-	public void updateOrder(){
-		
+	public ModelAndView updateOrder(Order order){
+		System.out.println(order);
+		ModelAndView mav = new ModelAndView("redirect:/order/list.do");
+		orderService.editOrder(order);
+		return mav;
 	}
 	
 	/**
