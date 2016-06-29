@@ -1,9 +1,0 @@
-diff a/src/main/java/com/kitri/shopping/cart/CartController.java b/src/main/java/com/kitri/shopping/cart/CartController.java	(rejected hunks)
-@@ -33,7 +33,6 @@
- 	@RequestMapping(value="/cart/add.do")
- 	public String addCart(Cart cart){
- 		cartService.insertCart(cart);
--		return "redirect:/cart/list.do?user_id=qwer";
- 		return "redirect:/cart/list.do";
- 	}
- 	
