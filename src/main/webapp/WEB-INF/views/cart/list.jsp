@@ -66,6 +66,14 @@ function reqUpdate(form1){
 function allCheckAction(){
 }
 
+function addOrder(form1){
+	//console.log("폼 이름 : "+form1.name);
+	//console.log("form1 아이디 : "+form1.product_id.value+" 갯수 : "+form1.product_cnt.value);
+	form1.action="${pageContext.request.contextPath}/order/add.do";
+	form1.submit();
+	
+}
+
 </script>
 <meta charset="UTF-8">
 <title>:: 장바구니 - 쇼핑몰 ::</title>
@@ -119,8 +127,9 @@ function allCheckAction(){
 		</td>
 		
 		<td>
-			<a href="#"><span>주문하기</span></a><br/>
-			<a href="#" onclick="deleteCart(${list.cart_num});"><span>삭제하기</span></a>
+			<input type="button" value="주문하기" onclick="addOrder(this.form);" /><br/>
+			<input type="hidden" name = "product_cnt" value="${list.cart_cnt}" /> 
+			<input type="button" value="삭제하기" onclick="deleteCart(${list.cart_num});"/>
 		</td>
 	</tr>
 			</form>
@@ -130,12 +139,8 @@ function allCheckAction(){
 
 </table>
 
-<div class="btnWrap">
-			<input type="checkbox" name="bcktSeq_All_bottom" id="bcktSeq_All_bottom" onclick="allCheckAction(this);" title="장바구니 전체 상품 선택">선택상품 <b id="checkPrdCnt"></b>
-			<a href="javascript:funcCheckDel();" class="defbtn_med mdtype6"  onClick="doCommonStat('SCSP001');"><span>삭제하기</span></a>
-			<input type="hidden" name="sellerCkeckKey" value="false" />
-		</div>
-
+<input type="checkbox" name="bcktSeq_All_bottom" id="bcktSeq_All_bottom" onclick="allCheckAction(this);" title="장바구니 전체 상품 선택">선택상품 <b id="checkPrdCnt"></b>
+<a href="javascript:funcCheckDel();"  onClick=""><span>전체 삭제하기</span></a>
 </form>
 
 </body>
