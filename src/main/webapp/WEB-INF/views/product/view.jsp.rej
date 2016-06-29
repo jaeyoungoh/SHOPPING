@@ -1,0 +1,10 @@
+diff a/src/main/webapp/WEB-INF/views/product/view.jsp b/src/main/webapp/WEB-INF/views/product/view.jsp	(rejected hunks)
+@@ -50,7 +50,7 @@
+ 		if(chkCartMove){
+ 			
+ 				fmt.cart_cnt.value = fmt.quantity.value;
+-				fmt.action = "${pageContext.request.contextPath}/cart/add.do?user_id=qwer";
++				fmt.action = "${pageContext.request.contextPath}/cart/add.do";
+ 				fmt.submit();
+ 		}else {
+ 			

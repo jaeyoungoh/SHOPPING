@@ -79,6 +79,8 @@ function addOrder(form1){
 <title>:: 장바구니 - 쇼핑몰 ::</title>
 </head>
 <body onload="msgUpdateCNTcheck()">
+<%@include file="../main.jsp" %>
+<div id="cf">
 <form name="frmOrderMall" action="" method="POST">
 
 <table>
@@ -94,6 +96,7 @@ function addOrder(form1){
 	</tr>
 </thead>
 <tbody>
+
 <c:forEach var="list"  items="${list}">
 <form name="frm" action="${pageContext.request.contextPath}/cart/update.do" method="post">
 	<tr id="cart_i_${list.cart_num}">
@@ -142,6 +145,6 @@ function addOrder(form1){
 <input type="checkbox" name="bcktSeq_All_bottom" id="bcktSeq_All_bottom" onclick="allCheckAction(this);" title="장바구니 전체 상품 선택">선택상품 <b id="checkPrdCnt"></b>
 <a href="javascript:funcCheckDel();"  onClick=""><span>전체 삭제하기</span></a>
 </form>
-
+</div>
 </body>
 </html>
