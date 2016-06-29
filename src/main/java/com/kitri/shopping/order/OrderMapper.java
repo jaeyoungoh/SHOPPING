@@ -31,15 +31,9 @@ public interface OrderMapper {
 	List<Order> selectAllOrderInfo ();
 
 	/**
-	 * 주문내역 상태 변경
+	 * 주문내역 상태 변경 /환불, 결제 취소, 결제 완료/   
 	 * @param order
 	 */
 	void editOrder(Order order);
-	
-	/**
-	 * 주문내역 취소
-	 * @param order_num
-	 */
-	void cancelOrder(int order_num);
 	
 }

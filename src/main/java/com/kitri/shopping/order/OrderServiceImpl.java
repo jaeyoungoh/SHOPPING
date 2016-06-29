@@ -47,11 +47,5 @@ public class OrderServiceImpl implements OrderService {
 		orderMapper.editOrder(order);
 	}
 
-	@Override
-	public void cancelOrder(int order_num) {
-		OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-		orderMapper.cancelOrder(order_num);
-	}
-
 
 }

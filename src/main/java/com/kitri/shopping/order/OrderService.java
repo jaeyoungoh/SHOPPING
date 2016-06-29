@@ -29,15 +29,9 @@ public interface OrderService {
 	List<Order> getAllOrderInfo();
 
 	/**
-	 * 주문내역 상태 변경
+	 * 주문내역 상태 변경 결제완료, 결제취소, 환불, 구매결정완료
 	 * @param order
 	 */
 	void editOrder(Order order);
-	
-	/**
-	 * 주문내역 취소
-	 * @param order_num
-	 */
-	void cancelOrder(int order_num);
 	
 }
