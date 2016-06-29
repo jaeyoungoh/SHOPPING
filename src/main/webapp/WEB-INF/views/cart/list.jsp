@@ -6,32 +6,26 @@
 <head>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/httpRequest.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-function allCheckAction(obj){
-	var formObj = document.frmTmall;
-	if(formObj.sellerCkeckKey || formObj.martSellerCkeckKey) {
-		if(obj.checked){
-			document.getElementById("bcktSeq_All").checked = true;
-			document.getElementById("bcktSeq_All_bottom").checked = true;
-			funcAllCheck(true);
 
-			if (funcIsContainMart()) {
-				funcMartAllCheck(true);
-			}
-		} else {
-			document.getElementById("bcktSeq_All").checked = false;
-			document.getElementById("bcktSeq_All_bottom").checked = false;
-			funcAllCheck(false);
-
-			if (funcIsContainMart()) {
-				funcMartAllCheck(false);
-			}
-		}
-
-		checkFuncCalReset();
-	}
-}
-
+$(document).ready(function(){	
+	 $("#chk_All").click(function(){
+	        if($("#chk_All").prop("checked")){
+	            $("input[name=chk]").prop("checked",true);
+	            $("input[name=chk]").prop("checked",true);
+	        }else{
+	            $("input[name=chk]").prop("checked",false);
+	        }
+	    });
+	 $("#chk_All2").click(function(){
+	        if($("#chk_All2").prop("checked")){
+	            $("input[name=chk]").prop("checked",true);
+	        }else{
+	            $("input[name=chk]").prop("checked",false);
+	        }
+	    });
+});
 
 function deleteCart(cart_num){
 	var params = "cart_num="+cart_num;
@@ -86,7 +80,7 @@ function addOrder(form1){
 <table>
 <thead>
 	<tr>	
-		<th scope="col" class="chk"><label for="bcktSeq_All"><input name="bcktSeq_All" type="checkbox" value="" id="bcktSeq_All" onclick="allCheckAction();" title="전체상품선택"></label></th>
+		<th scope="col" class=""><label for="bcktSeq_All"><input id="chk_All" name="chk" type="checkbox" value="ALL" title="전체상품선택"></label></th>
 		<th scope="col">상품정보</th>
 		<th scope="col">수량</th>
 		<th scope="col">상품금액</th>
@@ -102,9 +96,9 @@ function addOrder(form1){
 	<tr id="cart_i_${list.cart_num}">
 		<td class="chk"><!-- 체크박스(묶음상품) -->
 			<label for="1295844927">
-				<input type="checkbox" name="cartList" value="${list.cart_num}">
+				<input type="checkbox" class="chk_All" name="chk" value="">
 			</label>
-						
+	
 		</td>
 		<td class="td_prdwrap">
 			<a href="${pageContext.request.contextPath}/product/view.do?product_id=${list.product_id}">${list.product_name}
@@ -122,7 +116,6 @@ function addOrder(form1){
 		</td>
 		<td><fmt:formatNumber value="${list.price}" type="number"/>원</td>
 		<td>
-		
 			<span id="salePCT"><fmt:formatNumber value="${list.sale_pct}" type="number"/>원</span>
 		</td>
 		<td>
@@ -142,7 +135,7 @@ function addOrder(form1){
 
 </table>
 
-<input type="checkbox" name="bcktSeq_All_bottom" id="bcktSeq_All_bottom" onclick="allCheckAction(this);" title="장바구니 전체 상품 선택">선택상품 <b id="checkPrdCnt"></b>
+<input type="checkbox" name="chk" id="chk_All2" value="ALL" title="장바구니 전체 상품 선택">선택상품 <b id="checkPrdCnt"></b>
 <a href="javascript:funcCheckDel();"  onClick=""><span>전체 삭제하기</span></a>
 </form>
 </div>

@@ -4,6 +4,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+
+function cancelOrder(form1){
+	var chkCancel = window.confirm("정말로 구매를 취소 하시겠습니까?");
+	if(chkCancel){
+	form1.action = "${pageContext.request.contextPath}/order/update.do";
+	form1.product_status.value='구매취소';
+	form1.submit();
+	}
+	
+}
+function payOrder(form1){
+	var chkCancel = window.confirm("정말로 결제를 하시겠습니까?");
+	if(chkCancel){
+	form1.action = "${pageContext.request.contextPath}/order/update.do";
+	form1.product_status.value='결제완료';
+	form1.submit();
+	}
+	
+}
+function decideOrder(form1){
+	var chkCancel = window.confirm("정말로 '구매확정'을 하시겠습니까?");
+	if(chkCancel){
+	form1.action = "${pageContext.request.contextPath}/order/update.do";
+	form1.product_status.value='구매확정';
+	form1.submit();
+	}
+	
+}
+function addReview(form1){
+	form1.action = "${pageContext.request.contextPath}/order/update.do";
+	form1.product_status.value='리뷰보기';
+	form1.submit();
+	
+}
+
+</script>
 <meta charset="UTF-8">
 <title>:: 최근 주문 정보 - 쇼핑몰 ::</title>
 </head>
@@ -21,6 +58,7 @@
 		<th scope="col">확인/취소/리뷰</th>
 	</tr>
 	<c:forEach var="list" items="${list}">
+<form name="orderFRM" method="post" >
 	<tr>
 		<td style="text-align: center;">${list.order_num}</td>
 		<td>${list.name} <br>
@@ -29,21 +67,36 @@
 		<td>${list.order_date}</td>
 		<td style="text-align: center;">${list.product_cnt}</td>
 		<td style="border: none; font-weight: bold; font-size: 15px; text-align: right;">
-		<fmt:formatNumber value="${list.price}" pattern="#,##0"/>원</td>
+			<fmt:formatNumber value="${list.price}" pattern="#,##0"/>원</td>
 		<td style="text-align: center;">${list.product_status}</td>
 		<td>
-			<c:if test="${list.product_status ne '환불' && list.product_status ne '결제취소' && list.product_status ne '결제완료'}">
-			<c:if test="${list.product_status eq '결제완료'}">
-				<input type="button" value="구매결정"> <br/>
-			</c:if>
-				<input type="button" value="취소"> <br/>
-			</c:if>
-				<input type="button" value="리뷰작성"> 
+		
+		<input type="hidden" name="product_status" value="${list.product_status}" />
+		<input type="hidden" name="order_num" value="${list.order_num}" />
+			<c:choose>
+				<c:when test="${list.product_status eq '결제완료'}">
+					<input type="button" onclick="decideOrder(this.form)" value="구매결정"> <br/><br/>
+					<input type="button" onclick="cancelOrder(this.form)" value="구매취소"> <br/>
+				</c:when>
+				<c:when test="${list.product_status eq '결제 대기중'}">
+					<input type="button" onclick="payOrder(this.form)" value="결제하기"> <br/>
+				</c:when>
+				<c:when test="${list.product_status ne '구매취소' && list.product_status ne '리뷰보기' && list.product_status ne '구매확정' && list.product_status ne '리뷰작성완료'}">
+					<input type="button" onclick="cancelOrder(this.form)" value="구매취소"> <br/>
+				</c:when>
+				<c:when test="${list.product_status eq '구매확정'}">
+						<input type="button" onclick="addReview(this.form)" value="리뷰작성"><br/> 
+				</c:when>
+				<c:when test="${list.product_status eq '리뷰작성완료'}">
+						<input type="button" onclick="addReview(this.form)" value="리뷰보기"> <br/>
+				</c:when>
+			</c:choose>
 		</td>
 	</tr>
+</form>
 	</c:forEach>
 </thead>
-
 </table>
+
 </body>
 </html>

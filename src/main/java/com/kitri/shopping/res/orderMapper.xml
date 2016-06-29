@@ -24,7 +24,16 @@
 	</resultMap>
 
 	<insert id="insertOrder" parameterType="com.kitri.shopping.order.Order" >
-	
+		insert into ORDERS VALUES
+		(seq_order.nextval,
+		#{product_id},
+		#{product_cnt},
+		'결제 대기중',
+		null,
+		null,
+		null,
+		#{user_id},
+		sysdate)
 	</insert>
 
 	<select id="selectOrder" resultMap="OrderResultMap" parameterType="String">
@@ -59,14 +68,31 @@
 			ORDERS o JOIN PRODUCT p ON
 			p.PRODUCT_ID = O.PRODUCT_ID
 		where o.USER_ID = #{user_id}
+		order by o.ORDER_NUM desc
 	</select>
 
 	<select id="selectAllOrderInfo" resultMap="OrderResultMap">
-	
+		SELECT
+		o.ORDER_NUM order_num,
+		o.PRODUCT_ID product_id,
+		o.PRODUCT_STATUS PRODUCT_STATUS,
+		o.PRODUCT_CNT PRODUCT_CNT,
+		to_char(o.ORDER_DATE, 'YYYY-MM-DD') order_date,
+		o.ORDER_NUM order_num,
+		o.USER_ID user_id,
+		p.IMG_URL img_url,
+		p.NAME name,
+		ceil((p.price-(p.price*p.sale_pct/100))/10)*10*o.PRODUCT_CNT price
+		FROM
+		ORDERS o JOIN PRODUCT p ON
+		p.PRODUCT_ID = O.PRODUCT_ID
+		order by o.ORDER_NUM desc
 	</select>
 	
 	<update id="editOrder" parameterType="com.kitri.shopping.order.Order">
-	
+	 	UPDATE ORDERS
+		SET PRODUCT_STATUS = #{product_status}
+		WHERE ORDER_NUM = #{order_num}
 	</update>
 	
 	
