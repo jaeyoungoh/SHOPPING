@@ -96,12 +96,12 @@ function allCheckAction(){
 						
 		</td>
 		<td class="td_prdwrap">
-			${list.product_name}
+			<a href="${pageContext.request.contextPath}/product/view.do?product_id=${list.product_id}">${list.product_name}
 			<br/>
 			 	<div class="dp_photo">
 			 		<img src="${pageContext.request.contextPath}/img/${list.img_url}" style="width: 90px; height:90px;"/>
 				</div>
-			
+			</a>
 		</td>
 		<td>
 			<input type="text" name="cart_cnt" value="${list.cart_cnt}" style="width: 47px; height: 19px;"><br/>
