@@ -14,6 +14,10 @@ public interface ProductMapper {
 	List<Product> selectbyName(String name);//이름 으로 검색
 	List<Product> selectbyCategory(String category); //카테고리별 검색.
 	
+	List<Product> cartbest();
+	List<Product> orderbest();
+	List<Product> newitem();
+	
 	Product select(int product_id);
 	boolean insert(Product product);
 	int update(Product product);

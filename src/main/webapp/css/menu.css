@@ -21,7 +21,14 @@ input[type="button"]#icon{
 *{
 	font-family: 'Hanna', serif;
 }
+h3{
+	color: #a1cfda;
+}
 table#list td{
+	padding: 10px;
+	text-align: center;
+}
+table#list1 td{
 	padding: 10px;
 }
 #cf{

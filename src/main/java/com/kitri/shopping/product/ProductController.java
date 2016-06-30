@@ -139,10 +139,17 @@ public class ProductController {
 		service.editProduct(product);
 		return "redirect:/product/slist.do";
 	}
-	@RequestMapping(value="/product/main.do")
-	public String main(){
-		
-		return "redirect:/main2.do";
+	@RequestMapping(value="/")
+	public String main(Model m){
+			List<Product> cblist=service.getCartBest();
+			List<Product> nlist=service.getNewItem();
+			List<Product> oblist=service.getOrderBest();
+			System.out.println(cblist);
+			m.addAttribute("cblist", cblist);
+			m.addAttribute("nlist", nlist);
+			m.addAttribute("oblist", oblist);
+
+		return "/main2";
 	}
 	
 		@RequestMapping(value="/product/dels.do")

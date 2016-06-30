@@ -198,11 +198,15 @@
 	$(document)
 			.ready(
 					function() {
-						$("a")
+						$("a[id=category]")//
 								.click(
 										function() {
+											if($(this).html()=="Home"){
+												location.href ="${pageContext.request.contextPath}/";
+											}else{
 											location.href = "${pageContext.request.contextPath}/product/category.do?category="
 													+ $(this).html();
+											}
 										});
 					});
 
@@ -355,156 +359,156 @@
 		<h1>DEPOSCO</h1>
 	</div>
 	<ul class="nav">
-		<li><a href="#" onclick="">Home</a></li>
-		<li class="dropdown"><a href="#" onclick="">주방가전</a>
+		<li><a href="#" onclick="" id="category">Home</a></li>
+		<li class="dropdown"><a href="#" onclick="" id="category">주방가전</a>
 			<ul>
-				<li class="dropdown"><a href="#" onclick="">냉장고</a>
+				<li class="dropdown"><a href="#" onclick="" id="category">냉장고</a>
 					<ul>
-						<li><a href="#" onclick="">일반형</a></li>
-						<li><a href="#" onclick="">업소용</a></li>
-						<li><a href="#" onclick="">와인용</a></li>
-						<li><a href="#" onclick="">김치냉장고</a></li>
+						<li><a href="#" onclick="" id="category">일반형</a></li>
+						<li><a href="#" onclick="" id="category">업소용</a></li>
+						<li><a href="#" onclick="" id="category">와인용</a></li>
+						<li><a href="#" onclick="" id="category">김치냉장고</a></li>
 					</ul></li>
-				<li class="dropdown"><a href="#" onclick="">밥솥</a>
+				<li class="dropdown"><a href="#" onclick="" id="category">밥솥</a>
 					<ul>
-						<li><a href="#" onclick="">IH압력</a></li>
-						<li><a href="#" onclick="">열판압력</a></li>
-						<li><a href="#" onclick="">비압력</a></li>
+						<li><a href="#" onclick="" id="category">IH압력</a></li>
+						<li><a href="#" onclick="" id="category">열판압력</a></li>
+						<li><a href="#" onclick="" id="category">비압력</a></li>
 					</ul></li>
-				<li class="dropdown"><a href="#" onclick="">전자레인지</a>
+				<li class="dropdown"><a href="#" onclick="" id="category">전자레인지</a>
 					<ul>
-						<li><a href="#" onclick="">전자레인지</a></li>
-						<li><a href="#" onclick="">오븐레인지</a></li></li>
+						<li><a href="#" onclick="" id="category">전자레인지</a></li>
+						<li><a href="#" onclick="" id="category">오븐레인지</a></li></li>
 			</ul>
-		<li class="dropdown"><a href="#" onclick="">커피메이커</a>
+		<li class="dropdown"><a href="#" onclick="" id="category">커피메이커</a>
 			<ul>
-				<li><a href="#" onclick="">자동머신</a></li>
-				<li><a href="#" onclick="">캡슐머신</a></li>
-				<li><a href="#" onclick="">로스터</a></li>
+				<li><a href="#" onclick="" id="category">자동머신</a></li>
+				<li><a href="#" onclick="" id="category">캡슐머신</a></li>
+				<li><a href="#" onclick="" id="category">로스터</a></li>
 			</ul></li>
 	</ul>
 	</li>
-	<li class="dropdown"><a href="#" onclick="">생활가전</a>
+	<li class="dropdown"><a href="#" onclick="" id="category">생활가전</a>
 		<ul>
-			<li class="dropdown"><a href="#" onclick="">세탁기</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">세탁기</a>
 				<ul>
-					<li><a href="#" onclick="">일반세탁기</a></li>
-					<li><a href="#" onclick="">드럼세탁기</a></li>
-					<li><a href="#" onclick="">건조기</a></li>
+					<li><a href="#" onclick="" id="category">일반세탁기</a></li>
+					<li><a href="#" onclick="" id="category">드럼세탁기</a></li>
+					<li><a href="#" onclick="" id="category">건조기</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">청소기</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">청소기</a>
 				<ul>
-					<li><a href="#" onclick="">진공청소기</a></li>
-					<li><a href="#" onclick="">로봇청소기</a></li>
-					<li><a href="#" onclick="">스팀청소기</a></li>
+					<li><a href="#" onclick="" id="category">진공청소기</a></li>
+					<li><a href="#" onclick="" id="category">로봇청소기</a></li>
+					<li><a href="#" onclick="" id="category">스팀청소기</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">전화기</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">전화기</a>
 				<ul>
-					<li><a href="#" onclick="">유선전화기</a></li>
-					<li><a href="#" onclick="">무선전화기</a></li>
-					<li><a href="#" onclick="">인터넷폰</a></li>
+					<li><a href="#" onclick="" id="category">유선전화기</a></li>
+					<li><a href="#" onclick="" id="category">무선전화기</a></li>
+					<li><a href="#" onclick="" id="category">인터넷폰</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">다리미</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">다리미</a>
 				<ul>
-					<li><a href="#" onclick="">일반형</a></li>
-					<li><a href="#" onclick="">스탠드형</a></li>
-					<li><a href="#" onclick="">건식다리미</a></li>
+					<li><a href="#" onclick="" id="category">일반형</a></li>
+					<li><a href="#" onclick="" id="category">스탠드형</a></li>
+					<li><a href="#" onclick="" id="category">건식다리미</a></li>
 				</ul></li>
 		</ul></li>
-	<li class="dropdown"><a href="#" onclick="">TV</a>
+	<li class="dropdown"><a href="#" onclick="" id="category">TV</a>
 		<ul>
-			<li class="dropdown"><a href="#" onclick="">LED TV</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">LED TV</a>
 				<ul>
-					<li><a href="#" onclick="">기본형TV</a></li>
-					<li><a href="#" onclick="">커브드TV</a></li>
-					<li><a href="#" onclick="">UHD</a></li>
+					<li><a href="#" onclick="" id="category">기본형TV</a></li>
+					<li><a href="#" onclick="" id="category">커브드TV</a></li>
+					<li><a href="#" onclick="" id="category">UHD</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">셋톱박스</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">셋톱박스</a>
 				<ul>
-					<li><a href="#" onclick="">블루레이플레이어</a></li>
-					<li><a href="#" onclick="">DVD플레이어</a></li>
-					<li><a href="#" onclick="">셋톱박스</a></li>
+					<li><a href="#" onclick="" id="category">블루레이플레이어</a></li>
+					<li><a href="#" onclick="" id="category">DVD플레이어</a></li>
+					<li><a href="#" onclick="" id="category">셋톱박스</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">액서서리</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">액서서리</a>
 				<ul>
-					<li><a href="#" onclick="">3D안경</a></li>
-					<li><a href="#" onclick="">위성TV</a></li>
-					<li><a href="#" onclick="">리모컨</a></li>
+					<li><a href="#" onclick="" id="category">3D안경</a></li>
+					<li><a href="#" onclick="" id="category">위성TV</a></li>
+					<li><a href="#" onclick="" id="category">리모컨</a></li>
 				</ul></li>
 		</ul></li>
-	<li class="dropdown"><a href="#" onclick="">이어폰</a>
+	<li class="dropdown"><a href="#" onclick="" id="category">이어폰</a>
 		<ul>
-			<li class="dropdown"><a href="#" onclick="">이어폰</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">이어폰</a>
 				<ul>
-					<li><a href="#" onclick="">통화가능이어폰</a></li>
-					<li><a href="#" onclick="">블루투스이어폰</a></li>
-					<li><a href="#" onclick="">방수, 스포츠</a></li>
+					<li><a href="#" onclick="" id="category">통화가능이어폰</a></li>
+					<li><a href="#" onclick="" id="category">블루투스이어폰</a></li>
+					<li><a href="#" onclick="" id="category">방수, 스포츠</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">헤드폰</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">헤드폰</a>
 				<ul>
-					<li><a href="#" onclick="">유선 헤드폰</a></li>
-					<li><a href="#" onclick="">블루투스 헤드폰</a></li>
-					<li><a href="#" onclick="">밀폐형 헤드폰</a></li>
+					<li><a href="#" onclick="" id="category">유선 헤드폰</a></li>
+					<li><a href="#" onclick="" id="category">블루투스 헤드폰</a></li>
+					<li><a href="#" onclick="" id="category">밀폐형 헤드폰</a></li>
 				</ul></li>
 		</ul></li>
-	<li class="dropdown"><a href="#" onclick="">디지털카메라</a>
+	<li class="dropdown"><a href="#" onclick="" id="category">디지털카메라</a>
 		<ul>
-			<li class="dropdown"><a href="#" onclick="">디지털카메라</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">디지털카메라</a>
 				<ul>
-					<li><a href="#" onclick="">DSLR 디카</a></li>
-					<li><a href="#" onclick="">콤팩트 디카</a></li>
-					<li><a href="#" onclick="">하이앤드 디카</a></li>
-					<li><a href="#" onclick="">미러리스 디카</a></li>
+					<li><a href="#" onclick="" id="category">DSLR 디카</a></li>
+					<li><a href="#" onclick="" id="category">콤팩트 디카</a></li>
+					<li><a href="#" onclick="" id="category">하이앤드 디카</a></li>
+					<li><a href="#" onclick="" id="category">미러리스 디카</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">캠코더</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">캠코더</a>
 				<ul>
-					<li><a href="#" onclick="">디지털 캠코더</a></li>
-					<li><a href="#" onclick="">방수 캠코더</a></li>
+					<li><a href="#" onclick="" id="category">디지털 캠코더</a></li>
+					<li><a href="#" onclick="" id="category">방수 캠코더</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">카메라렌즈</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">카메라렌즈</a>
 				<ul>
-					<li><a href="#" onclick="">DSLR용 렌즈</a></li>
-					<li><a href="#" onclick="">광각화각 렌즈</a></li>
-					<li><a href="#" onclick="">망원화각 렌즈</a></li>
+					<li><a href="#" onclick="" id="category">DSLR용 렌즈</a></li>
+					<li><a href="#" onclick="" id="category">광각화각 렌즈</a></li>
+					<li><a href="#" onclick="" id="category">망원화각 렌즈</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">주변기기</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">주변기기</a>
 				<ul>
-					<li><a href="#" onclick="">메모리카드</a></li>
-					<li><a href="#" onclick="">카드리더기</a></li>
-					<li><a href="#" onclick="">삼각대</a></li>
-					<li><a href="#" onclick="">배터리/충전기</a></li>
+					<li><a href="#" onclick="" id="category">메모리카드</a></li>
+					<li><a href="#" onclick="" id="category">카드리더기</a></li>
+					<li><a href="#" onclick="" id="category">삼각대</a></li>
+					<li><a href="#" onclick="" id="category">배터리/충전기</a></li>
 				</ul></li>
 		</ul></li>
-	<li class="dropdown"><a href="#" onclick="">컴퓨터</a>
+	<li class="dropdown"><a href="#" onclick="" id="category">컴퓨터</a>
 		<ul>
-			<li class="dropdown"><a href="#" onclick="">모니터</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">모니터</a>
 				<ul>
-					<li><a href="#" onclick="">표준모니터</a></li>
-					<li><a href="#" onclick="">게이밍 모니터</a></li>
-					<li><a href="#" onclick="">TV겸용 모니터</a></li>
-					<li><a href="#" onclick="">UHD 모니터</a></li>
+					<li><a href="#" onclick="" id="category">표준모니터</a></li>
+					<li><a href="#" onclick="" id="category">게이밍 모니터</a></li>
+					<li><a href="#" onclick="" id="category">TV겸용 모니터</a></li>
+					<li><a href="#" onclick="" id="category">UHD 모니터</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">노트북</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">노트북</a>
 				<ul>
-					<li><a href="#" onclick="">표준노트북</a></li>
-					<li><a href="#" onclick="">게임용노트북</a></li>
-					<li><a href="#" onclick="">맥북</a></li>
+					<li><a href="#" onclick="" id="category">표준노트북</a></li>
+					<li><a href="#" onclick="" id="category">게임용노트북</a></li>
+					<li><a href="#" onclick="" id="category">맥북</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">일체형PC</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">일체형PC</a>
 				<ul>
-					<li><a href="#" onclick="">곡면형 모니터</a></li>
-					<li><a href="#" onclick="">게임용</a></li>
-					<li><a href="#" onclick="">터치스크린</a></li>
+					<li><a href="#" onclick="" id="category">곡면형 모니터</a></li>
+					<li><a href="#" onclick="" id="category">게임용</a></li>
+					<li><a href="#" onclick="" id="category">터치스크린</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">브랜드PC</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">브랜드PC</a>
 				<ul>
-					<li><a href="#" onclick="">게임용</a></li>
-					<li><a href="#" onclick="">사무용</a></li>
-					<li><a href="#" onclick="">운영체제 미포함</a></li>
+					<li><a href="#" onclick="" id="category">게임용</a></li>
+					<li><a href="#" onclick="" id="category">사무용</a></li>
+					<li><a href="#" onclick="" id="category">운영체제 미포함</a></li>
 				</ul></li>
-			<li class="dropdown"><a href="#" onclick="">서버</a>
+			<li class="dropdown"><a href="#" onclick="" id="category">서버</a>
 				<ul>
-					<li><a href="#" onclick="">서버 컴퓨터</a></li>
+					<li><a href="#" onclick="" id="category">서버 컴퓨터</a></li>
 				</ul></li>
 
 
@@ -551,7 +555,7 @@
 				<p>아이디와 비밀번호를 입력하여 주세요.</p>
 				<form action="${pageContext.request.contextPath}/user/login.do"
 					method="post" name="lg">
-					<table style="margin: 0 auto; color: white;" id="list">
+					<table style="margin: 0 auto; color: white;" id="list1">
 						<tr style="padding: 10px">
 							<td>아 이 디</td>
 							<td><input type="text" name="user_id"
@@ -585,7 +589,7 @@
 				<p>정보를 입력해주세요.</p>
 				<form action="${pageContext.request.contextPath }/user/adduser.do"
 					name="j">
-					<table style="color: white;" id="list">
+					<table style="color: white;" id="list1">
 						<tr>
 							<td colspan="3">환영합니다. 어서오세요</td>
 						</tr>
