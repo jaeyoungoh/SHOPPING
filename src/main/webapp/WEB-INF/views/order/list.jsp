@@ -62,7 +62,7 @@ function addReview(form1){
 	<tr>
 		<td style="text-align: center;">${list.order_num}</td>
 		<td style="text-align: center;">
-		<img src="${list.img_url}" style="width:90px;height: 90px;"><br>
+		<img src="${pageContext.request.contextPath}/img/${list.img_url}" style="width:90px;height: 90px;"><br>
 		${list.name} 
 		</td>
 		<td>${list.order_date}</td>

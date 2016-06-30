@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kitri.shopping.cart.CartService;
@@ -44,6 +45,16 @@ public class OrderController {
 	/**
 	 * 주문 정보 추가 
 	 */
+	@RequestMapping(value="/order/addDirect.do")
+	public ModelAndView addDirectOrder(Order order, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		order.setUser_id((String)session.getAttribute("user_id"));
+		System.out.println(order);
+		ModelAndView mav = new ModelAndView("redirect:/order/list.do");
+		orderService.addOrder(order);
+		return mav;
+		
+	}
 	@RequestMapping(value="/order/add.do")
 	public ModelAndView addOrder(int cart_num,Order order, HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -51,7 +62,9 @@ public class OrderController {
 		System.out.println(order);
 		ModelAndView mav = new ModelAndView("redirect:/order/list.do");
 		orderService.addOrder(order);
-		cartService.deleteCart(cart_num);
+		if(cart_num !=0){
+			cartService.deleteCart(cart_num);
+		}
 		return mav;
 	}
 	
