@@ -167,7 +167,7 @@ margin: 0;}
 
 
 
-		<a href="${pageContext.request.contextPath}/user/maintest.do">메인페이지로 돌아가기</a>
+	
 
 <%-- <jsp:include page="${pageContext.request.contextPath}/resources/bottom.jsp"></jsp:include> --%>
 </div>
