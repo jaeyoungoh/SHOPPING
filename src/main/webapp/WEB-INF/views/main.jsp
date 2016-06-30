@@ -555,7 +555,7 @@
 				<p>아이디와 비밀번호를 입력하여 주세요.</p>
 				<form action="${pageContext.request.contextPath}/user/login.do"
 					method="post" name="lg">
-					<table style="margin: 0 auto; color: white;" id="list">
+					<table style="margin: 0 auto; color: white;" id="list1">
 						<tr style="padding: 10px">
 							<td>아 이 디</td>
 							<td><input type="text" name="user_id"
@@ -589,7 +589,7 @@
 				<p>정보를 입력해주세요.</p>
 				<form action="${pageContext.request.contextPath }/user/adduser.do"
 					name="j">
-					<table style="color: white;" id="list">
+					<table style="color: white;" id="list1">
 						<tr>
 							<td colspan="3">환영합니다. 어서오세요</td>
 						</tr>

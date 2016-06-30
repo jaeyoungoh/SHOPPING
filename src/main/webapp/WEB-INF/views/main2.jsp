@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@include file="main.jsp" %><div id="cf">
+<%@include file="main.jsp" %><div id="cf" style="left: -50px;">
 <table id="list">
 <tr><td><h3>Order Best</h3></td> </tr>
 <tr>
@@ -42,7 +42,7 @@
  <br><BR>
  <table><tr><td>
 <table id="list">
-<tr><td><h3>장바구니 Best</h3></td> </tr><tr>
+<tr><td><h3>Basket Best</h3></td> </tr><tr>
 <c:forEach var="cblist" items="${cblist}">
 	<td><a
 					href="${pageContext.request.contextPath}/product/view.do?product_id=${cblist.product_id}"><img

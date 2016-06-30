@@ -147,7 +147,7 @@
 			<td>총금액</td>
 			<td
 				style="border: none; color: red; font-weight: bold; font-size: 25px; text-align: right;"
-				colspan="2"><input type="text"
+				><input type="text"
 				value="<fmt:formatNumber value="${product.sale_price}" pattern="#,##0"/>"
 				name="sum_price" id="sum_price"
 				style="border: none; color: red; font-weight: bold; font-size: 25px; text-align: right;"
@@ -164,7 +164,7 @@
 				
 			<td><input type="button"
 				onclick="cartAdd(${product.product_id},this.form)" value="장바구니" id="a"></td>
-			<td><c:if
+			<td colspan="2"><c:if
 					test="${sessionScope.type=='판매자' and sessionScope.user_id==product.user_id}">
 					<input type="button" onclick="product_edit(${product.product_id})"
 						value="수정" id="a">
@@ -182,7 +182,7 @@
 				</c:if><input type="button" onclick="product_list()" value="목록" id="a"></td>
 		</tr>
 		<tr>
-			<td colspan="6"><h3>상품정보</h3>${product.intro_content}<br> <br></td>
+			<td colspan="6"><h2>상품정보</h3>${product.intro_content}<br> <br></td>
 		</tr>
 	</table>
 	<input type="hidden" name="product_id" value="${product.product_id}" />
