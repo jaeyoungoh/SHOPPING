@@ -48,13 +48,13 @@
 	</update>
 	
 	<select id="cartbest" resultMap="ProductResultMap">
-	select ceil((price-(price*sale_pct/100))/10)*10 as sale_price,p.product_id,sum,p.name,p.PRICE,p.SALE_PCT From product p,(select product_id,sum(cart_cnt) as sum FROM cart GROUP BY product_id order by sum(cart_cnt) DESC) c where p.product_id=c.product_id and rownum<![CDATA[<=]]>2
+	select img_url,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,p.product_id,sum,p.name,p.PRICE,p.SALE_PCT From product p,(select product_id,sum(cart_cnt) as sum FROM cart GROUP BY product_id order by sum(cart_cnt) DESC) c where p.product_id=c.product_id and rownum<![CDATA[<=]]>2
 	</select>
 	<select id="orderbest" resultMap="ProductResultMap">
-	select ceil((price-(price*sale_pct/100))/10)*10 as sale_price,p.product_id,sum,p.name,p.PRICE,p.SALE_PCT From product p,(select product_id,sum(orders.PRODUCT_CNT) as sum FROM orders GROUP BY product_id order by sum(orders.PRODUCT_CNT) DESC) o where p.product_id=o.product_id and rownum<![CDATA[<=]]>4
+	select img_url,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,p.product_id,sum,p.name,p.PRICE,p.SALE_PCT From product p,(select product_id,sum(orders.PRODUCT_CNT) as sum FROM orders GROUP BY product_id order by sum(orders.PRODUCT_CNT) DESC) o where p.product_id=o.product_id and rownum<![CDATA[<=]]>4
 	</select>
 	<select id="newitem" resultMap="ProductResultMap">
-		select a.* from(select ceil((price-(price*sale_pct/100))/10)*10 as sale_price,product.PRODUCT_ID,product.NAME,product.PRICE,product.SALE_PCT from product ORDER BY product.PRODUCT_DATE desc)a where rownum<![CDATA[<=]]>2
+		select a.* from(select img_url,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,product.PRODUCT_ID,product.NAME,product.PRICE,product.SALE_PCT from product ORDER BY product.PRODUCT_DATE desc)a where rownum<![CDATA[<=]]>2
 	</select>
 
 	<update id="delete" parameterType="int">
