@@ -48,7 +48,7 @@
 		
 		var chkCartMove = window.confirm("장바구니에 담은 것을 확인 하시겠습니까?");
 		if(chkCartMove){
-				fmt.cart_cnt.value = fmt.quantity.value;
+				fmt.cart_cnt.value = document.getElementById("quantity").value;
 				fmt.action = "${pageContext.request.contextPath}/cart/add.do";
 				fmt.submit();
 		}else {
@@ -62,6 +62,16 @@
 	}
 	function product_edit(product_id){
 		location.href="${pageContext.request.contextPath}/product/editForm.do?product_id="+product_id;
+	}
+	
+	function orderAdd(product_id , fmt){
+		var chkCartMove = window.confirm("해당 상품을 주문하시겠습니까?");
+		if(chkCartMove){
+			fmt.action="${pageContext.request.contextPath}/order/addDirect.do";
+			fmt.product_cnt = document.getElementById("quantity").value;
+			fmt.cart_cnt = document.getElementById("quantity").value;
+			fmt.submit();
+		}
 	}
 	</script>
 	<%@include file="../main.jsp" %>
@@ -130,7 +140,7 @@
 				type="text" value=1 name="quantity" id="quantity"
 				style="width: 35px;     border:0px;
 				 text-align: center;" onchange="chack_q()">
-				<input type="hidden" name="cart_cnt" value="" /> 
+				<input type="hidden" name="cart_cnt" value="0" /> 
 				<i class="fa fa-plus fa-1" style="font-size: 10px;color: #b8d4db;" onclick="quantityAdd()" ></i> </td>
 		</tr>
 		<tr>
@@ -145,8 +155,13 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td><input type="button"
-				onclick="orderAdd(${product.product_id},this.form)" value="구매하기" id="a"></td>
+			<td>
+				<input type="button" onclick="orderAdd(${product.product_id},this.form)" value="구매하기" id="a">
+				<input type="hidden" name="product_cnt" value="0" /> 
+				
+			
+				</td>
+				
 			<td><input type="button"
 				onclick="cartAdd(${product.product_id},this.form)" value="장바구니" id="a"></td>
 			<td><c:if
