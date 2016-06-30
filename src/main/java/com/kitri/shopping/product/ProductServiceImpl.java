@@ -75,5 +75,23 @@ public class ProductServiceImpl implements ProductService {
 		return productmapper.delete(product_id);
 	}
 
+	@Override
+	public List<Product> getCartBest() {
+		ProductMapper productmapper=sqlsession.getMapper(ProductMapper.class);
+		return productmapper.cartbest();
+	}
+
+	@Override
+	public List<Product> getOrderBest() {
+		ProductMapper productmapper=sqlsession.getMapper(ProductMapper.class);
+		return productmapper.orderbest();
+	}
+
+	@Override
+	public List<Product> getNewItem() {
+		ProductMapper productmapper=sqlsession.getMapper(ProductMapper.class);
+		return productmapper.newitem();
+	}
+
 	
 }

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class usersController {
 	
 	@Resource(name="userService")
+	
 	private Service service;
 	public void setService(Service service) {
 		this.service = service;
