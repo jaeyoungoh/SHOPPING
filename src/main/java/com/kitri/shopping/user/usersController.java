@@ -93,14 +93,13 @@ public class usersController {
 	
 	@RequestMapping(value="/user/modify.do")
 	public String modify(users u,@RequestParam(value="msg")String msg){
-		
-		System.out.println(u.toString()+"유저수정 입력값");
+		System.out.println(u+"유저수정 입력값");
 		service.editusers(u);
 		if(u.getType().equals("탈퇴")){
 			service.delusers(u.getUser_id());
 		}
 		if(!msg.equals("admin")){
-		return "/users/maintest";
+		return "redirect:/";
 		}else{
 			return "redirect:/user/admin.do";
 		}

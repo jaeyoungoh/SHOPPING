@@ -13,9 +13,9 @@ function cancelmodify(){
 	
 }
 
-function modify(){
+function modify1(){
 	
-var str = document.getElementById('pw');
+/* var str = document.getElementById('pw');
 var strn = document.getElementById('n');
 var stre = document.getElementById('e');
 var strp = document.getElementById('p');
@@ -159,9 +159,9 @@ var stra = document.getElementById('ad');
 	if( special_pattern.test(strp.value) == true ){
 	    alert('전화번호에 특수문자는 사용할 수 없습니다.');
 	    return false;
-	}
-	
-	document.u.submit();
+	} */
+	document.fmt_user.action="${pageContext.request.contextPath}/user/modify.do";
+	document.fmt_user.submit();
 	
 }
 
@@ -171,10 +171,10 @@ var stra = document.getElementById('ad');
 </head>
 <body>
 <%@include file="../main.jsp" %>
-<form action="${pageContext.request.contextPath }/user/modify.do" name="u">
+<form action="${pageContext.request.contextPath }/user/modify.do" name="fmt_user">
 <table id="list">
 <tr><td colspan="2">회원 정보수정</td> </tr>
-<tr><td>아이디 :</td><td><input type="text" name="user_id" value="${u.user_id }" readonly="readonly"/></td></tr>
+<tr><td>아이디 :</td><td><input type="text" name="user_id" value="${u.user_id }" readonly="readonly"><input type="hidden" value="${u.user_id }" name="msg"></td></tr>
 <tr><td>패스워드 :</td><td><input type="password" name="pwd" id="pw" value="${u.pwd }"/></td></tr>
 <tr><td>이름 :</td><td><input type="text" name="name" id="n" value="${u.name }"/></td></tr>
 <tr><td>이메일 :</td><td><input type="text" name="email" id="e" value="${u.email }"/></td></tr>
@@ -186,7 +186,7 @@ var stra = document.getElementById('ad');
 
 
 
-<tr><td><input type="button" value="변경요청" onclick="modify()" id="a"></td><td><input type="reset" value="변경취소" /></td></tr>
+<tr><td><input type="button" value="변경요청" onclick="modify1()" id="a"></td><td><input type="reset" value="변경취소" /></td></tr>
 </table>
 
 </form>
