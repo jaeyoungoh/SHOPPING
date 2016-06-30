@@ -360,14 +360,14 @@
 	</div>
 	<ul class="nav">
 		<li><a href="#" onclick="" id="category">Home</a></li>
-		<li class="dropdown"><a href="#" onclick="" id="category">주방가전</a>
+		<li class="dropdown"><a href="#" onclick="" id="category1" class="1">주방가전</a>
 			<ul>
-				<li class="dropdown"><a href="#" onclick="" id="category">냉장고</a>
+				<li class="dropdown"><a href="#" onclick="" id="category2" class="2">냉장고</a>
 					<ul>
-						<li><a href="#" onclick="" id="category">일반형</a></li>
-						<li><a href="#" onclick="" id="category">업소용</a></li>
-						<li><a href="#" onclick="" id="category">와인용</a></li>
-						<li><a href="#" onclick="" id="category">김치냉장고</a></li>
+						<li><a href="#" onclick="" id="category" class="3">일반형</a></li>
+						<li><a href="#" onclick="" id="category" class="3">업소용</a></li>
+						<li><a href="#" onclick="" id="category" class="3">와인용</a></li>
+						<li><a href="#" onclick="" id="category" class="3">김치냉장고</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" onclick="" id="category">밥솥</a>
 					<ul>

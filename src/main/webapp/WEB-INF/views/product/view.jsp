@@ -109,12 +109,12 @@
 			<td colspan="2"><BR> <c:choose>
 					<c:when test="${product.sale_pct>0}">
 						<fmt:formatNumber value="${product.price}" type="number" />원<br>
-						<font style="color: red; font-weight: bold; font-size: 25px;">
+						<font style="color: #c94e50; font-weight: bold; font-size: 25px;">
 							<fmt:formatNumber value="${product.sale_price}" pattern="#,##0" />원
 						</font>
 					</c:when>
 					<c:otherwise>
-						<font style="color: red; font-weight: bold; font-size: 25px;">
+						<font style="color: #c94e50; font-weight: bold; font-size: 25px;">
 							<fmt:formatNumber value="${product.sale_price}" pattern="#,##0" />원
 						</font>
 					</c:otherwise>
@@ -146,11 +146,11 @@
 		<tr>
 			<td>총금액</td>
 			<td
-				style="border: none; color: red; font-weight: bold; font-size: 25px; text-align: right;"
+				style="border: none; color: #c94e50; font-weight: bold; font-size: 25px; text-align: right;"
 				><input type="text"
 				value="<fmt:formatNumber value="${product.sale_price}" pattern="#,##0"/>"
 				name="sum_price" id="sum_price"
-				style="border: none; color: red; font-weight: bold; font-size: 25px; text-align: right;"
+				style="border: none; color: #c94e50; font-weight: bold; font-size: 25px; text-align: right;"
 				readonly="readonly">원</td>
 		</tr>
 		<tr>
@@ -188,3 +188,5 @@
 	<input type="hidden" name="product_id" value="${product.product_id}" />
 </form>
 </div>
+
+<br><BR><BR><br><BR><BR><br><BR><BR><br><BR><BR>

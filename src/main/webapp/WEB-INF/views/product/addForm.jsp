@@ -177,7 +177,7 @@
 		</tr>
 		<tr>
 		<th>판매자명</th>
-			<td><input type="hidden" name="product_id"><c:choose><c:when test="${msg=='edit'}"><input type="text" name="user_id"
+			<td><input type="hidden" name="product_id" value="0"><c:choose><c:when test="${msg=='edit'}"><input type="text" name="user_id"
 				value="${product.user_id}" readonly="readonly"></c:when><c:otherwise><input type="text" name="user_id"
 				value="${sessionScope.user_id}" readonly="readonly"></c:otherwise></c:choose></td>
 			<th>가격</th>
@@ -209,6 +209,7 @@
 	</table>
 </form>
 </div>
+<br><BR><BR><br><BR><BR><br><BR><BR><br><BR><BR>
 </body>
 <script type="text/javascript">
 var oEditors = [];
