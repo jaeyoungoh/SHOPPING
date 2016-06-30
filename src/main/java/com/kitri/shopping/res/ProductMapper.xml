@@ -21,7 +21,7 @@
 	</resultMap>
 	
 	<select id="selectAll" resultMap="ProductResultMap" >
-		select product_id,name,quantity,price,sale_pct,img_url,category,intro_content,user_id,product_date,ceil((price-(price*sale_pct/100))/10)*10 as sale_price from Product where status='판매중' or status='품절' order by product_date desc
+		select product_id,name,quantity,price,sale_pct,img_url,category,intro_content,user_id,product_date,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,status from Product where status='판매중' or status='품절' order by product_date desc
 	</select>
 	<select id="selectbyUser" resultMap="ProductResultMap" parameterType="String">
 		select product_id,name,quantity,price,sale_pct,img_url,category,intro_content,user_id,product_date,ceil((price-(price*sale_pct/100))/10)*10 as sale_price,status from Product where user_id=#{user_id} order by product_date desc
