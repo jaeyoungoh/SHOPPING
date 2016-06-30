@@ -23,7 +23,8 @@
 		
 		
 	}
-	function edit_product(form1){
+	function edit_product(form1,id){
+		form1.product_id.value=id;
 		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 		form1.action="${pageContext.request.contextPath}/product/edit.do";
 		form1.category.value=form1.category1.value+">"+form1.category2.value+">"+form1.category3.value;
@@ -81,6 +82,8 @@
 	
 	function load_form() {
 		var category="${product.category}";
+		var status="${product.status}";
+		$("[value='"+status+"']").attr("selected","selected");
 		if('${product.quantity}'=="" || '${product.quantity}'==0){
 		document.addform.quantity.value=0;}
 		var arr=category.split(">");
@@ -135,8 +138,15 @@
 			<th>상품명</th>
 			<td colspan="2"><input type="text" name="name"
 				value="${product.name}" style="width: 240px;" ></td>
+				<th>상태</th>
+				<td><select name="status">
+				<option value="판매중">판매중</option>
+				<option value="판매중지">판매중지</option>
+				<option value="품절">품절</option>
+				<option value="판매준비">판매준비</option>
+				</select></td>
 				<th>카테고리</th>
-			<td colspan="4"><input type="hidden" value="${product.category}" name="category">
+			<td colspan="2"><input type="hidden" value="${product.category}" name="category">
 			<select name="category1" onchange="category_c1()">
 				<option value="주방가전">주방가전</option>
 				<option value="생활가전">생활가전</option>
@@ -167,7 +177,7 @@
 		</tr>
 		<tr>
 		<th>판매자명</th>
-			<td><c:choose><c:when test="${msg=='edit'}"><input type="text" name="user_id"
+			<td><input type="hidden" name="product_id"><c:choose><c:when test="${msg=='edit'}"><input type="text" name="user_id"
 				value="${product.user_id}" readonly="readonly"></c:when><c:otherwise><input type="text" name="user_id"
 				value="${sessionScope.user_id}" readonly="readonly"></c:otherwise></c:choose></td>
 			<th>가격</th>
@@ -195,7 +205,7 @@
 			<td colspan="9"> 	<textarea name="intro_content" id="ir1" rows="10" cols="100" style="width:916px; height:412px; display:none;"></textarea>
 			</td>
 		</tr>
-		<tr><td colspan="9"><c:choose><c:when test="${msg=='add'}"><input type="button" onclick="add_product(this.form)"  value="저장" id=a></c:when><c:otherwise><input type="button" onclick="edit_product(this.form)"  value="수정" id=a></c:otherwise></c:choose> <input type="reset" value="취소"></td></tr>
+		<tr><td colspan="9"><c:choose><c:when test="${msg=='add'}"><input type="button" onclick="add_product(this.form)"  value="저장" id=a></c:when><c:otherwise><input type="button" onclick="edit_product(this.form,${product.product_id})"  value="수정" id=a></c:otherwise></c:choose> <input type="reset" value="취소"></td></tr>
 	</table>
 </form>
 </div>

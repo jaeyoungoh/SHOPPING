@@ -75,19 +75,11 @@ public class usersController {
 		return null;}
 	
 	@RequestMapping(value="/user/logout.do")
-	public String logOut(HttpServletRequest req,@RequestParam(value="uri")String uri,HttpServletResponse response){
-		try {
-			req.setCharacterEncoding("UTF-8");
-			response.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		uri=uri.replace("/shopping", "");
+	public String logOut(HttpServletRequest req){
 		HttpSession session = req.getSession();
 		
 		session.invalidate();
-		return "redirect:"+uri;
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="user/adduser.do")

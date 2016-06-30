@@ -64,16 +64,16 @@ function category_c1() {
 				break;
 			case "전자레인지":
 				msg+="<option value='전자레인지'>전자레인지</option>"
-					+"<option value='오븐레인지'>오븐레인지</option>";
+					+"<option value='오븐레인지'>오븐레인지</option>"
 				break;
 			case "커피메이커":
 				msg+="<option value='자동머신'>자동머신</option>"
-					+"<option value='캡슐머신'>캡슐머신</option>";
+					+"<option value='캡슐머신'>캡슐머신</option>"
 					+"<option value='로스터'>로스터</option>";
 				break;
 			case "세탁기":
 				msg+="<option value='일반세탁기'>일반세탁기</option>"
-					+"<option value='드럼세탁기'>드럼세탁기</option>";
+					+"<option value='드럼세탁기'>드럼세탁기</option>"
 					+"<option value='건조기'>건조기</option>";
 				break;
 			case "청소기":

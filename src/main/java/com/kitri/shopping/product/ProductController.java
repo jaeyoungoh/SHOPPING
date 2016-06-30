@@ -136,7 +136,7 @@ public class ProductController {
 			filename1=" ";
 		}
 		product.setImg_url(filename1);
-		service.addProduct(product);
+		service.editProduct(product);
 		return "redirect:/product/slist.do";
 	}
 	@RequestMapping(value="/product/main.do")
