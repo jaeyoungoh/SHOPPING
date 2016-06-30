@@ -167,7 +167,6 @@ margin: 0;}
 
 
 
-	
 
 <%-- <jsp:include page="${pageContext.request.contextPath}/resources/bottom.jsp"></jsp:include> --%>
 </div>
