@@ -255,10 +255,12 @@
 	}
 	function login1(){
 		$("#close-button").trigger("click");
+		$(".md-close").trigger("click");
 		$("[data-modal=modal-1]").trigger("click");
 	}
 	function signup(){
 		$("#close-button").trigger("click");
+		$(".md-close").trigger("click");
 		$("[data-modal=modal-2]").trigger("click");
 	}
 	function findpwd() {
@@ -333,9 +335,10 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<a href="${pageContext.request.contextPath }/user/logout.do"
-							style="display: inline-block; font-size: 15px;"><i
-							class="fa fa-sign-out" aria-hidden="true"></i> <span>로그아웃</span></a>
+						<div id="icon" style="display: inline-block; font-size: 15px;">
+							<i class="fa fa-sign-out" aria-hidden="true"></i> <input
+								type="button" onclick="logout()" value="로그아웃">
+						</div>
 					</c:otherwise>
 
 				</c:choose>
@@ -527,7 +530,7 @@
 								${sessionScope.name}</font> 님 어서오세요 <input type="button" value="정보수정"
 								onclick="modify()">
 							<input type="button" value="로그아웃" onclick="logout()">
-						
+
 						</c:otherwise>
 
 					</c:choose>
@@ -635,7 +638,8 @@
 						<tr>
 							<td><input type="button" value="가입요청" onclick="join()"><input
 								type="hidden" name="uri"></td>
-							<td><input type="reset" value="입력취소"></td>
+							<td><input type="reset" value="입력취소"><input type="hidden" class="md-close"
+								value="X" /></td>
 						</tr>
 					</table>
 
@@ -651,9 +655,9 @@
 	<!-- the overlay element -->
 
 	<script src="${pageContext.request.contextPath}/js/classie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/classie1.js"></script>
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 	<!-- classie.js by @desandro: https://github.com/desandro/classie -->
-	<script src="${pageContext.request.contextPath}/js/classie.js"></script>
 	<script src="${pageContext.request.contextPath}/js/modalEffects.js"></script>
 
 	<!-- for the blur effect -->
